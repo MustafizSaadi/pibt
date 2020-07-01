@@ -5,16 +5,16 @@ PROBLEM_TYPE=MAPF
 
 // choose solver
 // option: { PIBT, HCA, WHCA, PPS, CBS, ECBS, iECBS, TP, winPIBT }
-SOLVER_TYPE=PIBT
+SOLVER_TYPE=ECBS
 
 // choose map file
-field=./map/arena.map
+field=./map/lak303d.map
 
 // number of agents
 agentnum=100
 
 // timestep limitation
-timesteplimit=50000
+timesteplimit=10000
 
 // number of tasks, for MAPD, IMAPF
 tasknum=500
@@ -46,13 +46,13 @@ printtime=1
 WarshallFlpoyd=0
 
 // Indepent Detection for CBS and ECBS, choose {0, 1}
-ID=0
+ID=1
 
 // window size of WHCA
 window=5
 
 // suboptimal factor of ECBS
-suboptimal=1.2
+suboptimal=1.3
 
 // for winPIBT, iterative use
 softmode=1

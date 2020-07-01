@@ -79,7 +79,7 @@ void setParams(std::string filename,
               <<" cannot read." << "\n";
     std::exit(1);
   }
-
+	
   // regex
   std::regex r_problem_type = std::regex(R"(PROBLEM_TYPE=(.+))");
   std::regex r_solver_type = std::regex(R"(SOLVER_TYPE=(.+))");
@@ -217,6 +217,7 @@ void setScenario(std::string filename, Paths &points, Graph* G)
       y1 = std::stoi(results[2].str());
       x2 = std::stoi(results[3].str());
       y2 = std::stoi(results[4].str());
+      //std::cout<<x1<<" "<<y1<<" "<<x2<<" "<<y2<<" points "<<endl;
       points.push_back({G->getNode(x1, y1), G->getNode(x2, y2)});
     }
   }

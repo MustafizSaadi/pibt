@@ -1,7 +1,6 @@
 #pragma once
 #include "problem.h"
 
-
 class MAPF : public Problem {
 private:
   void init();

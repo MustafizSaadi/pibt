@@ -46,6 +46,7 @@ bool CBS::solve() {
 
     // solve with independent detection
     while (true) {
+      std::cout<<"Whole "<<WHOLE.size()<<std::endl;
       for (auto BLOCK : WHOLE) {
         if (!solvePart(PATHS, BLOCK)) {
           solveEnd();
@@ -66,7 +67,10 @@ bool CBS::solve() {
     for (int i = 0; i < A.size(); ++i) A[i]->setNode(PATHS[i][t]);
     P->update();
 
-    if (P->getTimestep() >= P->getTimestepLimit()) break;
+    if (P->getTimestep() >= P->getTimestepLimit()) {
+	std::cout<<"Timeout"<<std::endl;
+	break;
+	}
   }
 
   solveEnd();

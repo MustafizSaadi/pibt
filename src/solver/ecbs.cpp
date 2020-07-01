@@ -11,6 +11,8 @@
 
 #include "ecbs.h"
 #include "../util/util.h"
+#include<bits/stdc++.h>
+using namespace std;
 
 
 ECBS::ECBS(Problem* _P, float _w) : CBS(_P, false), w(_w) {
@@ -27,6 +29,7 @@ void ECBS::init() {
 }
 
 bool ECBS::solvePart(Paths& paths, Agents& block) {
+  //int highLevelNode = 0;
   CTNode* node;
   Constraints constraints;
 
@@ -43,6 +46,7 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
   std::vector<int> table_conflict;
 
   CTNode* root = new CTNode { {}, {}, 0, nullptr, true, {}, 0 };
+  highLevelNode ++;
   invoke(root, block);
   OPEN.insert(uuid);
   table.push_back(root);
@@ -102,6 +106,8 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
     for (auto constraint : constraints) {
       CTNode* newNode = new CTNode { constraint, node->paths,
                                      0, node, true, {}, 0 };
+      highLevelNode ++;
+      //std::cout<<" In Loop"<<std::endl;
       // formating
       Node* g;
       Nodes p;
@@ -135,6 +141,11 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
   } else {
     status = false;
   }
+  
+  //ofstream myfile;
+  //myfile.open("output_HighLevel_Node.txt",ios_base::app);
+  //myfile<< highLevelNode<<endl;
+  //myfile.close();
 
   return status;
 
@@ -310,6 +321,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
   Node* _g = a->getGoal();
 
   Nodes path, tmpPath, C;  // return
+  //std::cout<<"cnt"<<std::endl;
 
   // ==== fast implementation ====
   // constraint free
@@ -318,6 +330,8 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
     table_fmin.at(a->getId()) = path.size() - 1;
     return path;
   }
+  
+  //std::cout<<"cnt"<<std::endl;
 
   // goal condition
   bool existGoalConstraint = false;
@@ -342,6 +356,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
   std::unordered_map<std::string, boost::heap::fibonacci_heap<Fib_AN>::handle_type> SEARCHED;
   std::unordered_set<std::string> CLOSE;  // key
   AN* n = new AN { _s, 0, pathDist(_s, _g), nullptr };
+  //AN* nfocal = new AN { _s, 0, pathDist(_s, _g), nullptr };
   auto handle = OPEN.push(Fib_AN(n));
   key = getKey(n);
   SEARCHED.emplace(key, handle);
@@ -353,6 +368,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
   boost::heap::fibonacci_heap<Fib_FN> FOCUL;
   std::unordered_map<std::string,
                      boost::heap::fibonacci_heap<Fib_FN>::handle_type> SEARCHED_F;
+  auto handle2 = FOCUL.push(Fib_FN(n,table_conflict.at(key)));
 
   while (!OPEN.empty()) {
     if (updateMin || FOCUL.empty()) {
@@ -385,9 +401,13 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
     n = FOCUL.top().node;
     key = getKey(n);
     FOCUL.pop();
-
+    
+    std::cout << (n->v)->getPos().y << " " << (n->v)->getPos().x << std::endl;
     // already explored
-    if (CLOSE.find(key) != CLOSE.end()) continue;
+    if (CLOSE.find(key) != CLOSE.end()) {
+      printf("Yes\n");
+      continue;
+    }
 
     // check goal
     if (n->v == _g) {
@@ -404,12 +424,13 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
     // search neighbor
     C = G->neighbor(n->v);
     C.push_back(n->v);
+    int cnt1 = 0,cnt2 =0,cnt3 =0;
 
     for (auto m : C) {
       g = n->g + 1;
       key = getKey(g, m);
       if (CLOSE.find(key) != CLOSE.end()) continue;
-
+      cnt3 ++;
       // check constraints
       auto constraint = std::find_if(constraints.begin(), constraints.end(),
                                      [a, g, m, n] (Conflict* c) {
@@ -418,7 +439,10 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
                                        if (c->onNode) return c->v == m;
                                        return c->v == m && c->u == n->v;
                                      });
-      if (constraint != constraints.end()) continue;
+      if (constraint != constraints.end()) {
+	cnt1 ++;
+	continue;
+	}
       f = g + pathDist(m, _g);
 
       // ==== fast implementation ====
@@ -437,6 +461,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
         SEARCHED.emplace(key, handle);
         getPartialPath(l, tmpPath);
         table_conflict.emplace(key, h3(a, tmpPath, paths));
+	cnt2++;
       } else {
         auto handle = itrS->second;
         l = (*handle).node;
@@ -449,6 +474,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
           OPEN.increase(handle);
           updateH = true;
         }
+	cnt3 ++;
       }
 
       tmpPath.clear();
@@ -466,7 +492,18 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
         }
       }
     }
+    //std::cout<<" cnt "<<cnt1<<" "<<cnt2<<" "<<cnt3<<std::endl;
   }
+
+  int soln = INT_MAX;
+
+  // while(!OPEN.empty()){
+  //   nopen = OPEN.top().node;
+  //   if(n->f<= soln){
+  //       nfocal = FOCUL.top().node;
+  //       OPEN.erase(nfocal);
+  //   }
+  // }
 
   // back tracking
   int fmin = 0;

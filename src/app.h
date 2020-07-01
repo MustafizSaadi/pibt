@@ -32,6 +32,10 @@
 
 static void setCurrentTime(std::string &str);  // for log filename
 
+uint64_t timeSinceEpochMillisec() {
+  using namespace std::chrono;
+  return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+}
 
 Problem* run(int argc, char *argv[])
 {
@@ -96,10 +100,10 @@ Problem* run(int argc, char *argv[])
    ************************/
   setParams(configfile, envConfig, solverConfig, visualConfig);
 
-#ifdef OF
+//#ifdef OF
   std::cout << "done." << "\n";
-  std::cout << "loading map : " << envConfig->field << "\n";
-#endif
+  std::cout << "loading map : " << envConfig->timesteplimit << "\n";
+//#endif
 
 
   /************************
@@ -140,6 +144,7 @@ Problem* run(int argc, char *argv[])
     setScenario(envConfig->scenariofile, points, G);
   } else {
     points = G->getRandomStartGoal(envConfig->agentnum);
+    //std::cout<<"Random"<<std::endl;
   }
 
   for (int i = 0; i < envConfig->agentnum; ++i) {
@@ -268,8 +273,17 @@ Problem* run(int argc, char *argv[])
   std::cout << "done." << "\n";
   std::cout << "start solving the iterative MAPF problem" << "\n";
 #endif
+  
+  ofstream myfile;
+  //uint64_t current_time1 = timeSinceEpochMillisec();*/
 
   solver->solve();
+  
+
+  //uint64_t current_time2 = timeSinceEpochMillisec();
+  myfile.open("output_high_level_node.txt",ios_base::app);
+  myfile<<solver->highLevelNode<<endl;
+  myfile.close();
 
 #ifdef OF
   std::cout << "success to solve!" << "\n\n";

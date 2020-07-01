@@ -96,6 +96,7 @@ public:
   virtual int dist(Node* v1, Node* v2) { return 0; }
   virtual Nodes getPath(Node* s, Node* g) { return {}; }
   virtual Nodes getPath(Node* s, Node* g, Nodes &prohibitedNodes);
+  virtual bool getPathInit(Node* s, Node* g);
 
   virtual Paths getRandomStartGoal(int num);
   // for iterative MAPF

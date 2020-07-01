@@ -43,6 +43,7 @@ public:
   ~Solver();
 
   void WarshallFloyd();
+  int highLevelNode = 0;
 
   virtual bool solve() { return false; };
   double getElapsed() { return elapsedTime; };

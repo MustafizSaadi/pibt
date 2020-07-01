@@ -7,6 +7,10 @@
 
 #include "mapf.h"
 #include "../util/util.h"
+#include<bits/stdc++.h>
+#include<stdio.h>
+using namespace std;
+//#include "../graph/vec2f.h"
 
 MAPF::MAPF(Graph* _G,
            Agents _A,
@@ -31,17 +35,35 @@ void MAPF::init() {
   }
 
   // allocation, t=0
+  std::cout<<"Coordinate "<<std::endl;
+  //string str = to_string(A.size()) + "\n";
   for (int i = 0; i < A.size(); ++i) {
     A[i]->setTask(T_OPEN[i]);
     A[i]->setGoal(A[i]->getTask()->getG()[0]);
+    Node* posst = A[i]->getNode();
+    Node* posen = A[i]->getGoal(); 
+   // str += to_string(int(posst->getPos().y)) + "," + to_string(int(posst->getPos().x)) + "," + to_string(int(posen->getPos().y)) + "," + to_string(int(posen->getPos().x)) + ",\n";
     A[i]->updateHist();
   }
+  // string filename = "agents" + to_string(A.size()) +".txt";
+  // const char *fptr = filename.c_str();
+  // ofstream myfile;
+  // myfile.open(fptr);
+  // myfile<<str; 
+  // myfile.close();
+  //const char *fptr = filename.c_str();
+  //freopen( fptr, "w",stdout);
+  //printf("%s %s",str,filename);
+  //fclose(stdout);
 }
 
 MAPF::~MAPF() {}
 
 bool MAPF::isSolved() {
-  return T_OPEN.empty();
+  if( T_OPEN.empty()  == true )
+	return 1;
+  else
+	return 1-(T_OPEN.size()/A.size());
 }
 
 void MAPF::update() {
@@ -74,7 +96,7 @@ std::string MAPF::logStr() {
   for (auto tau : T_CLOSE) str += tau->logStr();
 
   int cnt;
-  int pathsize;
+  int pathsize,solnCost=0;
   for (auto a : A) {
     auto hist = a->getHist();
     auto itr = hist.end() - 1;
@@ -84,8 +106,10 @@ std::string MAPF::logStr() {
       --itr;
     }
     pathsize = getTerminationTime() - cnt + 1;
+    solnCost += pathsize;
     str += a->logStr();
     str += "size:" + std::to_string(pathsize) + "\n";
   }
+  str += "SolutionCost:" + std::to_string(solnCost) + "\n";
   return str;
 }

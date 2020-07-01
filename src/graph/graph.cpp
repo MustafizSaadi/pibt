@@ -85,6 +85,10 @@ Nodes Graph::getPath(Node* _s, Node* _g,
   bool prohibited = !prohibitedNodes.empty();
   Nodes path, C;
   std::string key;
+  /*if(prohibited)
+	std::cout<<"Not empty"<<std::endl;
+  else
+	std::cout<<"empty"<<std::endl;*/
 
   // ==== fast implementation ====
   if (regFlg && !prohibited) {
@@ -109,12 +113,15 @@ Nodes Graph::getPath(Node* _s, Node* _g,
   SEARCHED.emplace(n->v->getId(), handle);
 
   while (!OPEN.empty()) {
+    //std::cout<<"In Open"<<std::endl;
     // argmin
     n = OPEN.top().node;
+    std::cout<<(n->v)->getPos().y<<" "<<(n->v)->getPos().x<<std::endl;
 
     // check goal condition
     if (n->v == _g) {
       invalid = false;
+      //std::cout<<"True"<<std::endl<<std::endl<<std::endl;
       break;
     }
 
@@ -196,6 +203,127 @@ Nodes Graph::getPath(Node* _s, Node* _g,
   return path;
 }
 
+// regFlg : whether register at Init
+
+bool Graph::getPathInit(Node* _s, Node* _g)
+{
+  bool prohibited = false;
+  Nodes path, C;
+  std::string key;
+
+  // ==== fast implementation ====
+  if (regFlg && !prohibited) {
+    key = getKey(_s, _g);
+    auto itrK = knownPaths.find(key);
+    if (itrK != knownPaths.end()) {  // known
+      path = itrK->second->path;
+      return true;
+    }
+  }
+  // =============================
+
+  int f;
+  bool invalid = true;
+
+  // prepare node open hashtable
+  boost::heap::fibonacci_heap<Fib_AN> OPEN;
+  std::unordered_map<int, boost::heap::fibonacci_heap<Fib_AN>::handle_type> SEARCHED;
+  std::unordered_set<int> CLOSE;
+  AN* n = new AN { _s, 0, dist(_s, _g), nullptr };
+  auto handle = OPEN.push(Fib_AN(n));
+  SEARCHED.emplace(n->v->getId(), handle);
+
+  while (!OPEN.empty()) {
+    //std::cout<<"In Open"<<std::endl;
+    // argmin
+    n = OPEN.top().node;
+    std::cout<<(n->v)->getPos().y<<" "<<(n->v)->getPos().x<<std::endl;
+
+    // check goal condition
+    if (n->v == _g) {
+      invalid = false;
+      //std::cout<<"True"<<std::endl<<std::endl<<std::endl;
+      break;
+    }
+
+    // ==== fast implementation ====
+    key = getKey(n->v, _g);
+    auto itrK = knownPaths.find(key);
+    if (itrK != knownPaths.end()) {  // known
+      Nodes kPath = itrK->second->path;
+      bool valid = true;
+      /*if (prohibited) {
+        for (auto v : kPath) {
+          if (inArray(v, prohibitedNodes)) {
+            valid = false;
+            break;
+          }
+        }
+      }*/
+      if (valid) {
+        for (int i = 1; i < kPath.size(); ++i) {
+          n = new AN { kPath[i], 0, 0, n };
+        }
+        invalid = false;
+        break;
+      }
+    }
+    // =============================
+
+    // update list
+    OPEN.pop();
+    CLOSE.emplace(n->v->getId());
+
+    // search neighbor
+    C = neighbor(n->v);
+
+    for (auto m : C) {
+      if (CLOSE.find(m->getId()) != CLOSE.end()) continue;
+      f = n->g + 1 + dist(m, _g);
+
+      // ==== fast implementation ====
+      if (regFlg) {
+        key = getKey(m, _g);
+        auto itrK = knownPaths.find(key);
+        if (itrK != knownPaths.end()) {
+          f = n->g + 1 + itrK->second->path.size() - 1;
+        }
+      }
+      // =============================
+
+      auto itrS = SEARCHED.find(m->getId());
+      if (itrS == SEARCHED.end()) {  // new node
+        AN* l = new AN { m, n->g + 1, f, n };
+        auto handle = OPEN.push(Fib_AN(l));
+        SEARCHED.emplace(l->v->getId(), handle);
+      } else {
+        auto handle = itrS->second;
+        AN* l = (*handle).node;
+        if (l->f > f) {
+          l->g = n->g + 1;
+          l->f = f;
+          l->p = n;
+          OPEN.increase(handle);
+        }
+      }
+    }
+  }
+
+  if (invalid) return false;
+
+  // back tracking
+  while (n != nullptr) {
+    path.push_back(n->v);
+    n = n->p;
+  }
+  std::reverse(path.begin(), path.end());
+
+  // register path
+  if (regFlg && !prohibited) registerPath(path);
+
+  return true;
+}
+
 std::string Graph::getKey(Node* s, Node* g) {
   int sIndex = getNodeIndex(s);
   int gIndex = getNodeIndex(g);
@@ -233,6 +361,7 @@ Paths Graph::getRandomStartGoal(int num) {
   Nodes ss(starts.size());
   Nodes gs(goals.size());
   bool flg;
+  //std::cout<<starts.size()<<" st "<<goals.size()<<" en "<<std::endl;
 
   std::copy(starts.begin(), starts.end(), ss.begin());
   std::copy(goals.begin(),  goals.end(), gs.begin());
@@ -243,13 +372,21 @@ Paths Graph::getRandomStartGoal(int num) {
     std::shuffle(gs.begin(), gs.end(), *MT);
 
     flg = true;
-    for (int i = 0; i < num; ++i) {
-      if (ss[i] != gs[i]) {
-        points.push_back({ ss[i], gs[i] });
-      } else {
-        flg = false;
-        break;
-      }
+    int j = 0;
+    for (int i = 0; i < num; ++i,j++) {
+	for(;j<gs.size();j++){
+	      bool valid = getPathInit(ss[i],gs[j]);
+	      if(valid){
+		      if (ss[i] != gs[j]) {
+			points.push_back({ ss[i], gs[j] });
+			break;
+		      } else {
+			flg = false;
+			break;
+		      }
+	      }
+	}
+	if(!flg) break;
     }
 
     if (flg) break;

@@ -49,7 +49,10 @@ bool PIBT::solve() {
     allocate();
     update();
     P->update();
-    if (P->getTimestep() >= P->getTimestepLimit()) break;
+    if (P->getTimestep() >= P->getTimestepLimit()) {
+	std::cout<<"Timeout"<<std::endl;
+	break;
+	}
   }
 
   solveEnd();
@@ -182,6 +185,8 @@ bool PIBT::priorityInheritance(Agent* a,
     // choose target
     target = chooseNode(a, C);
     CLOSE_NODE.push_back(target);
+
+    //std::cout<< "Yes" <<std::endl;
 
     bool isAgent = false;
     for (auto b : OPEN_AGENT) {
