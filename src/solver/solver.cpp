@@ -57,6 +57,8 @@ void Solver::WarshallFloyd() {
     dists(i, i) = 0;
   }
 
+  std:: cout << nodeNum << std::endl;
+
   // main loop
   for (int k = 0; k < nodeNum; ++k) {
     for (int i = 0; i < nodeNum; ++i) {

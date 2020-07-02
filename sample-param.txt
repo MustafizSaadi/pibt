@@ -11,7 +11,7 @@ SOLVER_TYPE=ECBS
 field=./map/lak303d.map
 
 // number of agents
-agentnum=100
+agentnum=10
 
 // timestep limitation
 timesteplimit=10000
