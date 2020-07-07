@@ -14,6 +14,12 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+int cnt1 = 0,cnt2=0;
+
+uint64_t timeSinceEpochMillisec() {
+  using namespace std::chrono;
+  return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+}
 
 ECBS::ECBS(Problem* _P, float _w) : CBS(_P, false), w(_w) {
   init();
@@ -26,6 +32,11 @@ ECBS::~ECBS() {}
 
 void ECBS::init() {
   for (auto a : A) table_fmin.emplace(a->getId(), 0);
+  std::cout<<"weight "<< w<<std::endl;
+}
+
+bool compare(Agent* a, Agent* b){
+  return (*a).conf < (*b).conf;
 }
 
 bool ECBS::solvePart(Paths& paths, Agents& block) {
@@ -45,6 +56,15 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
   std::vector<CTNode*> table;
   std::vector<int> table_conflict;
 
+  uint64_t current_time1 = timeSinceEpochMillisec();
+
+  for(auto a:block){
+    //cout<< "conflict " << (*a).conf <<endl;
+    (*a).m_w = w;
+  }
+
+  uint64_t current_time2 = timeSinceEpochMillisec();
+
   CTNode* root = new CTNode { {}, {}, 0, nullptr, true, {}, 0 };
   highLevelNode ++;
   invoke(root, block);
@@ -52,6 +72,36 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
   table.push_back(root);
   table_conflict.push_back(h3(root->paths));
   ++uuid;
+
+  int maxi = INT_MIN;
+  uint64_t current_time3 = timeSinceEpochMillisec();
+
+  for(auto a:block){
+    auto itr = std::find_if(A.begin(), A.end(),
+                              [a](Agent* b) { return a == b; });
+      int d = std::distance(A.begin(), itr);
+    (*a).conf = h3(a,root->paths[d],root->paths);
+    maxi = max(maxi,(*a).conf);
+    //cout << "block size " << block.size() <<endl; 
+  }
+
+  // sort(block.begin(),block.end(),compare);
+
+  // cout << "offset " << w <<endl; 
+
+  double offset = (w-1)/maxi;
+
+  cout << "offset " << offset <<endl; 
+  // double add = offset;
+  for(auto a:block){
+    //cout<< "conflict " << (*a).conf <<endl;
+    (*a).m_w = 1 + ((*a).conf * offset);
+    //add += offset;
+  }
+
+  // uint64_t current_time4 = timeSinceEpochMillisec();
+
+  //cout <<"Time " << (current_time2 - current_time1) + (current_time4 - current_time3)<< endl;
 
   bool CAT = std::any_of(paths.begin(), paths.end(),
                          [](Nodes p) { return !p.empty(); });
@@ -103,6 +153,8 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
     auto itrP = std::find(OPEN.begin(), OPEN.end(), keyF);
     OPEN.erase(itrP);
 
+    std::cout<<"constraints " << constraints.size()<<std::endl;
+
     for (auto constraint : constraints) {
       CTNode* newNode = new CTNode { constraint, node->paths,
                                      0, node, true, {}, 0 };
@@ -141,11 +193,15 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
   } else {
     status = false;
   }
+
+  lowlevelnode = cnt1;
   
-  //ofstream myfile;
-  //myfile.open("output_HighLevel_Node.txt",ios_base::app);
-  //myfile<< highLevelNode<<endl;
-  //myfile.close();
+  // ofstream myfile;
+  // myfile.open("output_Lowlevel_"+ to_string(w) +"_Node.txt",ios_base::app);
+  // myfile<< cnt1<<endl;
+  // myfile.close();
+
+  //std::cout<<" cnt "<<cnt1<<std::endl;
 
   return status;
 
@@ -321,7 +377,11 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
   Node* _g = a->getGoal();
 
   Nodes path, tmpPath, C;  // return
-  //std::cout<<"cnt"<<std::endl;
+
+  //double bw = w;
+
+  double bw = (*a).m_w;
+  std::cout<<"weight for agent "<<(*a).getId()<< " is "<<bw<<std::endl;
 
   // ==== fast implementation ====
   // constraint free
@@ -370,6 +430,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
                      boost::heap::fibonacci_heap<Fib_FN>::handle_type> SEARCHED_F;
   auto handle2 = FOCUL.push(Fib_FN(n,table_conflict.at(key)));
 
+
   while (!OPEN.empty()) {
     if (updateMin || FOCUL.empty()) {
       // argmin
@@ -379,7 +440,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
       n = OPEN.top().node;
       ubori = n->f;
       keyM = getKey(n);
-      ub = n->f * w;
+      ub = n->f * bw;
       // update focul
       FOCUL.clear();
       SEARCHED_F.clear();
@@ -402,7 +463,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
     key = getKey(n);
     FOCUL.pop();
     
-    std::cout << (n->v)->getPos().y << " " << (n->v)->getPos().x << std::endl;
+
     // already explored
     if (CLOSE.find(key) != CLOSE.end()) {
       printf("Yes\n");
@@ -424,13 +485,14 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
     // search neighbor
     C = G->neighbor(n->v);
     C.push_back(n->v);
-    int cnt1 = 0,cnt2 =0,cnt3 =0;
+    // int cnt1 = 0,cnt2 =0,cnt3 =0;
 
     for (auto m : C) {
+      //cnt1++;
       g = n->g + 1;
       key = getKey(g, m);
       if (CLOSE.find(key) != CLOSE.end()) continue;
-      cnt3 ++;
+      //cnt3 ++;
       // check constraints
       auto constraint = std::find_if(constraints.begin(), constraints.end(),
                                      [a, g, m, n] (Conflict* c) {
@@ -440,7 +502,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
                                        return c->v == m && c->u == n->v;
                                      });
       if (constraint != constraints.end()) {
-	cnt1 ++;
+	//cnt1 ++;
 	continue;
 	}
       f = g + pathDist(m, _g);
@@ -456,12 +518,13 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
       AN* l;
       bool updateH = false;
       if (itrS == SEARCHED.end()) {  // new node
+        cnt1++;
         l = new AN { m, g, f, n };
         auto handle = OPEN.push(Fib_AN(l));
         SEARCHED.emplace(key, handle);
         getPartialPath(l, tmpPath);
         table_conflict.emplace(key, h3(a, tmpPath, paths));
-	cnt2++;
+	//cnt2++;
       } else {
         auto handle = itrS->second;
         l = (*handle).node;
@@ -474,7 +537,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
           OPEN.increase(handle);
           updateH = true;
         }
-	cnt3 ++;
+	//cnt3 ++;
       }
 
       tmpPath.clear();
@@ -533,6 +596,8 @@ std::string ECBS::logStr() {
   str += "[solver] type:ECBS\n";
   str += "[solver] w:" + std::to_string(w) + "\n";
   str += "[solver] ID:" + std::to_string(ID) + "\n";
+  str += "[solver] Lowlevelnode:" + std::to_string(lowlevelnode) + "\n";
+
   str += Solver::logStr();
   return str;
 }
