@@ -13,6 +13,7 @@
 #include "cbs.h"
 #include <numeric>
 #include "../util/util.h"
+using namespace std;
 
 
 CBS::CBS(Problem* _P) : Solver(_P), ID(false) {
@@ -33,6 +34,8 @@ bool CBS::solve() {
 
   Paths PATHS;
   std::vector<Agents> WHOLE;
+
+  cout << "In cbs" <<endl;
 
   // initialize
   for (int i = 0; i < A.size(); ++i) PATHS.push_back({});
@@ -149,6 +152,8 @@ bool CBS::checkAgents(Paths& paths, std::vector<Agents>& whole) {
 }
 
 bool CBS::solvePart(Paths& paths, Agents& block) {
+
+  cout<< "solvepart" << endl;
   CTNode* node;
   Constraints constraints;
   std::vector<CTNode*> OPEN, ALL;

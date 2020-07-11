@@ -1,7 +1,7 @@
 /*
  * ecbs.cpp
  *
- * Purpose: Enhanced Conflict-based Search
+ * Purpose: Enhanced Conflict-based Search with weight change only at the root of high level node
  *
  * Sharon, G., Stern, R., Felner, A., & Sturtevant, N. R. (2015).
  * Conflict-based search for optimal multi-agent pathfinding.
@@ -9,28 +9,28 @@
  * Created by: Keisuke Okumura <okumura.k@coord.c.titech.ac.jp>
  */
 
-#include "ecbs.h"
+#include "ecbs_1.h"
 #include "../util/util.h"
 #include<bits/stdc++.h>
 using namespace std;
 
-uint64_t ECBS::timeSinceEpochMillisec() {
+uint64_t ECBS_1::timeSinceEpochMillisec() {
   using namespace std::chrono;
   return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 }
 
-ECBS::ECBS(Problem* _P, float _w) : CBS(_P, false), w(_w) {
+ECBS_1::ECBS_1(Problem* _P, float _w) : CBS(_P, false), w(_w) {
   init();
 }
-ECBS::ECBS(Problem* _P, float _w, bool _ID) : CBS(_P, _ID), w(_w) {
+ECBS_1::ECBS_1(Problem* _P, float _w, bool _ID) : CBS(_P, _ID), w(_w) {
   init();
 }
 
-ECBS::~ECBS() {}
+ECBS_1::~ECBS_1() {}
 
-void ECBS::init() {
+void ECBS_1::init() {
   for (auto a : A) table_fmin.emplace(a->getId(), 0);
-  std::cout<<"weight "<< w<<std::endl;
+  //std::cout<<"weight "<< w<<std::endl;
   cnt = 0;
 }
 
@@ -38,7 +38,7 @@ void ECBS::init() {
 //   return (*a).conf < (*b).conf;
 // }
 
-bool ECBS::solvePart(Paths& paths, Agents& block) {
+bool ECBS_1::solvePart(Paths& paths, Agents& block) {
   //int highLevelNode = 0;
   CTNode* node;
   Constraints constraints;
@@ -59,6 +59,11 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
 
   uint64_t current_time1 = timeSinceEpochMillisec();
 
+  for(auto a:block){
+    //cout<< "conflict " << (*a).conf <<endl;
+    (*a).m_w = w;
+  }
+
  // uint64_t current_time2 = timeSinceEpochMillisec();
 
   CTNode* root = new CTNode { {}, {}, 0, nullptr, true, {}, 0 };
@@ -68,6 +73,36 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
   table.push_back(root);
   table_conflict.push_back(h3(root->paths));
   ++uuid;
+
+  int maxi = INT_MIN;
+ // uint64_t current_time3 = timeSinceEpochMillisec();
+
+  for(auto a:block){
+    auto itr = std::find_if(A.begin(), A.end(),
+                              [a](Agent* b) { return a == b; });
+      int d = std::distance(A.begin(), itr);
+    (*a).conf = h3(a,root->paths[d],root->paths);
+    maxi = max(maxi,(*a).conf);
+    //cout << "block size " << block.size() <<endl; 
+  }
+
+  // sort(block.begin(),block.end(),compare);
+
+  // cout << "offset " << w <<endl; 
+
+  double offset = (w-1)/maxi;
+
+  //cout << "offset " << offset <<endl; 
+  // double add = offset;
+  for(auto a:block){
+    //cout<< "conflict " <<(*a).getId()<< " is " << (*a).conf <<endl;
+    (*a).m_w = 1 + ((*a).conf * offset);
+    //add += offset;
+  }
+
+  // uint64_t current_time4 = timeSinceEpochMillisec();
+
+  //cout <<"Time " << (current_time2 - current_time1) + (current_time4 - current_time3)<< endl;
 
   bool CAT = std::any_of(paths.begin(), paths.end(),
                          [](Nodes p) { return !p.empty(); });
@@ -165,7 +200,7 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
 
 }
 
-void ECBS::invoke(CTNode* node, Agents& block) {
+void ECBS_1::invoke(CTNode* node, Agents& block) {
   int d;
   // calc path
   if (node->c.empty()) {  // initail
@@ -224,7 +259,7 @@ void ECBS::invoke(CTNode* node, Agents& block) {
   formalizePathAgents(node, block);
 }
 
-int ECBS::h3(Agent* a, Nodes &p1, Paths &paths) {
+int ECBS_1::h3(Agent* a, Nodes &p1, Paths &paths) {
   if (p1.empty()) return 0;
 
   int collision = 0;
@@ -262,7 +297,7 @@ int ECBS::h3(Agent* a, Nodes &p1, Paths &paths) {
   return collision;
 }
 
-int ECBS::h3(Paths &paths) {
+int ECBS_1::h3(Paths &paths) {
 
   int collision = 0;
   Nodes p1, p2;
@@ -328,7 +363,7 @@ struct Fib_FN { // Forcul Node for Fibonacci heap
   }
 };
 
-Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
+Nodes ECBS_1::AstarSearch(Agent* a, CTNode* node) {
   Constraint constraints = getConstraintsForAgent(node, a);
 
   Node* _s = a->getNode();
@@ -336,7 +371,10 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
 
   Nodes path, tmpPath, C;  // return
 
-  double bw = w;
+  //double bw = w;
+
+  double bw = (*a).m_w;
+  std::cout<<"weight for agent "<<(*a).getId()<< " is "<<bw<<std::endl;
 
   // ==== fast implementation ====
   // constraint free
@@ -538,7 +576,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
   return path;
 }
 
-void ECBS::getPartialPath(AN* n, Nodes &path) {
+void ECBS_1::getPartialPath(AN* n, Nodes &path) {
   path.clear();
   AN* m = n;
   while (m != nullptr) {
@@ -548,7 +586,7 @@ void ECBS::getPartialPath(AN* n, Nodes &path) {
   std::reverse(path.begin(), path.end());
 }
 
-std::string ECBS::logStr() {
+std::string ECBS_1::logStr() {
   std::string str;
   str += "[solver] type:ECBS\n";
   str += "[solver] w:" + std::to_string(w) + "\n";

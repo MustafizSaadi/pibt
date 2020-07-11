@@ -18,7 +18,7 @@ private:
   Node* g;           // current goal
   Task* tau;         // task
   std::vector<AgentStatus*> hist;  // agent history
-
+  
   bool updated;      // whether goal is updated or not
   Node* beforeNode;  // previous location node, auto updated
 
@@ -26,6 +26,10 @@ public:
   Agent();
   Agent(Node* v);  // initial location
   ~Agent();
+
+  int conf;          //current conflict count
+  double m_w = 1;           // current suboptimal bound
+
 
   int getId() { return id; }
 

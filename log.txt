@@ -1,0 +1,286 @@
+/home/mustafizur/pibt/log/8by8_agents1_ex1_20_2.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex1_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex1_20_3.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex1_20_3.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex3_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex3_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex4_20_3.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex4_20_3.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex5_20_2.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex5_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex7_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex12_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex13_20_4.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex13_20_4.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex14_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex15_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex15_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex20_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex20_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex21_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex21_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex24_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex25_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex25_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex25_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex30_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex30_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex30_20_3.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex30_20_3.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex33_20_2.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex33_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex37_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex37_15_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex39_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex41_15_3.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex41_15_3.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex41_15_4.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex41_15_4.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex41_15_5.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex41_15_5.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex41_20_5.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex41_20_5.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex43_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex45_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex45_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex46_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex47_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex48_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex48_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex54_20_2.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex54_20_2.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex59_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex59_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex60_20_5.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex61_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex61_15_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex61_20_2.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex61_20_3.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex61_20_4.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex61_20_5.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex63_20_2.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex63_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex67_20_3.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex67_20_3.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex68_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex72_15_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex72_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex72_20_3.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex74_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex74_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex79_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex79_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex82_15_2.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex82_15_3.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex82_15_4.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex82_15_4.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex82_15_5.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex82_15_5.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex83_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex83_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex89_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex91_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex91_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex93_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex93_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex93_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex93_20_3.250000.txt
+/home/mustafizur/pibt/log/8by8_agents1_ex93_20_5.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents1_ex93_20_5.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex95_20_2.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex96_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex96_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents1_ex97_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex0_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex0_20_5.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex0_20_5.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex1_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex3_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex7_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex8_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex8_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex11_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex13_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex14_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex14_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex14_20_2.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex14_20_4.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex18_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex18_20_2.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex18_20_2.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex19_15_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex20_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex21_15_4.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex21_15_4.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex25_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex28_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex28_15_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex28_20_3.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex29_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex29_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex30_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex30_15_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex30_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex30_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex31_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex31_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex35_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex35_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex36_20_2.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex36_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex39_10_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex39_10_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex39_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex39_15_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex39_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex40_15_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex42_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex42_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex43_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex43_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex43_20_2.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex43_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex49_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex49_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex49_20_3.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex49_20_4.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex49_20_5.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex53_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex55_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex61_15_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex65_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex65_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex67_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex70_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex72_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex73_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex76_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex79_15_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex79_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex79_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex80_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex82_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex82_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex82_20_2.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex82_20_2.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex82_20_3.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents2_ex84_20_4.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex86_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex86_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex88_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex91_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex91_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex91_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex91_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex94_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex95_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex95_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex96_20_4.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents2_ex96_20_5.250000.txt
+/home/mustafizur/pibt/log/8by8_agents2_ex97_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex0_20_2.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex0_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex1_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex2_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex4_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex4_15_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex5_20_2.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex5_20_3.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex5_20_4.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex6_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex6_20_2.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex6_20_3.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex6_20_5.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex18_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex20_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex20_20_2.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex20_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex24_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex24_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex24_20_3.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex24_20_3.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex25_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex27_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex27_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex30_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex31_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex31_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex32_15_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex34_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex35_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex40_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex40_20_2.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex43_20_2.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex43_20_3.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex43_20_4.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex43_20_4.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex43_20_5.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex46_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex46_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex50_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex51_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex51_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex53_15_3.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex53_15_3.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex53_20_3.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex53_20_3.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex56_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex56_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex60_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex60_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex65_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex69_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex69_15_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex72_15_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex74_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex76_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex76_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex78_20_1.250000.txt
+/home/mustafizur/pibt/changed_changed_log/8by8_agents3_ex82_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex83_20_1.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex94_20_2.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex94_20_2.250000.txt
+/home/mustafizur/pibt/log/8by8_agents3_ex96_20_1.250000.txt
+/home/mustafizur/pibt/changed_log/8by8_agents3_ex96_20_1.250000.txt
+
+
+
+
+
+
+weight for agent 0 is 1.56818
+weight for agent 1 is 1.90909
+weight for agent 2 is 1.45455
+weight for agent 3 is 1.90909
+weight for agent 4 is 1.22727
+weight for agent 5 is 1.79545
+weight for agent 6 is 2.25
+weight for agent 7 is 1.68182
+weight for agent 8 is 1.56818
+weight for agent 9 is 1.68182
+weight for agent 10 is 1.22727
+weight for agent 11 is 1.79545
+weight for agent 12 is 1.79545
+weight for agent 13 is 1.68182
+weight for agent 14 is 2.25
+weight for agent 15 is 1.34091
+weight for agent 16 is 1.79545
+weight for agent 17 is 1.56818
+weight for agent 18 is 1.79545
+weight for agent 19 is 1.56818
+
+
+weight for agent 0 is 1.11364
+weight for agent 1 is 1.22727
+weight for agent 2 is 1.22727
+weight for agent 6 is 1.11364
+weight for agent 7 is 1.45455
+weight for agent 8 is 1.22727
+weight for agent 10 is 1.11364
+weight for agent 11 is 1.11364
+weight for agent 12 is 1.11364
+weight for agent 14 is 1.22727
+weight for agent 15 is 1.11364
+weight for agent 16 is 1.1136
+weight for agent 17 is 1.11364
+weight for agent 19 is 1.11364

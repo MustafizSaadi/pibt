@@ -12,6 +12,7 @@ class Problem {
 protected:
   int timestep;
   int timesteplimit;
+  double m_w;
   Graph *G;
   Agents A;
   std::vector<Task*> T_OPEN;   // open tasks

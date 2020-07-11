@@ -29,13 +29,11 @@
 #include "solver/hca.h"
 #include "solver/tp.h"
 #include "solver/pps.h"
+#include "solver/ecbs_1.h"
+#include "solver/ecbs_2.h"
 
 static void setCurrentTime(std::string &str);  // for log filename
 
-uint64_t timeSinceEpochMillisec() {
-  using namespace std::chrono;
-  return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-}
 
 Problem* run(int argc, char *argv[])
 {
@@ -69,6 +67,7 @@ Problem* run(int argc, char *argv[])
     {
      Param::P_MAPF,    // problem type
      Param::S_PIBT,    // solver type
+     "log",            // log_folder
      "./map/5x5.map",  // field type
      3,                // agent number
      10000,            // timesteplimit
@@ -190,6 +189,7 @@ Problem* run(int argc, char *argv[])
       std::cout << "error@run, CBS cannot solve except MAPF" << "\n";
       std::exit(1);
     }
+    cout << "CBS" <<endl;
     solver = new CBS(P, solverConfig->ID);
     break;
   case Param::SOLVER_TYPE::S_ECBS:
@@ -198,7 +198,26 @@ Problem* run(int argc, char *argv[])
       std::cout << "error@run, ECBS cannot solve except MAPF" << "\n";
       std::exit(1);
     }
+    cout << "ECBS " <<solverConfig->suboptimal<< endl;
     solver = new ECBS(P, solverConfig->suboptimal, solverConfig->ID);
+    break;
+  case Param::SOLVER_TYPE::S_ECBS_1:
+    if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
+        envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF_STATION) {
+      std::cout << "error@run, ECBS cannot solve except MAPF" << "\n";
+      std::exit(1);
+    }
+    cout << "ECBS1 " <<solverConfig->suboptimal<< endl;
+    solver = new ECBS_1(P, solverConfig->suboptimal, solverConfig->ID);
+    break;
+  case Param::SOLVER_TYPE::S_ECBS_2:
+    if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
+        envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF_STATION) {
+      std::cout << "error@run, ECBS cannot solve except MAPF" << "\n";
+      std::exit(1);
+    }
+    cout << "ECBS2 " <<solverConfig->suboptimal<< endl;
+    solver = new ECBS_2(P, solverConfig->suboptimal, solverConfig->ID);
     break;
   case Param::SOLVER_TYPE::S_iECBS:
     if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
@@ -252,14 +271,25 @@ Problem* run(int argc, char *argv[])
     break;
   }
 
+  std :: string input_file;
+  int st = envConfig->field.find("8");
+  int en = envConfig->field.find(".map");
+  input_file = envConfig->field.substr(st,en-st);
+  //std::cout << input_file <<std::endl;
+    //solver->WarshallFloyd(input_file);
+
   // precomputing distances
   if (solverConfig->WarshallFloyd) {
 #ifdef OF
     std::cout << "start WarshallFloyd, "
               << "it requires O(" << G->getNodesNum() << "^3) cost\n";
 #endif
-
-    solver->WarshallFloyd();
+    std:: cout << "Floyd " << envConfig->field<< std::endl;
+    int st = envConfig->field.find("8");
+    int en = envConfig->field.find(".map");
+    input_file = envConfig->field.substr(st,en-st);
+    std::cout << input_file <<std::endl;
+    solver->WarshallFloyd(input_file);
 
 #ifdef OF
     std::cout << "done." << "\n";
@@ -274,16 +304,16 @@ Problem* run(int argc, char *argv[])
   std::cout << "start solving the iterative MAPF problem" << "\n";
 #endif
   
-  ofstream myfile;
+  //ofstream myfile;
   //uint64_t current_time1 = timeSinceEpochMillisec();*/
 
   solver->solve();
   
 
   //uint64_t current_time2 = timeSinceEpochMillisec();
-  myfile.open("output_high_level_node.txt",ios_base::app);
-  myfile<<solver->highLevelNode<<endl;
-  myfile.close();
+  // myfile.open("output_high_level_node.txt",ios_base::app);
+  // myfile<<solver->highLevelNode<<endl;
+  // myfile.close();
 
 #ifdef OF
   std::cout << "success to solve!" << "\n\n";
@@ -298,10 +328,10 @@ Problem* run(int argc, char *argv[])
   }
   result += solver->logStr();
   if (envConfig->log) {
-    std::string outfile;
+    std::string outfile = input_file + "_" +to_string(envConfig->agentnum)+"_" + to_string(solverConfig->suboptimal);
     std::ofstream log;
-    setCurrentTime(outfile);
-    outfile = "./log/" + outfile + ".txt";
+    //setCurrentTime(outfile);
+    outfile = "./"+envConfig->log_folder+"/" + outfile + ".txt";
     log.open(outfile, std::ios::out);
     if (!log) {
       std::cout << "error@run, cannot open log file "

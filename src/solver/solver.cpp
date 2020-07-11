@@ -40,8 +40,8 @@ void Solver::solveEnd() {
     (endT-startT).count();
 }
 
-void Solver::WarshallFloyd() {
-  printf("Yes\n");
+void Solver::WarshallFloyd(std:: string input_file) {
+  //printf("Yes\n");
   int nodeNum = G->getNodesNum();
   Nodes neighbor;
   int INF = 100000;
@@ -49,7 +49,7 @@ void Solver::WarshallFloyd() {
 
   // initialize weight
   for (int i = 0; i < nodeNum; ++i) {
-    printf("Yes\n");
+    //printf("Yes\n");
     neighbor = G->neighbor(G->getNodeFromIndex(i));
     for (auto v : neighbor) {
       dists(i, v->getIndex()) = 1;
@@ -57,7 +57,7 @@ void Solver::WarshallFloyd() {
     dists(i, i) = 0;
   }
 
-  std:: cout << nodeNum << std::endl;
+  //std:: cout << "Node num " << nodeNum << std::endl;
 
   // main loop
   for (int k = 0; k < nodeNum; ++k) {
@@ -69,6 +69,20 @@ void Solver::WarshallFloyd() {
       }
     }
   }
+
+  std:: ofstream out(input_file + ".txt");
+
+  for(int i = 0 ; i <nodeNum ;i++ ){
+    for(int j=0; j<nodeNum; j++){
+      if(j!=nodeNum-1)
+        out << dists(i,j) << " " ;
+      else
+        out << dists(i,j);
+      
+    }
+    out << std :: endl;
+  }
+  
 }
 
 int Solver::getMaxLengthPaths(Paths& paths) {

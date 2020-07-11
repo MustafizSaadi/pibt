@@ -12,6 +12,8 @@
 #include "../util/util.h"
 #include <boost/heap/fibonacci_heap.hpp>
 
+bool valid = false;
+
 Graph::Graph() {
   std::random_device seed_gen;
   MT = new std::mt19937(seed_gen());
@@ -25,6 +27,7 @@ Graph::Graph(std::mt19937* _MT) : MT(_MT) {
 void Graph::init() {
   directed = false;
   regFlg = true;
+  std::cout<<"regflagOn"<<std::endl;
 }
 
 Graph::~Graph() {
@@ -85,10 +88,10 @@ Nodes Graph::getPath(Node* _s, Node* _g,
   bool prohibited = !prohibitedNodes.empty();
   Nodes path, C;
   std::string key;
-  /*if(prohibited)
+  if(prohibited)
 	std::cout<<"Not empty"<<std::endl;
   else
-	std::cout<<"empty"<<std::endl;*/
+	std::cout<<"empty"<<std::endl;
 
   // ==== fast implementation ====
   if (regFlg && !prohibited) {
@@ -96,6 +99,7 @@ Nodes Graph::getPath(Node* _s, Node* _g,
     auto itrK = knownPaths.find(key);
     if (itrK != knownPaths.end()) {  // known
       path = itrK->second->path;
+      std::cout<<"Path"<< std::endl;
       return path;
     }
   }
@@ -172,6 +176,7 @@ Nodes Graph::getPath(Node* _s, Node* _g,
 
       auto itrS = SEARCHED.find(m->getId());
       if (itrS == SEARCHED.end()) {  // new node
+        //(*cnt2)++;
         AN* l = new AN { m, n->g + 1, f, n };
         auto handle = OPEN.push(Fib_AN(l));
         SEARCHED.emplace(l->v->getId(), handle);
@@ -237,7 +242,7 @@ bool Graph::getPathInit(Node* _s, Node* _g)
     //std::cout<<"In Open"<<std::endl;
     // argmin
     n = OPEN.top().node;
-    std::cout<<(n->v)->getPos().y<<" "<<(n->v)->getPos().x<<std::endl;
+    //std::cout<<(n->v)->getPos().y<<" "<<(n->v)->getPos().x<<std::endl;
 
     // check goal condition
     if (n->v == _g) {

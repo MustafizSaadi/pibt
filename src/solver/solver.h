@@ -42,7 +42,7 @@ public:
   Solver(Problem* _P, std::mt19937* _MT);
   ~Solver();
 
-  void WarshallFloyd();
+  void WarshallFloyd(std::string input_file);
   int highLevelNode = 0;
 
   virtual bool solve() { return false; };

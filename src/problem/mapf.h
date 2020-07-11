@@ -17,6 +17,7 @@ public:
   bool isSolved();
   void update();
   bool allocated() { return true; }
+  
 
   std::string logStr();
 };

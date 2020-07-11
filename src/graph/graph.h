@@ -62,7 +62,6 @@ protected:
   Nodes getPath(Node* s, Node* g, int (*dist)(Node*, Node*));
   Nodes getPath(Node* s, Node* g, Nodes &prohibitedNodes,
                 int (*dist)(Node*, Node*));
-  std::string getKey(Node* s, Node* g);
   void registerPath(const Nodes &path);
 
 public:
@@ -77,6 +76,7 @@ public:
   int getNodesNum() { return nodes.size(); }
   int getNodeIndex(Node* v);
   Node* getNodeFromIndex(int i) { return nodes[i]; }
+  virtual std::string getKey(Node* s, Node* g);
 
   Nodes neighbor(Node* v);
   Nodes neighbor(int id);
@@ -96,6 +96,7 @@ public:
   virtual int dist(Node* v1, Node* v2) { return 0; }
   virtual Nodes getPath(Node* s, Node* g) { return {}; }
   virtual Nodes getPath(Node* s, Node* g, Nodes &prohibitedNodes);
+  //virtual Nodes getPathcnt(Node* s, Node* g, int* cnt2);
   virtual bool getPathInit(Node* s, Node* g);
 
   virtual Paths getRandomStartGoal(int num);

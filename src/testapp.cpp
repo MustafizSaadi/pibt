@@ -14,12 +14,6 @@ using namespace std;
 
 #include "app.h"
 
-/*uint64_t timeSinceEpochMillisec() {
-  using namespace std::chrono;
-  return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-}
-*/
-
 int main(int argc, char *argv[])
 {
   //time_t current_time1,current_time2;

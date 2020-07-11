@@ -16,6 +16,8 @@ namespace Param {
   // def. of solver types
   enum SOLVER_TYPE { S_CBS,
                      S_ECBS,
+                     S_ECBS_1,
+                     S_ECBS_2,
                      S_iECBS,
                      S_WHCA,
                      S_HCA,
@@ -29,6 +31,7 @@ namespace Param {
     PROBLEM_TYPE PTYPE;
     SOLVER_TYPE  STYPE;
     std::string field;   // file name
+    std::string log_folder;
     int agentnum;
     int timesteplimit;
     int tasknum;
@@ -83,6 +86,7 @@ void setParams(std::string filename,
   // regex
   std::regex r_problem_type = std::regex(R"(PROBLEM_TYPE=(.+))");
   std::regex r_solver_type = std::regex(R"(SOLVER_TYPE=(.+))");
+  std::regex r_log_folder = std::regex(R"(LOG_FOLDER=(.+))");
   std::regex r_field = std::regex(R"(field=(.+))");
   std::regex r_agentnum = std::regex(R"(agentnum=(\d+))");
   std::regex r_timesteplimit = std::regex(R"(timesteplimit=(\d+))");
@@ -137,6 +141,10 @@ void setParams(std::string filename,
         env->STYPE = Param::SOLVER_TYPE::S_CBS;
       } else if (tmpstr == "ECBS") {
         env->STYPE = Param::SOLVER_TYPE::S_ECBS;
+      } else if(tmpstr == "ECBS_1"){
+        env->STYPE = Param::SOLVER_TYPE::S_ECBS_1;
+      } else if(tmpstr == "ECBS_2"){
+        env->STYPE = Param::SOLVER_TYPE::S_ECBS_2;
       } else if (tmpstr == "iECBS") {
         env->STYPE = Param::SOLVER_TYPE::S_iECBS;
       } else if (tmpstr == "PPS") {
@@ -153,6 +161,8 @@ void setParams(std::string filename,
                   << " does not exist" << "\n";
         std::exit(1);
       }
+    } else if (std::regex_match(line, results, r_log_folder)) {
+      env->log_folder = results[1].str();
     } else if (std::regex_match(line, results, r_field)) {
       env->field = results[1].str();
     } else if (std::regex_match(line, results, r_agentnum)) {

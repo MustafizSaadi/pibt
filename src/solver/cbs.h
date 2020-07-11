@@ -46,7 +46,7 @@ protected:
   bool isDuplicatedCTNode(CTNode* newCT, std::vector<CTNode*> &cts);
   int countCollisions(CTNode* c, Paths& paths);
   void setCKey(Conflict* c);
-  std::string getCKey(Node* s, Node* g, Constraint &constraints);
+  virtual std::string getCKey(Node* s, Node* g, Constraint &constraints);
   bool validShorcut(Agent* a, AN* n, Node* g,
                     Constraint &constraints,
                     Nodes &tmpPath);

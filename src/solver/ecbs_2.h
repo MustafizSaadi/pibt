@@ -1,7 +1,7 @@
 /*
  * ecbs.h
  *
- * Purpose: Enhanced Conflict-based Search
+ * Purpose: Enhanced Conflict-based Search with weight change(runtime) at each high level node
  * Created by: Keisuke Okumura <okumura.k@coord.c.titech.ac.jp>
  */
 
@@ -9,7 +9,7 @@
 #include "cbs.h"
 
 
-class ECBS : public CBS {
+class ECBS_2 : public CBS {
 protected:
   float w;  // sub-optimal factor
   std::unordered_map<int, int> table_fmin;  // record min of f-value
@@ -23,9 +23,9 @@ protected:
   void getPartialPath(AN* n, Nodes &path);
 
 public:
-  ECBS(Problem* _P, float _w);
-  ECBS(Problem* _P, float _w, bool _ID);
-  ~ECBS();
+  ECBS_2(Problem* _P, float _w);
+  ECBS_2(Problem* _P, float _w, bool _ID);
+  ~ECBS_2();
   int lowlevelnode;
   int cnt;
 

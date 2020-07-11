@@ -1,0 +1,303 @@
+Completeness:
+66 problems which were solved by ECBS were not solved by ECBS-changed. 
+27 problems which were solved by ECBS-changed were not solved by ECBS.
+
+
+W = 1.25(ECBS-Main,ECBS-changed):
+LowLevel: 658 549
+runitme: 764 505
+Cost: 739 728
+
+W = 2.25(ECBS-Main,ECBS-changed)
+LowLevel: 678 795
+runitme: 806 652
+Cost: 858 907
+
+W = 3.25(ECBS-Main,ECBS-changed)
+LowLevel: 642 912
+runitme: 700 765
+Cost: 891 966
+
+W = 4.25(ECBS-Main,ECBS-changed)
+LowLevel: 614 983
+runitme: 638 819
+Cost: 947 993
+
+ W = 5.25(ECBS-Main,ECBS-changed)
+LowLevel: 603 1017
+runitme: 593 853
+Cost: 963 1019
+
+
+average(main/change)
+
+ W = 1.25 instances 969
+LowLevel: 1.55267
+runitme: 1.47043
+Cost: 0.998633
+ W = 2.25 instances 1126
+LowLevel: 1.53218
+runitme: 1.45973
+Cost: 1.006
+ W = 3.25 instances 1127
+LowLevel: 1.1303
+runitme: 1.17495
+Cost: 1.00704
+ W = 4.25 instances 1132
+LowLevel: 1.18743
+runitme: 1.24773
+Cost: 1.00594
+ W = 5.25 instances 1133
+LowLevel: 1.21861
+runitme: 1.30091
+Cost: 1.0049
+
+
+***** weight and agent in combined(ECBS-Main,ECBS-changed), solution comparison *****
+W = 1.25 agent = 5
+LowLevel: 246 265
+runitme: 263 221
+Cost: 286 284
+
+ W = 2.25 agent = 5
+LowLevel: 284 286
+runitme: 262 240
+Cost: 290 291
+
+ W = 3.25 agent = 5
+LowLevel: 288 289
+runitme: 263 237
+Cost: 291 291
+
+ W = 4.25 agent = 5
+LowLevel: 289 291
+runitme: 256 247
+Cost: 291 291
+
+ W = 5.25 agent = 5
+LowLevel: 289 291
+runitme: 260 239
+Cost: 291 291
+
+ W = 1.25 agent = 10
+LowLevel: 156 146
+runitme: 229 131
+Cost: 219 220
+
+ W = 2.25 agent = 10
+LowLevel: 136 218
+runitme: 211 166
+Cost: 263 264
+
+ W = 3.25 agent = 10
+LowLevel: 159 253
+runitme: 177 191
+Cost: 277 273
+
+ W = 4.25 agent = 10
+LowLevel: 177 263
+runitme: 181 194
+Cost: 281 281
+
+ W = 5.25 agent = 10
+LowLevel: 181 270
+runitme: 166 205
+Cost: 280 283
+
+ W = 1.25 agent = 15
+LowLevel: 163 91
+runitme: 178 101
+Cost: 148 149
+
+ W = 2.25 agent = 15
+LowLevel: 116 171
+runitme: 180 130
+Cost: 179 199
+
+ W = 3.25 agent = 15
+LowLevel: 78 223
+runitme: 138 188
+Cost: 196 229
+
+ W = 4.25 agent = 15
+LowLevel: 68 239
+runitme: 112 193
+Cost: 218 240
+
+ W = 5.25 agent = 15
+LowLevel: 68 250
+runitme: 95 208
+Cost: 241 248
+
+ W = 1.25 agent = 20
+LowLevel: 93 47
+runitme: 94 52
+Cost: 86 75
+
+ W = 2.25 agent = 20
+LowLevel: 142 120
+runitme: 153 116
+Cost: 126 153
+
+ W = 3.25 agent = 20
+LowLevel: 117 147
+runitme: 122 149
+Cost: 127 173
+
+ W = 4.25 agent = 20
+LowLevel: 80 190
+runitme: 89 185
+Cost: 157 181
+
+ W = 5.25 agent =20
+LowLevel: 65 206
+runitme: 72 201
+Cost: 151 197
+
+***** weight and agent in combined average(main/change), solution comparison *****
+
+W = 1.25 agent = 5 instances 291
+LowLevel: 0.99012
+runitme: 0.860305
+Cost: 0.999345
+
+W = 2.25 agent = 5 instances 291
+LowLevel: 1.00864
+runitme: 0.922908
+Cost: 1.00008
+
+W = 3.25 agent = 5 instances 291
+LowLevel: 1.00634
+runitme: 0.939383
+Cost: 1
+
+W = 4.25 agent = 5 instances 291
+LowLevel: 1.00653
+runitme: 0.9278
+Cost: 1
+
+W = 5.25 agent = 5 instances 291
+LowLevel: 1.00631
+runitme: 0.933914
+Cost: 1
+
+W = 1.25 agent = 10 instances 284
+LowLevel: 0.900238
+runitme: 0.995938
+Cost: 0.996636
+
+W = 2.25 agent = 10 instances 288
+LowLevel: 1.08025
+runitme: 1.0873
+Cost: 1.00112
+
+W = 3.25 agent = 10 instances 288
+LowLevel: 1.1515
+runitme: 1.25159
+Cost: 0.998823
+
+W = 4.25 agent = 10 instances 288
+LowLevel: 1.18367
+runitme: 1.23351
+Cost: 0.999512
+
+W = 5.25 agent = 10 instances 288
+LowLevel: 1.20019
+runitme: 1.28698
+Cost: 1.00029
+
+W = 1.25 agent = 15 instances 254
+LowLevel: 2.10749
+runitme: 1.8907
+Cost: 0.999661
+
+W = 2.25 agent = 15 instances 285
+LowLevel: 3.00584
+runitme: 2.74294
+Cost: 1.01013
+
+W = 3.25 agent = 15 instances 284
+LowLevel: 1.19801
+runitme: 1.25214
+Cost: 1.01433
+
+W = 4.25 agent = 15 instances 283
+LowLevel: 1.28101
+runitme: 1.41127
+Cost: 1.00866
+
+W = 5.25 agent = 15 instances 283
+LowLevel: 1.32277
+runitme: 1.43719
+Cost: 1.00614
+
+W = 1.25 agent = 20 instances 140
+LowLevel: 3.03888
+runitme: 2.93865
+Cost: 0.999341
+
+W = 2.25 agent = 20 instances 262
+LowLevel: 1.00744
+runitme: 1.06949
+Cost: 1.01345
+
+W = 3.25 agent = 20 instances 264
+LowLevel: 1.17097
+runitme: 1.26799
+Cost: 1.01593
+
+W = 4.25 agent = 20 instances 270
+LowLevel: 1.28833
+runitme: 1.43628
+Cost: 1.01637
+
+W = 5.25 agent = 20 instances 271
+LowLevel: 1.35739
+runitme: 1.56749
+Cost: 1.01377
+
+
+
+
+agent = 5(ECBS-Main,ECBS-changed)
+LowLevel: 1396 1422
+runitme: 1304 1184
+Cost: 1449 1448
+
+agent = 10(ECBS-Main,ECBS-changed)
+LowLevel: 809 1150
+runitme: 964 887
+Cost: 1320 1321
+
+agent = 15(ECBS-Main,ECBS-changed)
+LowLevel: 493 974
+runitme: 703 820
+Cost: 982 1065
+
+agent = 20(ECBS-Main,ECBS-changed)
+LowLevel: 497 710
+runitme: 530 703
+Cost: 647 779
+
+average(main/change)
+
+agent = 5 instances 1455
+LowLevel: 1.00359
+runitme: 0.916862
+Cost: 0.999884
+
+agent = 10 instances 1436
+LowLevel: 1.10374
+runitme: 1.17155
+Cost: 0.999284
+
+agent = 15 instances 1389
+LowLevel: 1.77759
+runitme: 1.74492
+Cost: 1.00796
+
+agent = 20 instances 1207
+LowLevel: 1.42024
+runitme: 1.52357
+Cost: 1.01308
+
