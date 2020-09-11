@@ -315,13 +315,15 @@ Constraints CBS::valid(CTNode* node, Agents& block) {
       }
 
       if (!ids.empty()) {  // detect collision
+        //cout << "vertex collision " << ids.size() << endl;
         ids.push_back(i);
         for (int k = 0; k < ids.size(); ++k) {
           Constraint constraint;
           for (int l = 0; l < ids.size(); ++l) {
             if (k == l) continue;
             Conflict* c = new Conflict { A[ids[l]], t, v, v, true, "" };
-            setCKey(c);
+            //setCKey(c);
+            setCKey(c, min(A[ids[l]]->getId(),A[ids[k]]->getId()), max(A[ids[l]]->getId(),A[ids[k]]->getId()));
             constraint.push_back(c);
           }
           constraints.push_back(constraint);
@@ -343,8 +345,10 @@ Constraints CBS::valid(CTNode* node, Agents& block) {
         j = std::distance(paths.begin(), itr4);
         Conflict* c1 = new Conflict { A[i], t, (*itr3)[t], (*itr3)[t-1], false, "" };
         Conflict* c2 = new Conflict { A[j], t, (*itr4)[t], (*itr4)[t-1], false, "" };
-        setCKey(c1);
-        setCKey(c2);
+        // setCKey(c1);
+        // setCKey(c2);
+        setCKey(c1, min(A[i]->getId(),A[j]->getId()), max(A[i]->getId(),A[j]->getId()));
+        setCKey(c2, min(A[i]->getId(),A[j]->getId()), max(A[i]->getId(),A[j]->getId()));
         constraints.push_back({ c1 });
         constraints.push_back({ c2 });
         return constraints;
@@ -639,14 +643,25 @@ std::string CBS::getCKey(Node* s, Node* g, Constraint &constraints) {
   return key;
 }
 
-void CBS::setCKey(Conflict* c) {
-  std::string key = std::to_string(c->a->getId()) + "_";
-  key += std::to_string(c->t) + "_";
-  if (c->onNode) {
-    key += std::to_string(c->v->getId());
-  } else {
-    key += std::to_string(c->v->getId()) + "_" + std::to_string(c->u->getId());
-  }
+// void CBS::setCKey(Conflict* c) {
+//   std::string key = std::to_string(c->a->getId()) + "_";
+//   key += std::to_string(c->t) + "_";
+//   if (c->onNode) {
+//     key += std::to_string(c->v->getId());
+//   } else {
+//     key += std::to_string(c->v->getId()) + "_" + std::to_string(c->u->getId());
+//   }
+//   c->key = key;
+// }
+
+void CBS::setCKey(Conflict* c, int a1, int a2) {
+  std::string key = std::to_string(a1) + "_" + std::to_string(a2) + "_" + std::to_string(c->v->getId());
+  //key += std::to_string(c->t) + "_";
+  // if (c->onNode) {
+  //   key += std::to_string(c->v->getId());
+  // } else {
+  //   key += std::to_string(c->v->getId()) + "_" + std::to_string(c->u->getId());
+  // }
   c->key = key;
 }
 

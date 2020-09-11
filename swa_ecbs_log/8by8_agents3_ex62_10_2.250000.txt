@@ -1,0 +1,67 @@
+[setting] seed:0
+[solver] type:ECBS
+[solver] w:2.250000
+[solver] ID:0
+[solver] Lowlevelnode:2277
+[solver] solved:1
+[solver] elapsed:11
+[solver] makespan:13
+[problem] timesteplimit:10000
+[problem] type:MAPF
+[problem] agentnum:10
+[graph] width:8
+[graph] height:8
+[graph] filename:./map/8by8_agents3_ex62.map
+[task] id:6,start:0,end:0,service time:0,nodes:5,
+[task] id:4,start:0,end:0,service time:0,nodes:0,
+[task] id:3,start:0,end:0,service time:0,nodes:25,
+[task] id:0,start:0,end:0,service time:0,nodes:49,
+[task] id:1,start:0,end:0,service time:0,nodes:43,
+[task] id:7,start:0,end:0,service time:0,nodes:24,
+[task] id:8,start:0,end:0,service time:0,nodes:51,
+[task] id:10,start:0,end:0,service time:0,nodes:43,
+[task] id:5,start:0,end:0,service time:0,nodes:52,
+[task] id:11,start:0,end:0,service time:0,nodes:43,
+[task] id:2,start:0,end:0,service time:0,nodes:45,
+[task] id:9,start:0,end:0,service time:0,nodes:6,
+[agent] id:0
+path:32,33,34,42,50,49,49,49,49,49,49,49,49,49,
+goal:49,49,49,49,49,49,49,49,49,49,49,49,49,49,
+size:5
+[agent] id:1
+path:62,54,46,45,44,43,43,35,43,35,43,43,43,43,
+goal:43,43,43,43,43,43,43,43,43,43,43,43,43,43,
+size:10
+[agent] id:2
+path:1,2,10,9,17,18,26,34,42,43,44,45,45,45,
+goal:45,45,45,45,45,45,45,45,45,45,45,45,45,45,
+size:11
+[agent] id:3
+path:19,18,26,25,25,25,25,25,25,25,25,25,25,25,
+goal:25,25,25,25,25,25,25,25,25,25,25,25,25,25,
+size:3
+[agent] id:4
+path:9,1,0,0,0,0,0,0,0,0,0,0,0,0,
+goal:0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+size:2
+[agent] id:5
+path:12,20,19,18,26,34,42,43,44,52,52,52,52,52,
+goal:52,52,52,52,52,52,52,52,52,52,52,52,52,52,
+size:9
+[agent] id:6
+path:4,5,5,5,5,5,5,5,5,5,5,5,5,5,
+goal:5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+size:1
+[agent] id:7
+path:45,44,43,35,34,33,32,24,24,24,24,24,24,24,
+goal:24,24,24,24,24,24,24,24,24,24,24,24,24,24,
+size:7
+[agent] id:8
+path:31,39,47,46,54,53,52,51,51,51,51,51,51,51,
+goal:51,51,51,51,51,51,51,51,51,51,51,51,51,51,
+size:7
+[agent] id:9
+path:42,50,51,52,53,45,37,38,30,31,23,15,7,6,
+goal:6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+size:13
+SolutionCost:68

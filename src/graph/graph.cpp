@@ -88,10 +88,10 @@ Nodes Graph::getPath(Node* _s, Node* _g,
   bool prohibited = !prohibitedNodes.empty();
   Nodes path, C;
   std::string key;
-  if(prohibited)
-	std::cout<<"Not empty"<<std::endl;
-  else
-	std::cout<<"empty"<<std::endl;
+  // if(prohibited)
+	// std::cout<<"Not empty"<<std::endl;
+  // else
+	// std::cout<<"empty"<<std::endl;
 
   // ==== fast implementation ====
   if (regFlg && !prohibited) {
@@ -120,7 +120,7 @@ Nodes Graph::getPath(Node* _s, Node* _g,
     //std::cout<<"In Open"<<std::endl;
     // argmin
     n = OPEN.top().node;
-    std::cout<<(n->v)->getPos().y<<" "<<(n->v)->getPos().x<<std::endl;
+    //std::cout<<(n->v)->getPos().y<<" "<<(n->v)->getPos().x<<std::endl;
 
     // check goal condition
     if (n->v == _g) {
@@ -396,6 +396,16 @@ Paths Graph::getRandomStartGoal(int num) {
 
     if (flg) break;
   }
+
+  // bool valid;
+  // valid = getPathInit(starts[2],goals[14]);
+  // points.push_back({starts[2],goals[14]});
+  // valid = getPathInit(starts[4],goals[5]);
+  // points.push_back({starts[4],goals[5]});
+  // valid = getPathInit(starts[12],goals[9]);
+  // points.push_back({starts[12],goals[9]});
+  // valid = getPathInit(starts[11],goals[17]);
+  // points.push_back({starts[11],goals[17]});
 
   return points;
 }

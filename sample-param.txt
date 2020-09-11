@@ -4,18 +4,18 @@
 PROBLEM_TYPE=MAPF
 
 // choose solver
-// option: { PIBT, HCA, WHCA, PPS, CBS, ECBS, ECBS_1, ECBS_2, iECBS, TP, winPIBT }
-SOLVER_TYPE=ECBS_2
+// option: { PIBT, HCA, WHCA, PPS, CBS, ECBS, SWA_ECBS, DWA_ECBS, iECBS, TP, winPIBT }
+SOLVER_TYPE=ECBS
 
 // choose log folder
-// option:: {for ECBS & others log, for ECBS_1 changed_log, for ECBS_2 changed_changed_log}
-LOG_FOLDER=changed_changed_log
+// option:: {for ECBS & others log, for SWA_ECBS swa_ecbs_log, for DWA_ECBS dwa_ecbs_log}
+LOG_FOLDER=swa_ecbs_log
 
 // choose map file
-field=./map/8by8_agents1_ex3.map
+field=./map/warehouse_middle.map
 
 // number of agents
-agentnum=5
+agentnum=180
 
 // timestep limitation
 timesteplimit=10000
@@ -33,7 +33,7 @@ scenario=0
 scenariofile=./scen/../*.scen
 
 // seed for randomness
-seed=0
+seed=99
 
 // save log or not, choose {0, 1}
 log=1
@@ -56,7 +56,7 @@ ID=0
 window=5
 
 // suboptimal factor of ECBS
-suboptimal=5.25
+suboptimal=2.75
 
 // for winPIBT, iterative use
 softmode=1

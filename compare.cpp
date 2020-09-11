@@ -6,6 +6,26 @@ bool exists_test0 (const std::string& name) {
     return f.good();
 }
 
+vector < double > vec[3];
+
+double calculateMEAN(int i){
+    double mean = 0;
+    for(int j=0;j<vec[i].size();j++){
+            mean += vec[i][j];
+        }
+    return mean/vec[i].size();
+}
+
+double calculateSD(int i,double mean)
+{
+    double standardDeviation = 0.0;
+        for(int j=0;j<vec[i].size();j++){
+            standardDeviation += pow(vec[i][j] - mean, 2);
+        }
+    return sqrt(standardDeviation / vec[i].size());
+}
+
+
 int main(){
     int ans;
     //bool success = false, completeness = false, percentage = false, performance = false;
@@ -19,32 +39,36 @@ int main(){
     cout << "For performance_weight_agent input 8" <<endl;
     cin >> ans;
     double cnt1=0,cnt2=0,cnt3=0,cnt4=0,cnt5=0,cnt6=0;
+    double solncnt[6],runtimecnt[6],lowlevelcnt[6],solncost[6],solnruntime[6],solnlowlevel[6];
     double j = 1.250000000;
-    int agent = 10, a = 10;
+    int agent = 10, a = 10, cnt = 0, ex = 0;
+    string file = "warehouse_middle_";
     switch (ans)
     {
     case 1:
         // for succsess and completeness
-        while(j<6){
-            a = 10;
-            while(a<101){
-                int ex = 0;
-                while(ex<10){
+        a = 180;
+        // while(a<=200){
+            j = 2.75;
+            cnt1=0,cnt2=0,cnt3=0,cnt4=0,cnt5=0,cnt6=0;
+            //while(j<6){
+                //ex = 0;
+                while(ex<99){
                 cnt4 ++;
                 // string string1 = "/home/mustafizur/pibt/log/32by32_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                 // string string2 = "/home/mustafizur/pibt/changed_log/32by32_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                 // string string3 = "/home/mustafizur/pibt/changed_changed_log/32by32_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                 
-                string string1 = "/home/mustafizur/pibt/log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                string string2 = "/home/mustafizur/pibt/changed_log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                string string3 = "/home/mustafizur/pibt/changed_changed_log/warehouse_middle_" + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
+                string string1 = "/home/mustafizur/pibt/log/"+ file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                string string2 = "/home/mustafizur/pibt/changed_changed_log/" + file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                string string3 = "/home/mustafizur/pibt/changed_changed_log/"+ file + "V2_" + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
 
 
                 bool flag1 = false, flag2 = false,flag3=false;
+                //cout<< string1 << endl;
                 if(exists_test0(string1)){
                     flag1 = true;
                     cnt1 ++;
-                    //cout<< string1 << endl;
                 }
                 if(exists_test0(string2)){
                     flag2 = true;
@@ -56,29 +80,30 @@ int main(){
                 }
                 ex += 1;
                 }
-                a += 10;
-            }
-            j += 1;
-        }
-        cout<< cnt1/cnt4 << " " << cnt2/cnt4 << " " << cnt3/cnt4 << " " << cnt4 <<endl;
+                //j += 1;
+            //}
+            cout<< a <<" "<< cnt1/cnt4 << " " << cnt2/cnt4 << " " << cnt3/cnt4 << " " << cnt4 <<endl;
+            //a += 10;
+       // }
+        //cout<< cnt1/cnt4 << " " << cnt2/cnt4 << " " << cnt3/cnt4 << " " << cnt4 <<endl;
 
         break;
     
     case 2:
         // for succsess and completeness
-        while(j<6){
+        //while(j<6){
             a = 10;
-            while(a<101){
-                int ex = 0;
-                while(ex<10){
+            while(a<=200){
+                //int ex = 0;
+                while(ex<100){
 
                 // string string1 = "/home/mustafizur/pibt/log/32by32_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                 // string string2 = "/home/mustafizur/pibt/changed_log/32by32_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                 // string string3 = "/home/mustafizur/pibt/changed_changed_log/32by32_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                 
-                string string1 = "/home/mustafizur/pibt/log/warehouse_middle_" + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
-                string string2 = "/home/mustafizur/pibt/changed_log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                string string3 = "/home/mustafizur/pibt/changed_changed_log/warehouse_middle_" + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
+                string string1 = "/home/mustafizur/pibt/log/" + file + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
+                string string2 = "/home/mustafizur/pibt/changed_log/" + file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                string string3 = "/home/mustafizur/pibt/changed_changed_log/" + file + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
 
 
                 bool flag1 = false, flag2 = false,flag3=false;
@@ -128,8 +153,8 @@ int main(){
                 ex += 1;
                 }
                 a += 10;
-            }
-            j += 1;
+            // }
+            // j += 1;
         } 
 
         cout << cnt1 << " problems which were solved by ECBS were not solved by ECBS-changed_2." <<endl; 
@@ -143,20 +168,19 @@ int main(){
         break;
 
     case 3:
-        j = 1.250000000;
-        while(j<6){ 
+        j = 3.000000000;
+        //while(j<6){ 
             a = 10;
-            int cnt = 0;
-                double solncnt[6],runtimecnt[6],lowlevelcnt[6],solncost[6],solnruntime[6],solnlowlevel[6];
+            cnt = 0;
                 for (size_t i = 0; i < 6; i++)
                 {
                     solncnt[i]=0,runtimecnt[i]=0,lowlevelcnt[i]=0,solncost[i]=0,solnruntime[i]=0,solnlowlevel[i]=0;
                 } 
-            while(a<101){
+            while(a<=200){
                 // int agent = 10;  
                 // //while(agent<4){
-                int ex = 0;
-                while(ex<10){
+                //int ex = 0;
+                while(ex<100){
                         // string string1 = "/home/mustafizur/pibt/log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         // string string2 = "/home/mustafizur/pibt/changed_log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         // string string3 = "/home/mustafizur/pibt/changed_changed_log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
@@ -167,9 +191,9 @@ int main(){
     
 
 
-                        string string1 = "/home/mustafizur/pibt/log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string2 = "/home/mustafizur/pibt/changed_log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string3 = "/home/mustafizur/pibt/changed_changed_log/warehouse_middle_" + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string1 = "/home/mustafizur/pibt/log/"+ file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string2 = "/home/mustafizur/pibt/changed_log/"+ file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string3 = "/home/mustafizur/pibt/changed_changed_log/"+ file + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
 
                         bool flag1 = false, flag2 = false,flag3=false;
                         if(exists_test0(string1)){
@@ -329,27 +353,26 @@ int main(){
                 cout << (solncost[i]/cnt)*100<< " ";
             }
             cout << endl;
-            j += 1;
-        }
+        //     j += 1;
+        // }
 
 
         break;
 
     case 4:
         a = 10;
-        while(a<101){
-            double j = 1.250000000;
-            int cnt = 0;
-                double solncnt[6],runtimecnt[6],lowlevelcnt[6],solncost[6],solnruntime[6],solnlowlevel[6];
+        while(a<=200){
+            double j = 3.000000000;
+            cnt = 0;
                 for (size_t i = 0; i < 6; i++)
                 {
                     solncnt[i]=0,runtimecnt[i]=0,lowlevelcnt[i]=0,solncost[i]=0,solnruntime[i]=0,solnlowlevel[i]=0;
                 } 
-            while(j<6){
+            //while(j<6){
                 // int agent = 10;  
                 // //while(agent<4){
-                    int ex = 0;
-                    while(ex<10){
+                    //int ex = 0;
+                    while(ex<100){
                         // string string1 = "/home/mustafizur/pibt/log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         // string string2 = "/home/mustafizur/pibt/changed_log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         // string string3 = "/home/mustafizur/pibt/changed_changed_log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
@@ -360,9 +383,9 @@ int main(){
     
 
 
-                        string string1 = "/home/mustafizur/pibt/log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string2 = "/home/mustafizur/pibt/changed_log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string3 = "/home/mustafizur/pibt/changed_changed_log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string1 = "/home/mustafizur/pibt/log/"+ file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string2 = "/home/mustafizur/pibt/changed_log/"+ file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string3 = "/home/mustafizur/pibt/changed_changed_log/"+ file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
 
                         bool flag1 = false, flag2 = false,flag3=false;
                         if(exists_test0(string1)){
@@ -501,8 +524,8 @@ int main(){
                     // agent += 1;
                     // }
 
-                j += 1;
-                }
+                // j += 1;
+                // }
 
             cout<< "agent = " << a <<" instances = "  <<  cnt<<endl;  
             cout << "ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1" << endl;   
@@ -530,19 +553,18 @@ int main(){
 
     case 5:
         a = 10;
-        while(a<101){
-            double j = 1.250000000;
-            while(j<6){
-                double solncnt[6],runtimecnt[6],lowlevelcnt[6],solncost[6],solnruntime[6],solnlowlevel[6];
+        while(a<=200){
+            double j = 3.000000000;
+            //while(j<6){
                 for (size_t i = 0; i < 6; i++)
                 {
                     solncnt[i]=0,runtimecnt[i]=0,lowlevelcnt[i]=0,solncost[i]=0,solnruntime[i]=0,solnlowlevel[i]=0;
                 } 
-                int cnt = 0;
+                cnt = 0;
                 // int agent = 10;  
                 // //while(agent<4){
-                    int ex = 0;
-                    while(ex<10){
+                    //int ex = 0;
+                    while(ex<100){
                         // string string1 = "/home/mustafizur/pibt/log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         // string string2 = "/home/mustafizur/pibt/changed_log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         // string string3 = "/home/mustafizur/pibt/changed_changed_log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
@@ -553,9 +575,9 @@ int main(){
     
 
 
-                        string string1 = "/home/mustafizur/pibt/log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string2 = "/home/mustafizur/pibt/changed_log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string3 = "/home/mustafizur/pibt/changed_changed_log/warehouse_middle_" + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string1 = "/home/mustafizur/pibt/log/" + file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string2 = "/home/mustafizur/pibt/changed_log/" + file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string3 = "/home/mustafizur/pibt/changed_changed_log/" + file + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
 
                         bool flag1 = false, flag2 = false,flag3=false;
                         if(exists_test0(string1)){
@@ -712,8 +734,8 @@ int main(){
                     }
                     cout << endl;
 
-                j += 1;
-                }
+                // j += 1;
+                // }
             a += 10;
         }
 
@@ -724,18 +746,17 @@ int main(){
         j = 1.250000000;
         while(j<6){ 
             a = 10;
-            int cnt = 0;
-                double solncnt[6],runtimecnt[6],lowlevelcnt[6],solncost[6],solnruntime[6],solnlowlevel[6];
+            cnt = 0;
                 for (size_t i = 0; i < 6; i++)
                 {
                     solncnt[i]=0,runtimecnt[i]=0,lowlevelcnt[i]=0,solncost[i]=0,solnruntime[i]=0,solnlowlevel[i]=0;
                 } 
-            while(a<101){
+            while(a<=100){
             //while(j<6){
                 // int agent = 10;  
                 // //while(agent<4){
-                    int ex = 0;
-                    while(ex<10){
+                    //int ex = 0;
+                    while(ex<100){
                         // string string1 = "/home/mustafizur/pibt/log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         // string string2 = "/home/mustafizur/pibt/changed_log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         // string string3 = "/home/mustafizur/pibt/changed_changed_log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
@@ -746,9 +767,9 @@ int main(){
     
 
 
-                        string string1 = "/home/mustafizur/pibt/log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string2 = "/home/mustafizur/pibt/changed_log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string3 = "/home/mustafizur/pibt/changed_changed_log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string1 = "/home/mustafizur/pibt/log/"+ file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string2 = "/home/mustafizur/pibt/changed_log/"+ file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string3 = "/home/mustafizur/pibt/changed_changed_log/"+ file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
 
                         bool flag1 = false, flag2 = false,flag3=false;
                         if(exists_test0(string1)){
@@ -846,18 +867,24 @@ int main(){
                             }
 
                             if(runtimecnt[2]==0){
+                                vec[0].push_back(1);
+                                vec[1].push_back(1);
                                 solnruntime[0] += 1;
                                 solnruntime[1] += 1;
                             }
                             else{
+                                vec[0].push_back(runtimecnt[0]/runtimecnt[2]);
+                                vec[1].push_back(runtimecnt[1]/runtimecnt[2]);
                                 solnruntime[0] += runtimecnt[0]/runtimecnt[2];
                                 solnruntime[1] += runtimecnt[1]/runtimecnt[2];
                             }
 
                             if(runtimecnt[1]==0){
+                                vec[2].push_back(1);
                                 solnruntime[2] += 1;
                             }
                             else{
+                                vec[2].push_back(runtimecnt[0]/runtimecnt[1]);
                                 solnruntime[2] += runtimecnt[0]/runtimecnt[1];
                             }
 
@@ -886,31 +913,43 @@ int main(){
                 a += 10;
                 }
 
-            cout << "ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2" << endl;
-            cout<< " weight = " << j <<" instances = "  <<  cnt<<endl;
-            cout << "Lowlevel: "<< solnlowlevel[2]/cnt << " " << solnlowlevel[0]/cnt << " " << solnlowlevel[1]/cnt << endl;
-            cout << "runtime: " << solnruntime[2]/cnt << " " << solnruntime[0]/cnt << " " << solnruntime[1]/cnt <<endl;
-            cout << "Cost: " << solncost[2]/cnt << " " << solncost[0]/cnt << " " << solncost[1]/cnt << endl;
+            // cout << "ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2" << endl;
+            // cout<< " weight = " << j <<" instances = "  <<  cnt<<endl;
+            // cout << "Lowlevel: "<< solnlowlevel[2]/cnt << " " << solnlowlevel[0]/cnt << " " << solnlowlevel[1]/cnt << endl;
+            // cout << "runtime: " << solnruntime[2]/cnt << " " << solnruntime[0]/cnt << " " << solnruntime[1]/cnt <<endl;
+            // cout << "runtime SD:" << calculateSD(2,solnruntime[2]/cnt) << " " << calculateSD(0,solnruntime[0]/cnt) << " " <<calculateSD(1,solnruntime[1]/cnt) << endl;
+            // cout << "Cost: " << solncost[2]/cnt << " " << solncost[0]/cnt << " " << solncost[1]/cnt << endl;
+
+            double mean,mean1,mean2;
+            mean = calculateMEAN(0);
+            mean1 = calculateMEAN(1);
+            mean2 = calculateMEAN(2);
+            cout << j << " " << mean2 << " " << 2*(calculateSD(2,mean2)/sqrt(vec[2].size())) << " " <<  mean << " " << 2*(calculateSD(0,mean)/sqrt(vec[0].size())) << endl;
+
+            for(int i=0;i<3;i++) vec[i].clear();
             j += 1;
             }
 
         break;
     
     case 7:
-        a = 10;
-        while(a<101){
-            j = 1.250000000;
-            int cnt = 0;
-            double solncnt[6],runtimecnt[6],lowlevelcnt[6],solncost[6],solnruntime[6],solnlowlevel[6];
-            for (size_t i = 0; i < 6; i++)
-            {
-                solncnt[i]=0,runtimecnt[i]=0,lowlevelcnt[i]=0,solncost[i]=0,solnruntime[i]=0,solnlowlevel[i]=0;
-            } 
-            while(j<6){
-                // int agent = 10;  
-                // //while(agent<4){
-                    int ex = 0;
-                    while(ex<10){
+        a = 180;
+        // while(a<=100){
+            j = 2.75000000;
+            cnt = 0;
+            // for (size_t i = 0; i < 6; i++)
+            // {
+            //     solncnt[i]=0,runtimecnt[i]=0,lowlevelcnt[i]=0,solncost[i]=0,solnruntime[i]=0,solnlowlevel[i]=0;
+            // } 
+            // while(j<6){
+            //     // int agent = 10;  
+            //     // //while(agent<4){
+            //         for (size_t i = 0; i < 6; i++)
+            //             {
+            //                 solncnt[i]=0,runtimecnt[i]=0,lowlevelcnt[i]=0,solncost[i]=0,solnruntime[i]=0,solnlowlevel[i]=0;
+            //             } 
+                    //int ex = 0;
+                    while(ex<99){
                         // string string1 = "/home/mustafizur/pibt/log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         // string string2 = "/home/mustafizur/pibt/changed_log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         // string string3 = "/home/mustafizur/pibt/changed_changed_log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
@@ -921,9 +960,9 @@ int main(){
     
 
 
-                        string string1 = "/home/mustafizur/pibt/log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string2 = "/home/mustafizur/pibt/changed_log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string3 = "/home/mustafizur/pibt/changed_changed_log/warehouse_middle_" + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string1 = "/home/mustafizur/pibt/log/"+ file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string2 = "/home/mustafizur/pibt/changed_changed_log/" + file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string3 = "/home/mustafizur/pibt/changed_changed_log/"+ file + "V2_" + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
 
                         bool flag1 = false, flag2 = false,flag3=false;
                         if(exists_test0(string1)){
@@ -953,7 +992,8 @@ int main(){
                                 else if(intermediate == "[solver] elapsed"){
                                     getline(check1,intermediate,':');
                                     runtimecnt[0] = atoi(intermediate.c_str());   
-                                    //cout << runtimecnt[0] <<endl;
+                                    vec[0].push_back(runtimecnt[0]);
+                                    //cout << runtimecnt[0] <<" ";
                                 }
                                 else if(intermediate == "SolutionCost"){
                                     getline(check1,intermediate,':');
@@ -973,8 +1013,9 @@ int main(){
                                 }
                                 else if(intermediate == "[solver] elapsed"){
                                     getline(check1,intermediate,':');
-                                    runtimecnt[1] = atoi(intermediate.c_str());   
-                                    //cout << runtimecnt[1] <<endl;
+                                    runtimecnt[1] = atoi(intermediate.c_str());  
+                                    vec[1].push_back(runtimecnt[1]); 
+                                    //cout << runtimecnt[1] << " ";
                                 }
                                 else if(intermediate == "SolutionCost"){
                                     getline(check1,intermediate,':');
@@ -994,8 +1035,9 @@ int main(){
                                 }
                                 else if(intermediate == "[solver] elapsed"){
                                     getline(check1,intermediate,':');
-                                    runtimecnt[2] = atoi(intermediate.c_str());   
-                                    //cout<< runtimecnt[2] <<endl;
+                                    runtimecnt[2] = atoi(intermediate.c_str());  
+                                    vec[2].push_back(runtimecnt[2]); 
+                                    //cout<< runtimecnt[2] << " ";
                                 }
                                 else if(intermediate == "SolutionCost"){
                                     getline(check1,intermediate,':');
@@ -1004,53 +1046,62 @@ int main(){
                                 }
                             }
 
-                            if(lowlevelcnt[2]==0){
-                                solnlowlevel[0] += 1;
-                                solnlowlevel[1] += 1;
-                            }
-                            else{
-                                solnlowlevel[0] += lowlevelcnt[0]/lowlevelcnt[2];
-                                solnlowlevel[1] += lowlevelcnt[1]/lowlevelcnt[2];
-                            }
+                            // if(lowlevelcnt[2]==0){
+                            //     solnlowlevel[0] += 1;
+                            //     solnlowlevel[1] += 1;
+                            // }
+                            // else{
+                            //     solnlowlevel[0] += lowlevelcnt[0]/lowlevelcnt[2];
+                            //     solnlowlevel[1] += lowlevelcnt[1]/lowlevelcnt[2];
+                            // }
 
-                            if(lowlevelcnt[1]==0){
-                                solnlowlevel[2] += 1;
-                            }
-                            else{
-                                solnlowlevel[2] += lowlevelcnt[0]/lowlevelcnt[1];
-                            }
+                            // if(lowlevelcnt[1]==0){
+                            //     solnlowlevel[2] += 1;
+                            // }
+                            // else{
+                            //     solnlowlevel[2] += lowlevelcnt[0]/lowlevelcnt[1];
+                            // }
 
-                            if(runtimecnt[2]==0){
-                                solnruntime[0] += 1;
-                                solnruntime[1] += 1;
-                            }
-                            else{
-                                solnruntime[0] += runtimecnt[0]/runtimecnt[2];
-                                solnruntime[1] += runtimecnt[1]/runtimecnt[2];
-                            }
+                            // if(runtimecnt[2]==0){
+                            //     vec[0].push_back(1);
+                            //     vec[1].push_back(1);
+                            //     solnruntime[0] += 1;
+                            //     solnruntime[1] += 1;
+                            //     //cout << "Special " << 1 << endl;
+                            // }
+                            // else{
+                            //     vec[0].push_back(runtimecnt[0]/runtimecnt[2]);
+                            //     vec[1].push_back(runtimecnt[1]/runtimecnt[2]);
+                            //     //cout << runtimecnt[0]/runtimecnt[2] << " " << runtimecnt[1]/runtimecnt[2] << endl;
+                            //     solnruntime[0] += runtimecnt[0]/runtimecnt[2];
+                            //     solnruntime[1] += runtimecnt[1]/runtimecnt[2];
+                            // }
 
-                            if(runtimecnt[1]==0){
-                                solnruntime[2] += 1;
-                            }
-                            else{
-                                solnruntime[2] += runtimecnt[0]/runtimecnt[1];
-                            }
+                            // if(runtimecnt[1]==0){
+                            //     vec[2].push_back(1);
+                            //     solnruntime[2] += 1;
+                            //     //cout << "Special " << 1 << endl;
+                            // }
+                            // else{
+                            //     vec[2].push_back(runtimecnt[0]/runtimecnt[1]);
+                            //     //cout << runtimecnt[0]/runtimecnt[1] <<endl;
+                            //     solnruntime[2] += runtimecnt[0]/runtimecnt[1];
+                            // }
+                            // if(solncnt[2]==0){
+                            //     solncost[0] += 1;
+                            //     solncost[1] += 1;
+                            // }
+                            // else{
+                            //     solncost[0] += solncnt[0]/solncnt[2]; 
+                            //     solncost[1] += solncnt[1]/solncnt[2];
+                            // }
 
-                            if(solncnt[2]==0){
-                                solncost[0] += 1;
-                                solncost[1] += 1;
-                            }
-                            else{
-                                solncost[0] += solncnt[0]/solncnt[2]; 
-                                solncost[1] += solncnt[1]/solncnt[2];
-                            }
-
-                            if(solncnt[1]==0){
-                                solncost[2] += 1;
-                            }
-                            else{
-                                solncost[2] += solncnt[0]/solncnt[1];
-                            }
+                            // if(solncnt[1]==0){
+                            //     solncost[2] += 1;
+                            // }
+                            // else{
+                            //     solncost[2] += solncnt[0]/solncnt[1];
+                            // }
                         }
                         ex += 1;
 
@@ -1058,34 +1109,53 @@ int main(){
                     // agent += 1;
                     // }
 
-                j += 1;
-                }
+                //}
 
-            cout << "ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2" << endl;
-            cout<< " agent = " << a <<" instances = "  <<  cnt<<endl;
-            cout << "Lowlevel: "<< solnlowlevel[2]/cnt << " " << solnlowlevel[0]/cnt << " " << solnlowlevel[1]/cnt << endl;
-            cout << "runtime: " << solnruntime[2]/cnt << " " << solnruntime[0]/cnt << " " << solnruntime[1]/cnt <<endl;
-            cout << "Cost: " << solncost[2]/cnt << " " << solncost[0]/cnt << " " << solncost[1]/cnt << endl;
-            a += 10;
-            }
+            // cout << "ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2" << endl;
+            // cout<< " agent = " << a <<" instances = "  <<  cnt<<endl;
+            // //cout << "Lowlevel: "<< solnlowlevel[2]/cnt << " " << solnlowlevel[0]/cnt << " " << solnlowlevel[1]/cnt << endl;
+            // cout << "runtime: " << solnruntime[2]/cnt << " " << solnruntime[0]/cnt << " " << solnruntime[1]/cnt <<endl;
+            // cout << "runtime SD:" << calculateSD(2,solnruntime[2]/cnt) << " " << calculateSD(0,solnruntime[0]/cnt) << " " <<calculateSD(1,solnruntime[1]/cnt) << endl;
+            //cout << "Cost: " << solncost[2]/cnt << " " << solncost[0]/cnt << " " << solncost[1]/cnt << endl;
+            
+            //cout << "ecbs " << "ecbs1 " << "ecbs2" << endl;
+
+            //cout << endl;
+        
+            double mean,mean1,mean2;
+            mean = calculateMEAN(0);
+            // // // cout << "runtime SD:" << calculateSD(0,mean) << endl;
+            mean1 = calculateMEAN(1);
+            mean2 = calculateMEAN(2);
+            // // // cout<< " agent = " << a <<" instances = "  <<  cnt<<endl;
+            cout << "runtime: " << mean << " " << mean1 << " " << mean2 <<endl;
+            // // // cout << "runtime SD:" << calculateSD(0,mean) << " " << calculateSD(1,mean1) << " " <<calculateSD(2,mean2) << endl;
+            // cout << vec[0].size() << " " << vec[1].size() << " " << vec[2].size() << endl;
+            // cout << j << " " << mean << " " << 2*(calculateSD(0,mean)/sqrt(vec[0].size())) << " " << mean1 << " " << 2*(calculateSD(1,mean1)/sqrt(vec[1].size())) << " " << mean2 << " " << 2*(calculateSD(2,mean2)/sqrt(vec[2].size())) << endl;
+            // //cout << a << " " << mean2 << " " << 2*(calculateSD(2,mean2)/sqrt(vec[2].size())) << " " <<  mean << " " << 2*(calculateSD(0,mean)/sqrt(vec[0].size())) << endl;
+
+            j += 0.5;
+            for(int i=0;i<3;i++) vec[i].clear();
+            // a += 10;
+            //cout << endl;
+            //}
 
         break;
 
     case 8:
         a = 10;
-        while(a<101){
-            j = 1.250000000;
-            while(j<6){
+        while(a<=200){
+            j = 3.000000000;
+            //while(j<6){
                     int cnt = 0;
-                    double solncnt[6],runtimecnt[6],lowlevelcnt[6],solncost[6],solnruntime[6],solnlowlevel[6];
                     for (size_t i = 0; i < 6; i++)
                     {
                         solncnt[i]=0,runtimecnt[i]=0,lowlevelcnt[i]=0,solncost[i]=0,solnruntime[i]=0,solnlowlevel[i]=0;
                     } 
                 // int agent = 10;  
                 // //while(agent<4){
-                    int ex = 0;
-                    while(ex<10){
+                    //int ex = 0;
+                    while(ex<100){
                         // string string1 = "/home/mustafizur/pibt/log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         // string string2 = "/home/mustafizur/pibt/changed_log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         // string string3 = "/home/mustafizur/pibt/changed_changed_log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
@@ -1096,9 +1166,9 @@ int main(){
     
 
 
-                        string string1 = "/home/mustafizur/pibt/log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string2 = "/home/mustafizur/pibt/changed_log/warehouse_middle_" + to_string(ex) + "_" +to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string3 = "/home/mustafizur/pibt/changed_changed_log/warehouse_middle_" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string1 = "/home/mustafizur/pibt/log/"+ file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string2 = "/home/mustafizur/pibt/changed_log/"+ file + to_string(ex) + "_" +to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string3 = "/home/mustafizur/pibt/changed_changed_log/"+ file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
 
                         bool flag1 = false, flag2 = false,flag3=false;
                         if(exists_test0(string1)){
@@ -1196,18 +1266,24 @@ int main(){
                             }
 
                             if(runtimecnt[2]==0){
+                                vec[0].push_back(1);
+                                vec[1].push_back(1);
                                 solnruntime[0] += 1;
                                 solnruntime[1] += 1;
                             }
                             else{
+                                vec[0].push_back(runtimecnt[0]/runtimecnt[2]);
+                                vec[1].push_back(runtimecnt[1]/runtimecnt[2]);
                                 solnruntime[0] += runtimecnt[0]/runtimecnt[2];
                                 solnruntime[1] += runtimecnt[1]/runtimecnt[2];
                             }
 
                             if(runtimecnt[1]==0){
+                                vec[2].push_back(1);
                                 solnruntime[2] += 1;
                             }
                             else{
+                                vec[2].push_back(runtimecnt[0]/runtimecnt[1]);
                                 solnruntime[2] += runtimecnt[0]/runtimecnt[1];
                             }
 
@@ -1237,10 +1313,11 @@ int main(){
                 cout<< " agent = " << a << " weight = " << j << " instances = "  <<  cnt<<endl;
                 cout << "Lowlevel: "<< solnlowlevel[2]/cnt << " " << solnlowlevel[0]/cnt << " " << solnlowlevel[1]/cnt << endl;
                 cout << "runtime: " << solnruntime[2]/cnt << " " << solnruntime[0]/cnt << " " << solnruntime[1]/cnt <<endl;
+                cout << "runtime SD:" << calculateSD(2,solnruntime[2]/cnt) << " " << calculateSD(0,solnruntime[0]/cnt) << " " <<calculateSD(1,solnruntime[1]/cnt) << endl;
                 cout << "Cost: " << solncost[2]/cnt << " " << solncost[0]/cnt << " " << solncost[1]/cnt << endl;
-
-                j += 1;
-                }
+                for(int i=0;i<3;i++) vec[i].clear();
+                // j += 1;
+                // }
             a += 10;
             }
 

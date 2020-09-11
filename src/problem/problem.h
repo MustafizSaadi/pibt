@@ -27,6 +27,7 @@ public:
   Problem(Graph* _G, Agents _A);
   Problem(Graph* _G, Agents _A, std::vector<Task*> _T, std::mt19937* _MT);
   Problem(Graph* _G, Agents _A, std::mt19937* _MT);
+  Problem(Graph* _G, Agents _A, std::vector<Task*> _T, std::mt19937* _MT, std::string folder_name);
 
   virtual ~Problem();
 

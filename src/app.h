@@ -29,8 +29,8 @@
 #include "solver/hca.h"
 #include "solver/tp.h"
 #include "solver/pps.h"
-#include "solver/ecbs_1.h"
-#include "solver/ecbs_2.h"
+#include "solver/swa_ecbs.h"
+#include "solver/dwa_ecbs.h"
 
 static void setCurrentTime(std::string &str);  // for log filename
 
@@ -154,6 +154,23 @@ Problem* run(int argc, char *argv[])
   /************************
    * problem definition
    ************************/
+
+  string folder_name;
+
+  // switch (envConfig->STYPE)
+  // {
+  // case Param::SOLVER_TYPE::S_ECBS:
+  //   folder_name = "ecbs";
+  //   break;
+
+  // case Param::SOLVER_TYPE::S_SWA_ECBS:
+  //   folder_name = "ecbs1";
+  //   break;
+
+  // case Param::SOLVER_TYPE::S_DWA_ECBS:
+  //   folder_name = "ecbs2";
+  //   break;
+  // }
   Problem* P = nullptr;
   if (envConfig->PTYPE == Param::PROBLEM_TYPE::P_MAPF ||
       envConfig->PTYPE == Param::PROBLEM_TYPE::P_MAPF_STATION) {
@@ -162,7 +179,7 @@ Problem* run(int argc, char *argv[])
       Task* tau = new Task(points[i][1]);
       T.push_back(tau);
     }
-    P = new MAPF(G, A, T, MT_PG);
+    P = new MAPF(G, A, T, MT_PG, folder_name);
   } else if (envConfig->PTYPE == Param::PROBLEM_TYPE::P_MAPD) {
     P = new MAPD(G, A, G->getPickup(), G->getDelivery(),
                  envConfig->tasknum, envConfig->taskfrequency, MT_PG);
@@ -201,23 +218,23 @@ Problem* run(int argc, char *argv[])
     cout << "ECBS " <<solverConfig->suboptimal<< endl;
     solver = new ECBS(P, solverConfig->suboptimal, solverConfig->ID);
     break;
-  case Param::SOLVER_TYPE::S_ECBS_1:
+  case Param::SOLVER_TYPE::S_SWA_ECBS:
     if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
         envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF_STATION) {
       std::cout << "error@run, ECBS cannot solve except MAPF" << "\n";
       std::exit(1);
     }
-    cout << "ECBS1 " <<solverConfig->suboptimal<< endl;
-    solver = new ECBS_1(P, solverConfig->suboptimal, solverConfig->ID);
+    cout << "SWA_ECBS " <<solverConfig->suboptimal<< endl;
+    solver = new SWA_ECBS(P, solverConfig->suboptimal, solverConfig->ID);
     break;
-  case Param::SOLVER_TYPE::S_ECBS_2:
+  case Param::SOLVER_TYPE::S_DWA_ECBS:
     if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
         envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF_STATION) {
       std::cout << "error@run, ECBS cannot solve except MAPF" << "\n";
       std::exit(1);
     }
-    cout << "ECBS2 " <<solverConfig->suboptimal<< endl;
-    solver = new ECBS_2(P, solverConfig->suboptimal, solverConfig->ID);
+    cout << "DWA_ECBS " <<solverConfig->suboptimal<< endl;
+    solver = new DWA_ECBS(P, solverConfig->suboptimal, solverConfig->ID);
     break;
   case Param::SOLVER_TYPE::S_iECBS:
     if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
@@ -272,7 +289,7 @@ Problem* run(int argc, char *argv[])
   }
 
   std :: string input_file;
-  int st = envConfig->field.find("8");
+  int st = envConfig->field.find("w");
   int en = envConfig->field.find(".map");
   input_file = envConfig->field.substr(st,en-st);
   //std::cout << input_file <<std::endl;
@@ -284,11 +301,11 @@ Problem* run(int argc, char *argv[])
     std::cout << "start WarshallFloyd, "
               << "it requires O(" << G->getNodesNum() << "^3) cost\n";
 #endif
-    std:: cout << "Floyd " << envConfig->field<< std::endl;
-    int st = envConfig->field.find("8");
-    int en = envConfig->field.find(".map");
-    input_file = envConfig->field.substr(st,en-st);
-    std::cout << input_file <<std::endl;
+    // std:: cout << "Floyd " << envConfig->field<< std::endl;
+    // int st = envConfig->field.find("8");
+    // int en = envConfig->field.find(".map");
+    // input_file = envConfig->field.substr(st,en-st);
+    // std::cout << input_file <<std::endl;
     solver->WarshallFloyd(input_file);
 
 #ifdef OF
@@ -328,7 +345,7 @@ Problem* run(int argc, char *argv[])
   }
   result += solver->logStr();
   if (envConfig->log) {
-    std::string outfile = input_file + "_" +to_string(envConfig->agentnum)+"_" + to_string(solverConfig->suboptimal);
+    std::string outfile = input_file + "_" +to_string(envConfig->seed)+ "_" + to_string(envConfig->agentnum)+"_" + to_string(solverConfig->suboptimal);
     std::ofstream log;
     //setCurrentTime(outfile);
     outfile = "./"+envConfig->log_folder+"/" + outfile + ".txt";

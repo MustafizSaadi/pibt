@@ -1,0 +1,90 @@
+[setting] seed:0
+[solver] type:ECBS
+[solver] w:5.250000
+[solver] ID:0
+[solver] Lowlevelnode:9127
+[solver] solved:1
+[solver] elapsed:36
+[solver] makespan:11
+[problem] timesteplimit:10000
+[problem] type:MAPF
+[problem] agentnum:15
+[graph] width:8
+[graph] height:8
+[graph] filename:./map/8by8_agents3_ex14.map
+[task] id:0,start:0,end:0,service time:0,nodes:50,
+[task] id:5,start:0,end:0,service time:0,nodes:7,
+[task] id:7,start:0,end:0,service time:0,nodes:53,
+[task] id:9,start:0,end:0,service time:0,nodes:12,
+[task] id:12,start:0,end:0,service time:0,nodes:34,
+[task] id:1,start:0,end:0,service time:0,nodes:44,
+[task] id:3,start:0,end:0,service time:0,nodes:27,
+[task] id:4,start:0,end:0,service time:0,nodes:54,
+[task] id:8,start:0,end:0,service time:0,nodes:8,
+[task] id:11,start:0,end:0,service time:0,nodes:42,
+[task] id:2,start:0,end:0,service time:0,nodes:46,
+[task] id:10,start:0,end:0,service time:0,nodes:48,
+[task] id:13,start:0,end:0,service time:0,nodes:56,
+[task] id:14,start:0,end:0,service time:0,nodes:6,
+[task] id:6,start:0,end:0,service time:0,nodes:26,
+[agent] id:0
+path:34,42,50,50,50,50,50,50,50,50,50,50,
+goal:50,50,50,50,50,50,50,50,50,50,50,50,
+size:2
+[agent] id:1
+path:63,62,54,54,54,46,45,44,44,44,44,44,
+goal:44,44,44,44,44,44,44,44,44,44,44,44,
+size:7
+[agent] id:2
+path:3,4,5,13,13,21,29,30,38,46,46,46,
+goal:46,46,46,46,46,46,46,46,46,46,46,46,
+size:9
+[agent] id:3
+path:20,21,22,22,21,20,19,27,27,27,27,27,
+goal:27,27,27,27,27,27,27,27,27,27,27,27,
+size:7
+[agent] id:4
+path:12,20,21,29,30,38,46,54,54,54,54,54,
+goal:54,54,54,54,54,54,54,54,54,54,54,54,
+size:7
+[agent] id:5
+path:14,6,7,7,7,7,7,7,7,7,7,7,
+goal:7,7,7,7,7,7,7,7,7,7,7,7,
+size:2
+[agent] id:6
+path:6,5,13,12,12,13,13,21,20,19,18,26,
+goal:26,26,26,26,26,26,26,26,26,26,26,26,
+size:11
+[agent] id:7
+path:46,54,53,53,53,53,53,53,53,53,53,53,
+goal:53,53,53,53,53,53,53,53,53,53,53,53,
+size:2
+[agent] id:8
+path:33,34,26,27,19,18,17,16,8,8,8,8,
+goal:8,8,8,8,8,8,8,8,8,8,8,8,
+size:8
+[agent] id:9
+path:43,35,27,19,11,12,12,12,12,12,12,12,
+goal:12,12,12,12,12,12,12,12,12,12,12,12,
+size:5
+[agent] id:10
+path:30,38,38,46,45,44,43,42,41,49,48,48,
+goal:48,48,48,48,48,48,48,48,48,48,48,48,
+size:10
+[agent] id:11
+path:21,22,30,38,46,45,44,43,42,42,42,42,
+goal:42,42,42,42,42,42,42,42,42,42,42,42,
+size:8
+[agent] id:12
+path:26,26,18,10,18,26,34,34,34,34,34,34,
+goal:34,34,34,34,34,34,34,34,34,34,34,34,
+size:6
+[agent] id:13
+path:24,16,17,18,26,34,42,41,49,57,56,56,
+goal:56,56,56,56,56,56,56,56,56,56,56,56,
+size:10
+[agent] id:14
+path:45,44,36,35,27,19,11,3,4,5,6,6,
+goal:6,6,6,6,6,6,6,6,6,6,6,6,
+size:10
+SolutionCost:104

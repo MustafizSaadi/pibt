@@ -16,8 +16,8 @@ namespace Param {
   // def. of solver types
   enum SOLVER_TYPE { S_CBS,
                      S_ECBS,
-                     S_ECBS_1,
-                     S_ECBS_2,
+                     S_SWA_ECBS,
+                     S_DWA_ECBS,
                      S_iECBS,
                      S_WHCA,
                      S_HCA,
@@ -141,10 +141,10 @@ void setParams(std::string filename,
         env->STYPE = Param::SOLVER_TYPE::S_CBS;
       } else if (tmpstr == "ECBS") {
         env->STYPE = Param::SOLVER_TYPE::S_ECBS;
-      } else if(tmpstr == "ECBS_1"){
-        env->STYPE = Param::SOLVER_TYPE::S_ECBS_1;
-      } else if(tmpstr == "ECBS_2"){
-        env->STYPE = Param::SOLVER_TYPE::S_ECBS_2;
+      } else if(tmpstr == "SWA_ECBS"){
+        env->STYPE = Param::SOLVER_TYPE::S_SWA_ECBS;
+      } else if(tmpstr == "DWA_ECBS"){
+        env->STYPE = Param::SOLVER_TYPE::S_DWA_ECBS;
       } else if (tmpstr == "iECBS") {
         env->STYPE = Param::SOLVER_TYPE::S_iECBS;
       } else if (tmpstr == "PPS") {

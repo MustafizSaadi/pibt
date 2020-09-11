@@ -1,0 +1,40 @@
+[setting] seed:0
+[solver] type:ECBS
+[solver] w:5.250000
+[solver] ID:0
+[solver] Lowlevelnode:262
+[solver] solved:1
+[solver] elapsed:1
+[solver] makespan:12
+[problem] timesteplimit:10000
+[problem] type:MAPF
+[problem] agentnum:5
+[graph] width:8
+[graph] height:8
+[graph] filename:./map/8by8_agents1_ex80.map
+[task] id:4,start:0,end:0,service time:0,nodes:0,
+[task] id:0,start:0,end:0,service time:0,nodes:49,
+[task] id:2,start:0,end:0,service time:0,nodes:43,
+[task] id:3,start:0,end:0,service time:0,nodes:23,
+[task] id:1,start:0,end:0,service time:0,nodes:41,
+[agent] id:0
+path:29,37,36,44,43,42,50,49,49,49,49,49,49,
+goal:49,49,49,49,49,49,49,49,49,49,49,49,49,
+size:7
+[agent] id:1
+path:63,55,47,39,31,30,29,28,27,26,25,33,41,
+goal:41,41,41,41,41,41,41,41,41,41,41,41,41,
+size:12
+[agent] id:2
+path:1,9,17,25,33,41,42,43,43,43,43,43,43,
+goal:43,43,43,43,43,43,43,43,43,43,43,43,43,
+size:7
+[agent] id:3
+path:17,18,19,11,12,13,21,22,23,23,23,23,23,
+goal:23,23,23,23,23,23,23,23,23,23,23,23,23,
+size:8
+[agent] id:4
+path:9,8,0,0,0,0,0,0,0,0,0,0,0,
+goal:0,0,0,0,0,0,0,0,0,0,0,0,0,
+size:2
+SolutionCost:36

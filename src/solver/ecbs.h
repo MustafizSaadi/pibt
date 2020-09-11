@@ -7,6 +7,7 @@
 
 #pragma once
 #include "cbs.h"
+#include <bits/stdc++.h>
 
 
 class ECBS : public CBS {
@@ -27,8 +28,11 @@ public:
   ECBS(Problem* _P, float _w, bool _ID);
   ~ECBS();
   int lowlevelnode;
+  int conflict_cnt;
   int cnt;
+  std::vector<std::pair<int,int>> vec[50];
 
   virtual std::string logStr();
   uint64_t timeSinceEpochMillisec();
+  void writeDiscoveredPath(int i,std::vector<std::pair<int,int>> & mat);
 };

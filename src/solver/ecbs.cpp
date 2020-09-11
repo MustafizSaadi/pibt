@@ -32,6 +32,7 @@ void ECBS::init() {
   for (auto a : A) table_fmin.emplace(a->getId(), 0);
   std::cout<<"weight "<< w<<std::endl;
   cnt = 0;
+  conflict_cnt = 0;
 }
 
 // bool compare(Agent* a, Agent* b){
@@ -65,8 +66,8 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
   highLevelNode ++;
   invoke(root, block);
   OPEN.insert(uuid);
-  table.push_back(root);
-  table_conflict.push_back(h3(root->paths));
+  table.push_back(root); // after pop they should be deleted
+  table_conflict.push_back(h3(root->paths)); // after pop they should be deleted
   ++uuid;
 
   bool CAT = std::any_of(paths.begin(), paths.end(),
@@ -76,7 +77,10 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
 
   while (!OPEN.empty()) {
   //maxi = INT_MIN;
+    uint64_t current_time2 = timeSinceEpochMillisec();
 
+    if(current_time2-current_time1>= 180000)
+      return false;
     if (updateMin) {
       itrO = std::min_element(OPEN.begin(), OPEN.end(),
                               [CAT, this, &paths, &table]
@@ -113,6 +117,7 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
     keyF = *itrF;
     node = table[keyF];
 
+    conflict_cnt ++;
     constraints = valid(node, block);
     if (constraints.empty()) break;
 
@@ -161,8 +166,23 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
 
   lowlevelnode = cnt;
 
+  // for(int i=0;i<block.size();i++){
+  //   writeDiscoveredPath(i,vec[i]);
+  // }
+
   return status;
 
+}
+
+void ECBS::writeDiscoveredPath(int i,vector<pair<int,int>> & mat){
+  
+  // for(int i = 0; i < agentNum; i++){
+    string file = "./ecbs/path" + to_string(i) + ".txt";
+    ofstream of(file,std::ios_base::app);
+    of << mat.size() << endl;
+    for(int j=0;j<mat.size();j++){
+      of << mat[j].first << " " << mat[j].second << endl;
+    }
 }
 
 void ECBS::invoke(CTNode* node, Agents& block) {
@@ -443,7 +463,8 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
     // int cnt1 = 0,cnt2 =0,cnt3 =0;
 
     for (auto m : C) {
-      //cnt1++;
+      // vec[a->getId()].push_back({int(m->getPos().y),int(m->getPos().x)});
+      // cnt++;
       g = n->g + 1;
       key = getKey(g, m);
       if (CLOSE.find(key) != CLOSE.end()) continue;
@@ -473,6 +494,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
       AN* l;
       bool updateH = false;
       if (itrS == SEARCHED.end()) {  // new node
+        //vec[a->getId()].push_back({int(m->getPos().y),int(m->getPos().x)});
         cnt++;
         l = new AN { m, g, f, n };
         auto handle = OPEN.push(Fib_AN(l));
@@ -554,6 +576,7 @@ std::string ECBS::logStr() {
   str += "[solver] w:" + std::to_string(w) + "\n";
   str += "[solver] ID:" + std::to_string(ID) + "\n";
   str += "[solver] Lowlevelnode:" + std::to_string(lowlevelnode) + "\n";
+  str += "[solver] ConflictCount:" + std::to_string(conflict_cnt) + "\n";
 
   str += Solver::logStr();
   return str;

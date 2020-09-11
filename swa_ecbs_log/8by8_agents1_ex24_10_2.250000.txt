@@ -1,0 +1,65 @@
+[setting] seed:0
+[solver] type:ECBS
+[solver] w:2.250000
+[solver] ID:0
+[solver] Lowlevelnode:453
+[solver] solved:1
+[solver] elapsed:2
+[solver] makespan:14
+[problem] timesteplimit:10000
+[problem] type:MAPF
+[problem] agentnum:10
+[graph] width:8
+[graph] height:8
+[graph] filename:./map/8by8_agents1_ex24.map
+[task] id:6,start:0,end:0,service time:0,nodes:6,
+[task] id:3,start:0,end:0,service time:0,nodes:28,
+[task] id:0,start:0,end:0,service time:0,nodes:50,
+[task] id:4,start:0,end:0,service time:0,nodes:0,
+[task] id:8,start:0,end:0,service time:0,nodes:52,
+[task] id:7,start:0,end:0,service time:0,nodes:27,
+[task] id:1,start:0,end:0,service time:0,nodes:43,
+[task] id:5,start:0,end:0,service time:0,nodes:54,
+[task] id:2,start:0,end:0,service time:0,nodes:46,
+[task] id:9,start:0,end:0,service time:0,nodes:7,
+[agent] id:0
+path:35,43,51,50,50,50,50,50,50,50,50,50,50,50,50,
+goal:50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,
+size:3
+[agent] id:1
+path:63,55,47,46,38,37,36,44,43,43,43,43,43,43,43,
+goal:43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,
+size:8
+[agent] id:2
+path:1,9,10,11,12,13,14,15,23,31,39,47,46,46,46,
+goal:46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,
+size:12
+[agent] id:3
+path:21,20,28,28,28,28,28,28,28,28,28,28,28,28,28,
+goal:28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,
+size:2
+[agent] id:4
+path:11,3,2,1,0,0,0,0,0,0,0,0,0,0,0,
+goal:0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+size:4
+[agent] id:5
+path:13,14,15,23,31,39,47,55,54,54,54,54,54,54,54,
+goal:54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,
+size:8
+[agent] id:6
+path:5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+goal:6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+size:1
+[agent] id:7
+path:46,38,37,36,35,27,27,27,27,27,27,27,27,27,27,
+goal:27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,
+size:5
+[agent] id:8
+path:34,42,43,51,52,52,52,52,52,52,52,52,52,52,52,
+goal:52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,
+size:4
+[agent] id:9
+path:42,41,33,32,24,16,17,9,10,11,12,13,14,15,7,
+goal:7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,
+size:14
+SolutionCost:61

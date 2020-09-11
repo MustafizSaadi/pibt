@@ -37,6 +37,13 @@ Problem::Problem(Graph* _G,
   init();
 }
 
+Problem::Problem(Graph* _G,
+                 Agents _A,
+                 std::vector<Task*> _T,
+                 std::mt19937* _MT,
+                 std::string folder_name) : G(_G), A(_A), T_OPEN(_T), MT(_MT) {
+  init();
+}
 void Problem::init() {
   timestep = 0;
 }

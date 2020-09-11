@@ -1,0 +1,961 @@
+weight = 1.25 instances = 993
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+91.0373 66.4653 23.8671 75.9315 7.85498 22.86 
+runitme: 
+59.5166 62.3364 29.5065 39.9799 30.1108 49.6475 
+Cost: 
+23.2628 41.4904 28.7009 20.0403 42.9003 47.5327 
+weight = 2.25 instances = 993
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+80.5639 35.9517 43.6052 90.433 17.8248 8.1571 
+runitme: 
+47.432 44.2095 46.0222 50.3525 42.4975 36.858 
+Cost: 
+7.45217 13.8973 24.1692 14.8036 23.565 19.7382 
+weight = 3.25 instances = 993
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+78.4491 31.0171 41.994 91.0373 19.9396 7.35146 
+runitme: 
+43.7059 40.3827 49.8489 56.7976 44.6123 28.1974 
+Cost: 
+4.0282 8.1571 12.1853 9.96979 8.05639 8.1571 
+weight = 4.25 instances = 993
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+78.147 25.8812 40.5841 92.3464 20.0403 5.94159 
+runitme: 
+44.5116 35.0453 51.9637 61.9335 44.0081 22.1551 
+Cost: 
+1.20846 4.53172 6.74723 5.13595 2.81974 4.63243 
+weight = 5.25 instances = 993
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+77.6435 23.0614 37.7644 92.6485 20.2417 5.43807 
+runitme: 
+42.4975 31.7221 56.7976 63.8469 46.2236 21.3494 
+Cost: 
+1.30916 3.62538 4.53172 4.33031 1.81269 3.72608 
+
+*******************
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ weight = 1.25 instances = 993
+Lowlevel: 0.867574 0.443324 0.791908
+runtime: 0.96484 0.9633 1.35823
+runtime SD:0.736491 0.717104 2.76951
+Cost: 0.99723 1.0021 1.00498
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ weight = 2.25 instances = 993
+Lowlevel: 1.12698 0.519666 0.480009
+runtime: 1.44389 1.24349 0.972659
+runtime SD:1.44226 1.22562 0.637126
+Cost: 1.00104 1.00137 1.00033
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ weight = 3.25 instances = 993
+Lowlevel: 1.21857 0.556838 0.465631
+runtime: 1.57726 1.291 0.936113
+runtime SD:1.47675 1.20405 0.442939
+Cost: 1.00051 1.00033 0.999834
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ weight = 4.25 instances = 993
+Lowlevel: 1.2743 0.576498 0.462894
+runtime: 1.67027 1.28752 0.90431
+runtime SD:1.57483 1.14896 0.502898
+Cost: 1.00022 1.00017 0.999958
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ weight = 5.25 instances = 993
+Lowlevel: 1.30458 0.591367 0.463206
+runtime: 1.77092 1.29035 0.878205
+runtime SD:1.67196 1.15009 0.487628
+Cost: 1.00018 1.00007 0.999898
+
+*********
+1.25 0.96484 0.736491 0.9633 0.717104
+2.25 1.44389 1.44226 1.24349 1.22562
+3.25 1.57726 1.47675 1.291 1.20405
+4.25 1.67027 1.57483 1.28752 1.14896
+5.25 1.77092 1.67196 1.29035 1.15009
+
+
+*******************
+agent = 10 instances = 500
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+87.4 2.4 2.4 87.2 0.2 0.6 
+runitme: 
+18.6 20 22.4 17.4 18 16.4 
+Cost: 
+0 0 0 0 0 0 
+agent = 20 instances = 500
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+97 20 11.4 96.8 0.4 0.6 
+runitme: 
+45.2 45.8 30.4 29.8 31.8 34.6 
+Cost: 
+0.6 1.8 0.6 0.4 0.2 1.4 
+agent = 30 instances = 500
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+99.4 30.6 19.2 99.8 0.6 0.2 
+runitme: 
+45.2 42.2 44.6 45.6 42 37.4 
+Cost: 
+2.4 4.4 3.6 3.2 2.4 3.2 
+agent = 40 instances = 500
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+96.2 50.4 28.8 95.2 3.8 4.8 
+runitme: 
+53.6 52.8 43.4 51.6 42.4 42.2 
+Cost: 
+5.2 8.6 9.4 7.2 8.6 8.8 
+agent = 50 instances = 500
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+92 45.2 41.6 95.6 8 4.4 
+runitme: 
+55.4 48.8 48.6 59.2 41.6 35.2 
+Cost: 
+8 14 14 9.8 13.2 14.2 
+agent = 60 instances = 500
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+87.2 51.4 43.8 92.8 12.8 7.2 
+runitme: 
+62.8 52.6 46 63.2 36.4 33.6 
+Cost: 
+11 17.8 16.2 12.6 16 19.8 
+agent = 70 instances = 495
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+74.7475 48.2828 48.4848 84.2424 24.4444 14.9495 
+runitme: 
+55.1515 51.3131 48.0808 64.4444 43.8384 33.9394 
+Cost: 
+10.303 19.1919 19.596 15.1515 22.8283 22.2222 
+agent = 80 instances = 490
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+58.9796 40.8163 58.3673 77.3469 40.4082 22.6531 
+runitme: 
+47.551 41.8367 57.9592 68.7755 51.8367 30.6122 
+Cost: 
+11.0204 25.9184 23.6735 15.3061 26.1224 30.8163 
+agent = 90 instances = 490
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+62.6531 38.5714 60.6122 80.8163 37.3469 19.1837 
+runitme: 
+49.1837 37.7551 62.0408 75.102 50.8163 24.4898 
+Cost: 
+11.6327 26.5306 28.7755 20 34.0816 33.8776 
+agent = 100 instances = 490
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+54.6939 37.3469 62.449 74.2857 45.3061 25.7143 
+runitme: 
+42.6531 34.0816 65.7143 71.8367 56.9388 27.7551 
+Cost: 
+14.6939 25.9184 37.7551 25.5102 35.9184 34.2857
+
+
+*************
+ecbs/ecbs1 ecbs/ecbs2 ecbs1/ecbs2
+
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 10 instances = 500
+Lowlevel: 0.999983 0.167487 0.16754
+runtime: 1.27258 1.24164 0.997384
+runtime SD:1.54386 1.49951 0.219742
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 20 instances = 500
+Lowlevel: 0.999133 0.238323 0.238572
+runtime: 1.22344 1.21915 1.00094
+runtime SD:1.26211 1.31537 0.197218
+Cost: 0.999839 0.999986 1.00015
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 30 instances = 500
+Lowlevel: 1.03712 0.280852 0.303974
+runtime: 1.28009 1.19772 1.05864
+runtime SD:1.37163 1.24203 1.63733
+Cost: 0.999704 0.999918 1.00022
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 40 instances = 500
+Lowlevel: 1.08568 0.403393 0.436202
+runtime: 1.30188 1.14949 1.03416
+runtime SD:1.34855 1.03568 1.22505
+Cost: 0.999772 1.00015 1.0004
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 50 instances = 500
+Lowlevel: 1.19458 0.512724 0.496417
+runtime: 1.48472 1.1623 0.992149
+runtime SD:1.60052 1.03496 1.05599
+Cost: 0.999604 1.00037 1.00079
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 60 instances = 500
+Lowlevel: 1.16186 0.567235 0.627366
+runtime: 1.47658 1.12414 1.06151
+runtime SD:1.54734 0.859241 2.16358
+Cost: 0.998969 1.0004 1.00148
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 70 instances = 495
+Lowlevel: 1.1823 0.68548 0.652912
+runtime: 1.49516 1.16506 0.988504
+runtime SD:1.29347 0.778065 0.889417
+Cost: 0.999637 1.0012 1.0016
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 80 instances = 490
+Lowlevel: 1.28153 0.823942 0.821616
+runtime: 1.7168 1.25861 1.04802
+runtime SD:1.4057 0.871244 1.94434
+Cost: 0.999331 1.00138 1.00209
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 90 instances = 490
+Lowlevel: 1.327 0.822582 0.832203
+runtime: 1.76944 1.27037 0.998611
+runtime SD:1.37857 1.05262 1.65206
+Cost: 1.00025 1.00213 1.00192
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 100 instances = 490
+Lowlevel: 1.32421 0.893395 0.768171
+runtime: 1.85139 1.36735 0.917592
+runtime SD:1.52007 1.20119 0.692704
+Cost: 1.00127 1.00264 1.0014
+*************
+weight = 1.25 agent = 10 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+89 10 10 87 1 3 
+runitme: 
+17 25 20 16 19 24 
+Cost: 
+0 0 0 0 0 0 
+weight = 2.25 agent = 10 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+87 1 2 88 0 0 
+runitme: 
+22 24 20 11 18 18 
+Cost: 
+0 0 0 0 0 0 
+weight = 3.25 agent = 10 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+87 1 0 87 0 0 
+runitme: 
+18 22 25 18 17 15 
+Cost: 
+0 0 0 0 0 0 
+weight = 4.25 agent = 10 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+87 0 0 87 0 0 
+runitme: 
+19 11 25 23 18 11 
+Cost: 
+0 0 0 0 0 0 
+weight = 5.25 agent = 10 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+87 0 0 87 0 0 
+runitme: 
+17 18 22 19 18 14 
+Cost: 
+0 0 0 0 0 0 
+weight = 1.25 agent = 20 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+97 43 42 97 2 1 
+runitme: 
+43 37 49 47 40 27 
+Cost: 
+3 9 3 2 1 7 
+weight = 2.25 agent = 20 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+97 28 9 97 0 1 
+runitme: 
+50 55 23 21 32 50 
+Cost: 
+0 0 0 0 0 0 
+weight = 3.25 agent = 20 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+97 17 3 96 0 1 
+runitme: 
+41 44 30 22 35 39 
+Cost: 
+0 0 0 0 0 0 
+weight = 4.25 agent = 20 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+97 7 2 97 0 0 
+runitme: 
+48 44 25 32 24 26 
+Cost: 
+0 0 0 0 0 0 
+weight = 5.25 agent = 20 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+97 5 1 97 0 0 
+runitme: 
+44 49 25 27 28 31 
+Cost: 
+0 0 0 0 0 0 
+weight = 1.25 agent = 30 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 51 48 99 0 1 
+runitme: 
+40 32 59 51 46 40 
+Cost: 
+12 21 17 15 12 15 
+weight = 2.25 agent = 30 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 42 24 100 0 0 
+runitme: 
+52 58 30 35 34 52 
+Cost: 
+0 1 1 1 0 1 
+weight = 3.25 agent = 30 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+99 29 12 100 1 0 
+runitme: 
+45 51 38 44 41 40 
+Cost: 
+0 0 0 0 0 0 
+weight = 4.25 agent = 30 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+99 19 6 100 1 0 
+runitme: 
+43 43 40 43 44 28 
+Cost: 
+0 0 0 0 0 0 
+weight = 5.25 agent = 30 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+99 12 6 100 1 0 
+runitme: 
+46 27 56 55 45 27 
+Cost: 
+0 0 0 0 0 0 
+weight = 1.25 agent = 40 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+96 65 35 87 4 13 
+runitme: 
+49 54 45 50 48 45 
+Cost: 
+25 37 35 28 38 37 
+weight = 2.25 agent = 40 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+97 58 37 98 3 2 
+runitme: 
+59 62 34 43 39 53 
+Cost: 
+1 5 10 6 5 6 
+weight = 3.25 agent = 40 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+96 54 30 98 4 2 
+runitme: 
+54 55 41 51 40 39 
+Cost: 
+0 1 2 2 0 1 
+weight = 4.25 agent = 40 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+96 45 22 96 4 4 
+runitme: 
+57 53 44 55 38 38 
+Cost: 
+0 0 0 0 0 0 
+weight = 5.25 agent = 40 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+96 30 20 97 4 3 
+runitme: 
+49 40 53 59 47 36 
+Cost: 
+0 0 0 0 0 0 
+weight = 1.25 agent = 50 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+96 69 31 87 4 13 
+runitme: 
+62 62 37 51 34 49 
+Cost: 
+30 46 47 32 55 52 
+weight = 2.25 agent = 50 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+91 45 52 95 9 5 
+runitme: 
+57 54 46 51 41 43 
+Cost: 
+7 14 13 9 8 11 
+weight = 3.25 agent = 50 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+91 47 45 98 9 2 
+runitme: 
+52 51 48 58 44 33 
+Cost: 
+2 6 4 2 3 5 
+weight = 4.25 agent = 50 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+91 32 46 99 9 1 
+runitme: 
+55 37 54 67 43 28 
+Cost: 
+1 2 4 4 0 1 
+weight = 5.25 agent = 50 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+91 33 34 99 9 1 
+runitme: 
+51 40 58 69 46 23 
+Cost: 
+0 2 2 2 0 2 
+weight = 1.25 agent = 60 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+88 77 23 78 12 22 
+runitme: 
+78 72 27 43 22 55 
+Cost: 
+43 63 33 28 53 70 
+weight = 2.25 agent = 60 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+89 50 49 95 11 5 
+runitme: 
+56 52 46 59 42 39 
+Cost: 
+9 16 23 14 20 19 
+weight = 3.25 agent = 60 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+88 49 48 96 12 4 
+runitme: 
+65 55 45 71 35 25 
+Cost: 
+2 5 12 9 6 6 
+weight = 4.25 agent = 60 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+86 43 52 98 14 2 
+runitme: 
+59 46 51 71 41 24 
+Cost: 
+1 4 6 5 1 3 
+weight = 5.25 agent = 60 instances = 100
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+85 38 47 97 15 3 
+runitme: 
+56 38 61 72 42 25 
+Cost: 
+0 1 7 7 0 1 
+weight = 1.25 agent = 70 instances = 99
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+89.899 85.8586 14.1414 65.6566 10.101 34.3434 
+runitme: 
+71.7172 87.8788 12.1212 35.3535 27.2727 64.6465 
+Cost: 
+31.3131 57.5758 39.3939 31.3131 66.6667 68.6869 
+weight = 2.25 agent = 70 instances = 99
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+73.7374 44.4444 55.5556 88.8889 26.2626 11.1111 
+runitme: 
+53.5354 49.4949 50.5051 64.6465 44.4444 33.3333 
+Cost: 
+12.1212 20.202 35.3535 24.2424 34.3434 24.2424 
+weight = 3.25 agent = 70 instances = 99
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+71.7172 37.3737 60.6061 87.8788 28.2828 12.1212 
+runitme: 
+51.5152 42.4242 56.5657 67.6768 47.4747 29.2929 
+Cost: 
+4.0404 9.09091 16.1616 13.1313 10.101 10.101 
+weight = 4.25 agent = 70 instances = 99
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+71.7172 36.3636 58.5859 89.899 27.2727 9.09091 
+runitme: 
+50.5051 41.4141 57.5758 76.7677 49.4949 22.2222 
+Cost: 
+1.0101 4.0404 6.06061 4.0404 2.0202 3.0303 
+weight = 5.25 agent = 70 instances = 99
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+66.6667 37.3737 53.5354 88.8889 30.303 8.08081 
+runitme: 
+48.4848 35.3535 63.6364 77.7778 50.5051 20.202 
+Cost: 
+3.0303 5.05051 1.0101 3.0303 1.0101 5.05051 
+weight = 1.25 agent = 80 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+77.551 85.7143 14.2857 50 22.449 50 
+runitme: 
+69.3878 84.6939 15.3061 31.6327 30.6122 68.3673 
+Cost: 
+33.6735 66.3265 32.6531 20.4082 65.3061 75.5102 
+weight = 2.25 agent = 80 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+57.1429 33.6735 66.3265 77.551 42.8571 22.449 
+runitme: 
+41.8367 34.6939 65.3061 69.3878 58.1633 30.6122 
+Cost: 
+9.18367 28.5714 44.898 23.4694 41.8367 44.898 
+weight = 3.25 agent = 80 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+54.0816 26.5306 73.4694 83.6735 45.9184 16.3265 
+runitme: 
+41.8367 32.6531 67.3469 75.5102 58.1633 24.4898 
+Cost: 
+10.2041 19.3878 23.4694 17.3469 15.3061 17.3469 
+weight = 4.25 agent = 80 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+54.0816 28.5714 70.4082 87.7551 44.898 12.2449 
+runitme: 
+42.8571 29.5918 69.3878 83.6735 54.0816 15.3061 
+Cost: 
+1.02041 8.16327 11.2245 9.18367 3.06122 7.14286 
+weight = 5.25 agent = 80 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+52.0408 29.5918 67.3469 87.7551 45.9184 12.2449 
+runitme: 
+41.8367 27.551 72.449 83.6735 58.1633 14.2857 
+Cost: 
+1.02041 7.14286 6.12245 6.12245 5.10204 9.18367 
+weight = 1.25 agent = 90 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+87.7551 84.6939 15.3061 55.102 12.2449 44.898 
+runitme: 
+84.6939 80.6122 19.3878 38.7755 15.3061 61.2245 
+Cost: 
+25.5102 66.3265 31.6327 17.3469 73.4694 79.5918 
+weight = 2.25 agent = 90 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+61.2245 30.6122 69.3878 84.6939 38.7755 15.3061 
+runitme: 
+44.898 28.5714 70.4082 79.5918 55.102 20.4082 
+Cost: 
+17.3469 27.551 53.0612 33.6735 58.1633 43.8776 
+weight = 3.25 agent = 90 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+56.1224 26.5306 72.449 87.7551 43.8776 12.2449 
+runitme: 
+37.7551 28.5714 71.4286 83.6735 62.2449 15.3061 
+Cost: 
+8.16327 17.3469 28.5714 26.5306 22.449 18.3673 
+weight = 4.25 agent = 90 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+54.0816 25.5102 73.4694 87.7551 45.9184 12.2449 
+runitme: 
+39.7959 26.5306 73.4694 83.6735 60.2041 15.3061 
+Cost: 
+3.06122 12.2449 19.3878 13.2653 11.2245 17.3469 
+weight = 5.25 agent = 90 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+54.0816 25.5102 72.449 88.7755 45.9184 11.2245 
+runitme: 
+38.7755 24.4898 75.5102 89.7959 61.2245 10.2041 
+Cost: 
+4.08163 9.18367 11.2245 9.18367 5.10204 10.2041 
+weight = 1.25 agent = 100 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+88.7755 94.898 5.10204 52.0408 11.2245 47.9592 
+runitme: 
+81.6327 89.7959 10.2041 35.7143 18.3673 63.2653 
+Cost: 
+29.5918 50 48.9796 26.5306 66.3265 72.449 
+weight = 2.25 agent = 100 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+51.0204 26.5306 73.4694 79.5918 48.9796 20.4082 
+runitme: 
+37.7551 23.4694 76.5306 71.4286 62.2449 28.5714 
+Cost: 
+19.3878 27.551 63.2653 37.7551 70.4082 48.9796 
+weight = 3.25 agent = 100 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+42.8571 22.449 77.551 75.5102 57.1429 24.4898 
+runitme: 
+30.6122 21.4286 77.551 78.5714 67.3469 21.4286 
+Cost: 
+14.2857 24.4898 36.7347 30.6122 24.4898 24.4898 
+weight = 4.25 agent = 100 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+43.8776 22.449 77.551 80.6122 56.1224 19.3878 
+runitme: 
+30.6122 18.3673 81.6327 85.7143 69.3878 13.2653 
+Cost: 
+5.10204 15.3061 21.4286 16.3265 11.2245 15.3061 
+weight = 5.25 agent = 100 instances = 98
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+46.9388 20.4082 78.5714 83.6735 53.0612 16.3265 
+runitme: 
+32.6531 17.3469 82.6531 87.7551 67.3469 12.2449 
+Cost: 
+5.10204 12.2449 18.3673 16.3265 7.14286 10.2041 
+
+*********
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 10 weight = 1.25 instances = 100
+Lowlevel: 0.99846 0.16741 0.168305
+runtime: 1.07642 1.0805 1.02837
+runtime SD:0.783274 0.900052 0.345564
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 10 weight = 2.25 instances = 100
+Lowlevel: 1.00147 0.167554 0.166923
+runtime: 1.46304 1.44441 1.01132
+runtime SD:1.98236 1.93126 0.229821
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 10 weight = 3.25 instances = 100
+Lowlevel: 0.999984 0.167489 0.16749
+runtime: 1.32782 1.32149 0.998694
+runtime SD:1.85979 1.86622 0.0887821
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 10 weight = 4.25 instances = 100
+Lowlevel: 1 0.167493 0.167493
+runtime: 1.35399 1.23983 0.95875
+runtime SD:1.62837 1.41132 0.154172
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 10 weight = 5.25 instances = 100
+Lowlevel: 1 0.167487 0.167487
+runtime: 1.1416 1.12196 0.98978
+runtime SD:1.07809 1.06791 0.186665
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 20 weight = 1.25 instances = 100
+Lowlevel: 0.995231 0.239331 0.240312
+runtime: 1.14955 1.06826 0.943754
+runtime SD:0.865606 0.889774 0.279873
+Cost: 0.999197 0.999932 1.00076
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 20 weight = 2.25 instances = 100
+Lowlevel: 1.00147 0.238301 0.238113
+runtime: 1.36518 1.41905 1.03424
+runtime SD:1.66663 1.81431 0.211335
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 20 weight = 3.25 instances = 100
+Lowlevel: 0.998805 0.238037 0.238536
+runtime: 1.24455 1.27535 1.04406
+runtime SD:1.36161 1.3861 0.15851
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 20 weight = 4.25 instances = 100
+Lowlevel: 1.00038 0.237959 0.237991
+runtime: 1.24558 1.22152 0.99195
+runtime SD:1.32901 1.25535 0.143388
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 20 weight = 5.25 instances = 100
+Lowlevel: 0.999783 0.237988 0.237908
+runtime: 1.11236 1.11157 0.990718
+runtime SD:0.882412 0.996462 0.139191
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 30 weight = 1.25 instances = 100
+Lowlevel: 0.963259 0.273157 0.442601
+runtime: 1.13446 1.07077 1.33423
+runtime SD:1.0271 0.869304 3.62839
+Cost: 0.998523 0.999589 1.00111
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 30 weight = 2.25 instances = 100
+Lowlevel: 1.03407 0.274881 0.266232
+runtime: 1.39298 1.3463 1.01259
+runtime SD:1.58795 1.56784 0.222557
+Cost: 0.999997 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 30 weight = 3.25 instances = 100
+Lowlevel: 1.05532 0.282309 0.269077
+runtime: 1.32976 1.28008 1.01482
+runtime SD:1.54047 1.44839 0.154987
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 30 weight = 4.25 instances = 100
+Lowlevel: 1.06439 0.285897 0.270493
+runtime: 1.28946 1.18373 0.979344
+runtime SD:1.41702 1.22309 0.161624
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 30 weight = 5.25 instances = 100
+Lowlevel: 1.06856 0.288014 0.271466
+runtime: 1.2538 1.10774 0.952222
+runtime SD:1.18832 0.923204 0.204355
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 40 weight = 1.25 instances = 100
+Lowlevel: 0.94034 0.372018 0.70384
+runtime: 1.06062 1.0062 1.29638
+runtime SD:0.653754 0.620709 2.69398
+Cost: 0.997923 1.0004 1.00254
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 40 weight = 2.25 instances = 100
+Lowlevel: 1.06519 0.393051 0.369489
+runtime: 1.25009 1.1299 0.990909
+runtime SD:1.29458 0.929273 0.208696
+Cost: 1.00063 1.00037 0.999743
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 40 weight = 3.25 instances = 100
+Lowlevel: 1.11649 0.409198 0.368151
+runtime: 1.38744 1.27932 0.982302
+runtime SD:1.47459 1.36058 0.154779
+Cost: 1.00031 1 0.999698
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 40 weight = 4.25 instances = 100
+Lowlevel: 1.14523 0.418895 0.369513
+runtime: 1.36237 1.18655 0.968986
+runtime SD:1.49716 1.17954 0.193932
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 40 weight = 5.25 instances = 100
+Lowlevel: 1.16114 0.423803 0.37002
+runtime: 1.4489 1.14547 0.932198
+runtime SD:1.57487 0.912544 0.230461
+Cost: 1 1 1
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 50 weight = 1.25 instances = 100
+Lowlevel: 0.925169 0.449776 0.772427
+runtime: 0.953882 0.92205 1.31331
+runtime SD:0.39589 0.261112 2.27266
+Cost: 0.997899 1.00119 1.00338
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 50 weight = 2.25 instances = 100
+Lowlevel: 1.12594 0.491241 0.433514
+runtime: 1.33492 1.13091 0.953522
+runtime SD:1.19088 0.89808 0.286679
+Cost: 0.999993 1.00042 1.00045
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 50 weight = 3.25 instances = 100
+Lowlevel: 1.24435 0.519024 0.422933
+runtime: 1.50873 1.20852 0.932389
+runtime SD:1.30219 0.89867 0.242406
+Cost: 0.999943 1.00025 1.00031
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 50 weight = 4.25 instances = 100
+Lowlevel: 1.32154 0.542569 0.424228
+runtime: 1.67932 1.22546 0.899555
+runtime SD:1.76943 1.10749 0.232287
+Cost: 1.0003 0.999973 0.999679
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 50 weight = 5.25 instances = 100
+Lowlevel: 1.35587 0.561008 0.428984
+runtime: 1.94675 1.32454 0.861967
+runtime SD:2.41881 1.53483 0.286263
+Cost: 0.999885 1 1.00012
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 60 weight = 1.25 instances = 100
+Lowlevel: 0.870172 0.504896 1.01337
+runtime: 0.879768 0.886978 1.5932
+runtime SD:0.493764 0.416442 4.44317
+Cost: 0.993536 1.00028 1.00693
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 60 weight = 2.25 instances = 100
+Lowlevel: 1.09895 0.541888 0.610655
+runtime: 1.42275 1.1233 1.06834
+runtime SD:1.62308 0.895329 1.48936
+Cost: 1.0004 1.00137 1.00099
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 60 weight = 3.25 instances = 100
+Lowlevel: 1.21922 0.575832 0.559456
+runtime: 1.46181 1.1457 0.985787
+runtime SD:1.20188 0.788269 0.906393
+Cost: 1.00028 1.00029 1.00002
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 60 weight = 4.25 instances = 100
+Lowlevel: 1.29126 0.598231 0.476775
+runtime: 1.75212 1.20641 0.838416
+runtime SD:2.01471 0.916399 0.377789
+Cost: 1.00034 1.00008 0.999743
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 60 weight = 5.25 instances = 100
+Lowlevel: 1.3297 0.615326 0.476569
+runtime: 1.86646 1.25829 0.821823
+runtime SD:1.73271 1.08342 0.292326
+Cost: 1.00029 1 0.999716
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 70 weight = 1.25 instances = 99
+Lowlevel: 0.76373 0.557777 0.93152
+runtime: 0.800349 0.877521 1.41975
+runtime SD:0.501368 0.275809 1.74415
+Cost: 0.996405 1.00419 1.00793
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 70 weight = 2.25 instances = 99
+Lowlevel: 1.15298 0.667342 0.642319
+runtime: 1.41962 1.19791 0.969659
+runtime SD:1.17634 0.97402 0.664082
+Cost: 1.001 1.00147 1.00048
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 70 weight = 3.25 instances = 99
+Lowlevel: 1.27744 0.713082 0.571723
+runtime: 1.48775 1.14453 0.870501
+runtime SD:0.81865 0.399363 0.257258
+Cost: 1.00068 1.00044 0.999758
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 70 weight = 4.25 instances = 99
+Lowlevel: 1.34582 0.735951 0.555711
+runtime: 1.6934 1.26271 0.85688
+runtime SD:1.25748 0.923439 0.246282
+Cost: 1.00014 1.00008 0.999937
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 70 weight = 5.25 instances = 99
+Lowlevel: 1.37153 0.753249 0.563286
+runtime: 2.0747 1.34265 0.825733
+runtime SD:1.90133 0.929872 0.318349
+Cost: 0.999956 0.999846 0.99989
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 80 weight = 1.25 instances = 98
+Lowlevel: 0.767552 0.660815 1.17539
+runtime: 0.883862 0.994276 1.72087
+runtime SD:0.746603 0.951364 3.89747
+Cost: 0.995452 1.00424 1.00896
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 80 weight = 2.25 instances = 98
+Lowlevel: 1.20749 0.796448 0.725649
+runtime: 1.57449 1.18032 0.901247
+runtime SD:1.30511 0.720389 0.440155
+Cost: 1.00122 1.00239 1.0012
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 80 weight = 3.25 instances = 98
+Lowlevel: 1.40375 0.866253 0.729522
+runtime: 1.90865 1.34219 0.887444
+runtime SD:1.50824 0.791484 0.718111
+Cost: 0.999992 1.00003 1.00004
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 80 weight = 4.25 instances = 98
+Lowlevel: 1.4875 0.887821 0.727665
+runtime: 1.97394 1.34511 0.865927
+runtime SD:1.23013 0.748175 0.93604
+Cost: 0.999701 1.0001 1.00041
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 80 weight = 5.25 instances = 98
+Lowlevel: 1.54137 0.908372 0.74986
+runtime: 2.24307 1.43115 0.864607
+runtime SD:1.6545 1.03191 1.2488
+Cost: 1.0003 1.00013 0.999836
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 90 weight = 1.25 instances = 98
+Lowlevel: 0.756966 0.613699 1.41936
+runtime: 0.896343 0.938175 1.66877
+runtime SD:0.868279 0.863154 3.30255
+Cost: 0.99562 1.00562 1.01017
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 90 weight = 2.25 instances = 98
+Lowlevel: 1.28829 0.799219 0.683651
+runtime: 1.62414 1.21631 0.887861
+runtime SD:1.28705 0.98402 0.827766
+Cost: 1.00276 1.00301 1.00026
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 90 weight = 3.25 instances = 98
+Lowlevel: 1.45653 0.868181 0.617594
+runtime: 1.91042 1.3078 0.767328
+runtime SD:1.17967 0.752115 0.302768
+Cost: 1.00168 1.00101 0.999352
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 90 weight = 4.25 instances = 98
+Lowlevel: 1.53882 0.902934 0.7482
+runtime: 2.1128 1.36327 0.895848
+runtime SD:1.39909 0.733359 1.08825
+Cost: 1.00064 1.00085 1.00022
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 90 weight = 5.25 instances = 98
+Lowlevel: 1.59438 0.928876 0.692212
+runtime: 2.30349 1.52631 0.773254
+runtime SD:1.59263 1.59199 0.44985
+Cost: 1.00054 1.00014 0.999621
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 100 weight = 1.25 instances = 98
+Lowlevel: 0.685979 0.606522 1.07932
+runtime: 0.805317 0.783941 1.27613
+runtime SD:0.679135 0.592073 1.22683
+Cost: 0.997679 1.00582 1.00827
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 100 weight = 2.25 instances = 98
+Lowlevel: 1.3026 0.845866 0.678115
+runtime: 1.60083 1.2442 0.89213
+runtime SD:0.959928 0.669927 0.459433
+Cost: 1.00456 1.00477 1.00023
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 100 weight = 3.25 instances = 98
+Lowlevel: 1.42704 0.950837 0.726421
+runtime: 2.23115 1.61134 0.871504
+runtime SD:1.88081 1.47554 0.516295
+Cost: 1.00222 1.00133 0.999142
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 100 weight = 4.25 instances = 98
+Lowlevel: 1.5641 1.01025 0.66688
+runtime: 2.26679 1.65027 0.783621
+runtime SD:1.64276 1.59432 0.293607
+Cost: 1.00109 1.00068 0.999605
+ecbs/ecbs_1    ecbs/ecbs_2    ecbs_1/ecbs_2
+ agent = 100 weight = 5.25 instances = 98
+Lowlevel: 1.64136 1.0535 0.69012
+runtime: 2.35284 1.54702 0.764578
+runtime SD:1.48626 1.08097 0.396933
+Cost: 1.00081 1.00059 0.999785
+
+*******
+10 1.27258 1.54386 1.24164 1.49951
+20 1.22344 1.26211 1.21915 1.31537
+30 1.28009 1.37163 1.19772 1.24203
+40 1.30188 1.34855 1.14949 1.03568
+50 1.48472 1.60052 1.1623 1.03496
+60 1.47658 1.54734 1.12414 0.859241
+70 1.49516 1.29347 1.16506 1.13562
+80 1.7168 1.4057 1.25861 0.871244
+90 1.76944 1.37857 1.27037 1.05262
+100 1.85139 1.52007 1.36735 1.20119
+
+******* standard error *****
+10 1.27258 0.138087 1.24164 0.13412
+20 1.22344 0.112887 1.21915 0.11765
+30 1.28009 0.122682 1.19772 0.11109
+40 1.30188 0.120618 1.14949 0.0926344
+50 1.48472 0.143155 1.1623 0.0925699
+60 1.47658 0.138398 1.12414 0.0768529
+70 1.49516 0.116274 1.16506 0.0699429
+80 1.7168 0.127006 1.25861 0.0787176
+90 1.76944 0.124555 1.27037 0.0951053
+100 1.85139 0.137339 1.36735 0.108529
+
+******* standard error *******
+1.25 0.96484 0.0467437 0.9633 0.0455132
+2.25 1.44389 0.0915372 1.24349 0.0777879
+3.25 1.57726 0.0937265 1.291 0.0764188
+4.25 1.67027 0.0999512 1.28752 0.0729222
+5.25 1.77092 0.106116 1.29035 0.072994

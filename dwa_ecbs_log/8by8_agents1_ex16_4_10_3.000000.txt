@@ -1,0 +1,67 @@
+[setting] seed:4
+[solver] type:ECBS
+[solver] w:3.000000
+[solver] ID:0
+[solver] Lowlevelnode:1682
+[solver] ConflictCount:4
+[solver] solved:1
+[solver] elapsed:3
+[solver] makespan:13
+[problem] timesteplimit:10000
+[problem] type:MAPF
+[problem] agentnum:10
+[graph] width:8
+[graph] height:8
+[graph] filename:./map/8by8_agents1_ex16.map
+[task] id:1,start:0,end:0,service time:0,nodes:43,
+[task] id:0,start:0,end:0,service time:0,nodes:38,
+[task] id:3,start:0,end:0,service time:0,nodes:62,
+[task] id:2,start:0,end:0,service time:0,nodes:6,
+[task] id:5,start:0,end:0,service time:0,nodes:23,
+[task] id:6,start:0,end:0,service time:0,nodes:21,
+[task] id:4,start:0,end:0,service time:0,nodes:5,
+[task] id:10,start:0,end:0,service time:0,nodes:62,
+[task] id:8,start:0,end:0,service time:0,nodes:55,
+[task] id:9,start:0,end:0,service time:0,nodes:19,
+[task] id:7,start:0,end:0,service time:0,nodes:56,
+[agent] id:0
+path:53,45,37,38,38,38,38,38,38,38,38,38,38,38,
+goal:38,38,38,38,38,38,38,38,38,38,38,38,38,38,
+size:3
+[agent] id:1
+path:35,43,43,43,43,43,43,43,43,43,43,43,43,43,
+goal:43,43,43,43,43,43,43,43,43,43,43,43,43,43,
+size:1
+[agent] id:2
+path:20,12,4,5,6,6,6,6,6,6,6,6,6,6,
+goal:6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+size:4
+[agent] id:3
+path:47,55,63,62,61,53,53,61,62,62,62,62,62,62,
+goal:62,62,62,62,62,62,62,62,62,62,62,62,62,62,
+size:8
+[agent] id:4
+path:25,17,9,1,2,3,4,5,5,5,5,5,5,5,
+goal:5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+size:7
+[agent] id:5
+path:37,38,30,22,23,23,23,23,23,23,23,23,23,23,
+goal:23,23,23,23,23,23,23,23,23,23,23,23,23,23,
+size:4
+[agent] id:6
+path:33,25,17,18,19,20,21,21,21,21,21,21,21,21,
+goal:21,21,21,21,21,21,21,21,21,21,21,21,21,21,
+size:6
+[agent] id:7
+path:24,24,25,26,27,35,36,44,52,60,59,58,57,56,
+goal:56,56,56,56,56,56,56,56,56,56,56,56,56,56,
+size:13
+[agent] id:8
+path:56,57,58,59,60,61,62,63,55,55,55,55,55,55,
+goal:55,55,55,55,55,55,55,55,55,55,55,55,55,55,
+size:8
+[agent] id:9
+path:55,63,62,61,53,45,37,36,35,27,19,19,19,19,
+goal:19,19,19,19,19,19,19,19,19,19,19,19,19,19,
+size:10
+SolutionCost:64

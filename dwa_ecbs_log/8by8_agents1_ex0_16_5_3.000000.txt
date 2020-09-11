@@ -1,0 +1,41 @@
+[setting] seed:16
+[solver] type:ECBS
+[solver] w:3.000000
+[solver] ID:0
+[solver] Lowlevelnode:793
+[solver] ConflictCount:2
+[solver] solved:1
+[solver] elapsed:0
+[solver] makespan:20
+[problem] timesteplimit:10000
+[problem] type:MAPF
+[problem] agentnum:5
+[graph] width:8
+[graph] height:8
+[graph] filename:./map/8by8_agents1_ex0.map
+[task] id:3,start:0,end:0,service time:0,nodes:62,
+[task] id:1,start:0,end:0,service time:0,nodes:21,
+[task] id:4,start:0,end:0,service time:0,nodes:29,
+[task] id:2,start:0,end:0,service time:0,nodes:60,
+[task] id:0,start:0,end:0,service time:0,nodes:63,
+[agent] id:0
+path:13,5,4,3,2,1,9,8,16,24,32,40,48,49,50,51,52,53,54,55,63,
+goal:63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,
+size:20
+[agent] id:1
+path:18,19,20,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,
+goal:21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,
+size:3
+[agent] id:2
+path:40,48,49,50,51,52,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,
+goal:60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,
+size:6
+[agent] id:3
+path:54,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,
+goal:62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,
+size:1
+[agent] id:4
+path:51,52,53,45,37,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,
+goal:29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,
+size:5
+SolutionCost:35

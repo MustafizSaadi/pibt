@@ -1,0 +1,121 @@
+weight = 1.25 instances = 10
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 70 10 70 0 30 
+runitme: 
+20 30 50 40 60 40 
+Cost: 
+0 0 0 0 0 0 
+weight = 2.25 instances = 10
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 60 10 50 0 50 
+runitme: 
+20 70 10 0 60 80 
+Cost: 
+0 0 0 0 0 0 
+weight = 3.25 instances = 10
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 70 0 60 0 40 
+runitme: 
+40 80 0 30 40 60 
+Cost: 
+0 0 0 0 0 0 
+weight = 4.25 instances = 10
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 50 10 70 0 30 
+runitme: 
+30 60 20 10 50 70 
+Cost: 
+0 0 0 0 0 0 
+weight = 5.25 instances = 10
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 30 20 80 0 20 
+runitme: 
+10 40 40 20 70 60 
+Cost: 
+0 0 0 0 0 0 
+********
+agent = 10 instances = 5
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 0 0 100 0 0 
+runitme: 
+0 0 0 0 0 0 
+Cost: 
+0 0 0 0 0 0 
+agent = 20 instances = 5
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 0 0 100 0 0 
+runitme: 
+20 0 0 20 0 0 
+Cost: 
+0 0 0 0 0 0 
+agent = 30 instances = 5
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 20 0 100 0 0 
+runitme: 
+0 20 80 20 80 80 
+Cost: 
+0 0 0 0 0 0 
+agent = 40 instances = 5
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 60 0 100 0 0 
+runitme: 
+0 60 40 20 100 80 
+Cost: 
+0 0 0 0 0 0 
+agent = 50 instances = 5
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 80 20 20 0 80 
+runitme: 
+20 60 40 20 80 80 
+Cost: 
+0 0 0 0 0 0 
+agent = 60 instances = 5
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 80 0 60 0 40 
+runitme: 
+0 60 40 20 100 80 
+Cost: 
+0 0 0 0 0 0 
+agent = 70 instances = 5
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 80 20 20 0 80 
+runitme: 
+0 80 20 20 100 80 
+Cost: 
+0 0 0 0 0 0 
+agent = 80 instances = 5
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 80 20 20 0 80 
+runitme: 
+60 100 0 0 40 100 
+Cost: 
+0 0 0 0 0 0 
+agent = 90 instances = 5
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 80 20 40 0 60 
+runitme: 
+60 80 20 40 40 60 
+Cost: 
+0 0 0 0 0 0 
+agent = 100 instances = 5
+ecbs > ecbs2   ecbs > ecbs1    ecbs1 > ecbs   ecbs1 > ecbs2    ecbs2 > ecbs    ecbs2 > ecbs1
+LowLevel: 
+100 80 20 100 0 0 
+runitme: 
+80 100 0 40 20 60 
+Cost: 
+0 0 0 0 0 0
