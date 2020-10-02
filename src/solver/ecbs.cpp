@@ -68,6 +68,7 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
   OPEN.insert(uuid);
   table.push_back(root); // after pop they should be deleted
   table_conflict.push_back(h3(root->paths)); // after pop they should be deleted
+  FOCUL.push_back(uuid);
   ++uuid;
 
   bool CAT = std::any_of(paths.begin(), paths.end(),
@@ -75,13 +76,17 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
 
   auto itrO = OPEN.begin();
 
+  float bestCost = root->LB;
+
   while (!OPEN.empty()) {
+
+  //cout << FOCUL.size() << endl;
   //maxi = INT_MIN;
     uint64_t current_time2 = timeSinceEpochMillisec();
 
     if(current_time2-current_time1>= 180000)
       return false;
-    if (updateMin) {
+   // if (updateMin) {
       itrO = std::min_element(OPEN.begin(), OPEN.end(),
                               [CAT, this, &paths, &table]
                               (int a, int b) {
@@ -93,17 +98,36 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
                                 }
                                 return nA->cost < nB->cost;
                               });
-    }
+   // }
 
     key = *itrO;
     node = table[key];
 
-    ub = node->LB * w;
-    // update focul
-    FOCUL.clear();
-    for (auto keyO : OPEN) {
-      if ((float)table[keyO]->cost <= ub) FOCUL.push_back(keyO);
+    float oldBestCost = bestCost;
+    bestCost = node->LB;
+
+    if(bestCost > oldBestCost){
+      for (auto keyO : OPEN) {
+        float val =  table[keyO]->LB;
+        if (val > oldBestCost * w && val <= bestCost * w){
+            cout << "In Focul" << endl;
+            FOCUL.push_back(keyO);
+        }
+        //cout << "In Focul" << endl;
+        // if (val > bestCost * w) {
+        //       break;
+        //   }
+      } 
     }
+
+    // ub = node->cost * w;
+    // // // update focul
+    // // FOCUL.clear();
+    // if(FOCUL.empty()){
+    //   for (auto keyO : OPEN) {
+    //     if ((float)table[keyO]->cost <= ub) FOCUL.push_back(keyO);
+    //   }
+    // }
     auto itrF = std::min_element(FOCUL.begin(), FOCUL.end(),
                                  [&table, &table_conflict]
                                  (int a, int b) {
@@ -117,6 +141,11 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
     keyF = *itrF;
     node = table[keyF];
 
+    //cout << bestCost << " " << oldBestCost << " " << node->cost << endl;
+
+    FOCUL.erase(itrF);
+    //table.erase(node);
+
     conflict_cnt ++;
     constraints = valid(node, block);
     if (constraints.empty()) break;
@@ -124,6 +153,7 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
     updateMin = (key == keyF);
     auto itrP = std::find(OPEN.begin(), OPEN.end(), keyF);
     OPEN.erase(itrP);
+    
 
     for (auto constraint : constraints) {
       CTNode* newNode = new CTNode { constraint, node->paths,
@@ -147,6 +177,9 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
         OPEN.insert(uuid);
         table.push_back(newNode);
         table_conflict.push_back(h3(newNode->paths));
+        if(newNode->LB <= bestCost * w){
+          FOCUL.push_back(uuid);
+        }
         ++uuid;
       }
     }
@@ -358,6 +391,10 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
 
   double bw = w;
 
+
+  //std::cout<<"weight for agent "<<(*a).getId()<< " is "<<bw<<std::endl;
+
+
   // ==== fast implementation ====
   // constraint free
   if (constraints.empty()) {
@@ -388,6 +425,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
   bool invalid = true;
 
   boost::heap::fibonacci_heap<Fib_AN> OPEN;
+  // for OPEN list
   std::unordered_map<std::string, boost::heap::fibonacci_heap<Fib_AN>::handle_type> SEARCHED;
   std::unordered_set<std::string> CLOSE;  // key
   AN* n = new AN { _s, 0, pathDist(_s, _g), nullptr };
@@ -401,49 +439,79 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
   table_conflict.emplace(key, 0);
   // FOCUL
   boost::heap::fibonacci_heap<Fib_FN> FOCUL;
+  // for FOCUL list
   std::unordered_map<std::string,
                      boost::heap::fibonacci_heap<Fib_FN>::handle_type> SEARCHED_F;
   auto handle2 = FOCUL.push(Fib_FN(n,table_conflict.at(key)));
+  //SEARCHED_F.emplace(key, handle2);
+
+  float bestCost = n->f;
 
 
   while (!OPEN.empty()) {
-    if (updateMin || FOCUL.empty()) {
-      // argmin
-      while (!OPEN.empty()
-             && CLOSE.find(getKey(OPEN.top().node)) != CLOSE.end()) OPEN.pop();
-      if (OPEN.empty()) break;
-      n = OPEN.top().node;
-      ubori = n->f;
-      keyM = getKey(n);
-      ub = n->f * bw;
-      // update focul
-      FOCUL.clear();
-      SEARCHED_F.clear();
+    // FOCUL can become empty but still there are nodes at OPEN
+    // if (FOCUL.empty()) {
+    //   // argmin
+    //   // while (!OPEN.empty()
+    //   //        && CLOSE.find(getKey(OPEN.top().node)) != CLOSE.end()) OPEN.pop();
+    //   // if (OPEN.empty()) break;
+    //   n = OPEN.top().node;
+    //   ubori = n->f;
+    //   keyM = getKey(n);
+    //   ub = n->f * bw;
+    //   // update focul
+    //   FOCUL.clear();
+    //   SEARCHED_F.clear();
+    //   for (auto itr = OPEN.ordered_begin(); itr != OPEN.ordered_end(); ++itr) {
+    //     AN* l = (*itr).node;
+    //     if ((float)l->f <= ub) {
+    //       if (CLOSE.find(getKey(l)) == CLOSE.end()) {
+    //         key = getKey(l);
+    //         auto handle_f = FOCUL.push(Fib_FN(l, table_conflict.at(key)));
+    //         SEARCHED_F.emplace(key, handle_f);
+    //         cout << "insert 1 " << key << endl;
+    //       }
+    //     } else {
+    //       break;
+    //     }
+    //   }
+    // }
+  
+    
+    n = OPEN.top().node;
+
+    //cout << n->f << endl;
+
+    //cout << OPEN.size() << endl;
+
+    float oldBestCost = bestCost;
+    bestCost = n->f;
+
+    //oldBestCost > bestCost
+
+    //&& CLOSE.find(getKey(l)) == CLOSE.end()
+    //cout << "perfect 1" << endl;
+    if(bestCost > oldBestCost){
       for (auto itr = OPEN.ordered_begin(); itr != OPEN.ordered_end(); ++itr) {
         AN* l = (*itr).node;
-        if ((float)l->f <= ub) {
-          if (CLOSE.find(getKey(l)) == CLOSE.end()) {
+        float val =  l->f;
+        if (val > oldBestCost * bw && val <= bestCost * bw){
             key = getKey(l);
             auto handle_f = FOCUL.push(Fib_FN(l, table_conflict.at(key)));
             SEARCHED_F.emplace(key, handle_f);
-          }
-        } else {
-          break;
+            //cout << "insert 2 " << key << endl;
         }
-      }
+       // cout << "In Focul" << endl;
+        if (val > bestCost * w) {
+              break;
+          }
+      } 
     }
+    //cout << "perfect 2" << endl;
 
     // argmin in FOCUL
+    //cout << "perfect 1" << endl;
     n = FOCUL.top().node;
-    key = getKey(n);
-    FOCUL.pop();
-    
-
-    // already explored
-    if (CLOSE.find(key) != CLOSE.end()) {
-      printf("Yes\n");
-      continue;
-    }
 
     // check goal
     if (n->v == _g) {
@@ -451,6 +519,28 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
         invalid = false;
         break;
       }
+    }
+
+    
+    key = getKey(n);
+    //cout << key << " " << n->f << endl;
+    auto node_handle = SEARCHED.find(key);
+    FOCUL.pop();
+    //cout << "perfect 2" << endl;
+    // cout << 1 << endl;
+    // cout << node_handle->first << endl;
+    // cout << 2 << endl;
+    //cout << "perfect 1" << endl;
+    OPEN.erase(node_handle->second);
+
+    SEARCHED_F.erase(key);
+    SEARCHED.erase(key);
+    //cout << "perfect 2" << endl;
+
+    // already explored
+    if (CLOSE.find(key) != CLOSE.end()) {
+      printf("Yes\n");
+      continue;
     }
 
     // update list
@@ -518,16 +608,18 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
       }
 
       tmpPath.clear();
-      if (f <= ub) {
+      if (f <= bestCost * bw) {
         auto itrSF = SEARCHED_F.find(key);
         if (itrSF == SEARCHED_F.end()) {
           auto handle_f = FOCUL.push(Fib_FN(l, table_conflict.at(key)));
           SEARCHED_F.emplace(key, handle_f);
+          //cout << "insert 3 " << key << endl;
         } else {
           if (updateH) {
             auto handle_f = itrSF->second;
             (*handle_f).h = table_conflict.at(key);
             FOCUL.increase(handle_f);
+            //cout << "insert 4 " << key << endl;
           }
         }
       }
