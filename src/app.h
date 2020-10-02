@@ -131,6 +131,11 @@ Problem* run(int argc, char *argv[])
     std::exit(1);
   }
 
+  std :: string input_file;
+  int st = envConfig->field.find("3");
+  int en = envConfig->field.find(".map");
+  input_file = envConfig->field.substr(st,en-st) + "_" +to_string(envConfig->seed)+ "_" + to_string(envConfig->agentnum)+"_" + to_string(solverConfig->suboptimal);
+
   /************************
    * agent definition
    ************************/
@@ -146,6 +151,8 @@ Problem* run(int argc, char *argv[])
     //std::cout<<"Random"<<std::endl;
   }
 
+ cout << "points " << points.size() <<endl;
+  
   for (int i = 0; i < envConfig->agentnum; ++i) {
     Agent* a = new Agent(points[i][0]);
     A.push_back(a);
@@ -155,7 +162,7 @@ Problem* run(int argc, char *argv[])
    * problem definition
    ************************/
 
-  string folder_name;
+  //string folder_name;
 
   // switch (envConfig->STYPE)
   // {
@@ -179,7 +186,7 @@ Problem* run(int argc, char *argv[])
       Task* tau = new Task(points[i][1]);
       T.push_back(tau);
     }
-    P = new MAPF(G, A, T, MT_PG, folder_name);
+    P = new MAPF(G, A, T, MT_PG, input_file);
   } else if (envConfig->PTYPE == Param::PROBLEM_TYPE::P_MAPD) {
     P = new MAPD(G, A, G->getPickup(), G->getDelivery(),
                  envConfig->tasknum, envConfig->taskfrequency, MT_PG);
@@ -288,10 +295,10 @@ Problem* run(int argc, char *argv[])
     break;
   }
 
-  std :: string input_file;
-  int st = envConfig->field.find("w");
-  int en = envConfig->field.find(".map");
-  input_file = envConfig->field.substr(st,en-st);
+  // std :: string input_file;
+  // int st = envConfig->field.find("3");
+  // int en = envConfig->field.find(".map");
+  // input_file = envConfig->field.substr(st,en-st);
   //std::cout << input_file <<std::endl;
     //solver->WarshallFloyd(input_file);
 
@@ -345,7 +352,8 @@ Problem* run(int argc, char *argv[])
   }
   result += solver->logStr();
   if (envConfig->log) {
-    std::string outfile = input_file + "_" +to_string(envConfig->seed)+ "_" + to_string(envConfig->agentnum)+"_" + to_string(solverConfig->suboptimal);
+    std::string outfile = input_file ;
+    // + "_" +to_string(envConfig->seed)+ "_" + to_string(envConfig->agentnum)+"_" + to_string(solverConfig->suboptimal);
     std::ofstream log;
     //setCurrentTime(outfile);
     outfile = "./"+envConfig->log_folder+"/" + outfile + ".txt";

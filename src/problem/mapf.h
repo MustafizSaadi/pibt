@@ -12,7 +12,7 @@ public:
   MAPF(Graph* _G,
        Agents _A,
        std::vector<Task*> _T,
-       std::mt19937* _MT, std::string folder_name);
+       std::mt19937* _MT, std::string file_name);
   ~MAPF();
   bool isSolved();
   void update();

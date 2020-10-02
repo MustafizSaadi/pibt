@@ -12,7 +12,7 @@
 using namespace std;
 //#include "../graph/vec2f.h"
 
-string folder_name;
+string folder_name, file_name;
 
 MAPF::MAPF(Graph* _G,
            Agents _A,
@@ -24,9 +24,10 @@ MAPF::MAPF(Graph* _G,
 MAPF::MAPF(Graph* _G,
            Agents _A,
            std::vector<Task*> _T,
-           std::mt19937* _MT, string _folder_name) : Problem(_G, _A, _T, _MT, _folder_name)
+           std::mt19937* _MT, string _file_name) : Problem(_G, _A, _T, _MT, _file_name)
 {
-  folder_name = _folder_name;
+  folder_name = "32by32";
+  file_name = _file_name;
   init();
 }
 
@@ -38,8 +39,10 @@ void MAPF::init() {
   }
 
   // allocation, t=0
-  std::cout<<"Coordinate "<<std::endl;
-  string str = to_string(A.size()) + "\n";
+  // string file = "./"+ folder_name +"/" + file_name + ".txt";
+  // ofstream of(file);
+  // std::cout<<"Coordinate "<<std::endl;
+  // of << to_string(A.size()) << endl ;
   for (int i = 0; i < A.size(); ++i) {
     // string file = "./"+ folder_name +"/path" + to_string(i) + ".txt";
     // ofstream of(file);
@@ -48,7 +51,7 @@ void MAPF::init() {
     A[i]->setGoal(A[i]->getTask()->getG()[0]);
     Node* posst = A[i]->getNode();
     Node* posen = A[i]->getGoal(); 
-    //of << int(posst->getPos().y) << " " << int(posst->getPos().x) << " " << int(posen->getPos().y) << " " << int(posen->getPos().x) << endl;
+    //of << int(posst->getPos().y) << "," << int(posst->getPos().x) << "," << int(posen->getPos().y) << "," << int(posen->getPos().x) << "," << endl;
     A[i]->updateHist();
   }
   //cout << str <<endl;
@@ -62,6 +65,7 @@ void MAPF::init() {
   //freopen( fptr, "w",stdout);
   //printf("%s %s",str,filename);
   //fclose(stdout);
+  //of.close();
 }
 
 MAPF::~MAPF() {}

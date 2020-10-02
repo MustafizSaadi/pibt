@@ -4,7 +4,7 @@ import pandas as pd
 
 f = open("outlier.txt","r")
 
-datapoint = 10
+datapoint = 5
 arr = []
 i = 0
 x = np.zeros(datapoint)
@@ -30,8 +30,9 @@ for s in f:
     IQR = Q3 - Q1
     df = df[~((df < (Q1 - 1.5 * IQR)) |(df > (Q3 + 1.5 * IQR))).any(axis=1)]
     x[i] = df.mean()
+    #print(x[i])
     yerr[i] = 2*(df.std()/np.sqrt(j))
-    print(x[i],yerr[i])
+    print("{:.2f}".format(x[i]),"{:.2f}".format(yerr[i]))
 
     # df.plot.box(grid='True')
     # plt.show()

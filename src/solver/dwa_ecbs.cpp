@@ -154,6 +154,8 @@ bool DWA_ECBS::solvePart(Paths& paths, Agents& block) {
     keyF = *itrF;
     node = table[keyF];
 
+    //cout << "table size " << table.size() << endl;
+
     conflict_cnt ++;
     constraints = valid(node, block);
 
@@ -212,23 +214,23 @@ bool DWA_ECBS::solvePart(Paths& paths, Agents& block) {
   }
 
     //latest modification_starts_here
-    // if(conflict_weight_table.find(conflict_key)!= conflict_weight_table.end() && conflict_weight_table[conflict_key] >= max_weight){
-    //   double previous_weight = conflict_weight_table[conflict_key];
-    //   if(previous_weight + offset >= w){
-    //   (*first).m_w = w;
-    //   (*second).m_w = w; 
-    //   }
-    //   else{
-    //     (*first).m_w = previous_weight + offset ;
-    //     (*second).m_w = previous_weight + offset ;
-    //   }
-    //   cout << 1 << endl;
-    // }
-    // else
-    // {
-    //   conflict_weight_table[conflict_key] = max_weight;
-    //   //cout << "conflict_weight " << conflict_weight_table[conflict_key] << endl;
-    // }
+    if(conflict_weight_table.find(conflict_key)!= conflict_weight_table.end() && conflict_weight_table[conflict_key] >= max_weight){
+      double previous_weight = conflict_weight_table[conflict_key];
+      if(previous_weight + offset >= w){
+      (*first).m_w = w;
+      (*second).m_w = w; 
+      }
+      else{
+        (*first).m_w = previous_weight + offset ;
+        (*second).m_w = previous_weight + offset ;
+      }
+      cout << 1 << endl;
+    }
+    else
+    {
+      conflict_weight_table[conflict_key] = max_weight;
+      //cout << "conflict_weight " << conflict_weight_table[conflict_key] << endl;
+    }
     //latest modification_ends_here
 
     }

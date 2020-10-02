@@ -9,13 +9,13 @@ SOLVER_TYPE=ECBS
 
 // choose log folder
 // option:: {for ECBS & others log, for SWA_ECBS swa_ecbs_log, for DWA_ECBS dwa_ecbs_log}
-LOG_FOLDER=swa_ecbs_log
+LOG_FOLDER=log
 
 // choose map file
-field=./map/warehouse_middle.map
+field=./map/32by32_agents10_ex89.map
 
 // number of agents
-agentnum=180
+agentnum=100
 
 // timestep limitation
 timesteplimit=10000
@@ -56,7 +56,7 @@ ID=0
 window=5
 
 // suboptimal factor of ECBS
-suboptimal=2.75
+suboptimal=2
 
 // for winPIBT, iterative use
 softmode=1

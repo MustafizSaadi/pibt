@@ -50,6 +50,8 @@ protected:
 
   // cache of searched path
   std::unordered_map<std::string, KnownPath*> knownPaths;
+  // search through id
+  std::unordered_map< int, Node*> node_id_table;
 
   // random generator
   std::mt19937* MT;

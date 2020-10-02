@@ -11,6 +11,11 @@
 #include <unordered_set>
 #include "../util/util.h"
 #include <boost/heap/fibonacci_heap.hpp>
+#include <stdio.h>
+#include <string.h>
+#include <iostream>
+#include <fstream>
+using namespace std;
 
 bool valid = false;
 
@@ -378,12 +383,14 @@ Paths Graph::getRandomStartGoal(int num) {
 
     flg = true;
     int j = 0;
-    for (int i = 0; i < num; ++i,j++) {
+    int i = 0;
+    for (; i < num; j++) {
 	for(;j<gs.size();j++){
 	      bool valid = getPathInit(ss[i],gs[j]);
 	      if(valid){
 		      if (ss[i] != gs[j]) {
 			points.push_back({ ss[i], gs[j] });
+      ++i;
 			break;
 		      } else {
 			flg = false;
@@ -406,6 +413,41 @@ Paths Graph::getRandomStartGoal(int num) {
   // points.push_back({starts[12],goals[9]});
   // valid = getPathInit(starts[11],goals[17]);
   // points.push_back({starts[11],goals[17]});
+
+  // string file = "/home/mustafizur/pibt/src/graph/lak503dmap-100agents-15.txt";
+  // int height = 194, width = 194;
+  // std::ifstream ifile(file);
+  // ifstream f(file.c_str());
+  // if(f.good())
+  // cout << "yes" << endl;
+  // int cnt;
+  // std::string text;
+  // //ifile.open("lak503dmap-100agents-0.txt");
+  // //if(ifile.is_open()){
+  // getline(ifile, text);
+  // cnt = atoi(text.c_str());
+  // while(cnt--){
+  //   int strow, stcol, enrow, encol;
+  //   ifile >> text;
+  //   char *pch;
+  //   char *dup = strdup(text.c_str());
+  //   pch = strtok (dup,",");
+  //   strow = atoi(pch);
+  //   pch = strtok (NULL, ",");
+  //   stcol = atoi(pch);
+  //   pch = strtok (NULL,",");
+  //   enrow = atoi(pch);
+  //   pch = strtok (NULL, ",");
+  //   encol = atoi(pch);
+  //   int stid = strow*width + stcol;
+  //   int enid = enrow*width + encol;
+  //   bool valid = getPathInit(node_id_table[stid], node_id_table[enid]);
+  //   if(valid)
+  //     points.push_back({node_id_table[stid], node_id_table[enid]});
+  //   //std::cout << strow << " " << stcol << " " << enrow << " " << encol << std::endl;
+  //   free(dup);
+  //}
+ // }
 
   return points;
 }
