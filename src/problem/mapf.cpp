@@ -39,10 +39,10 @@ void MAPF::init() {
   }
 
   // allocation, t=0
-  // string file = "./"+ folder_name +"/" + file_name + ".txt";
-  // ofstream of(file);
+  //string file = "./"+ folder_name +"/" + file_name + ".txt";
+  //ofstream of(file);
   // std::cout<<"Coordinate "<<std::endl;
-  // of << to_string(A.size()) << endl ;
+  //of << to_string(A.size()) << endl ;
   for (int i = 0; i < A.size(); ++i) {
     // string file = "./"+ folder_name +"/path" + to_string(i) + ".txt";
     // ofstream of(file);

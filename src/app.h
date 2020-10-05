@@ -132,7 +132,7 @@ Problem* run(int argc, char *argv[])
   }
 
   std :: string input_file;
-  int st = envConfig->field.find("3");
+  int st = envConfig->field.find("k");
   int en = envConfig->field.find(".map");
   input_file = envConfig->field.substr(st,en-st) + "_" +to_string(envConfig->seed)+ "_" + to_string(envConfig->agentnum)+"_" + to_string(solverConfig->suboptimal);
 

@@ -113,7 +113,7 @@ bool SWA_ECBS::solvePart(Paths& paths, Agents& block) {
   while (!OPEN.empty()) {
   //maxi = INT_MIN;
     uint64_t current_time2 = timeSinceEpochMillisec();
-    if(current_time2-current_time1 >= 180000)
+    if(current_time2-current_time1 >= 300000)
       return false;
     if (updateMin) {
       itrO = std::min_element(OPEN.begin(), OPEN.end(),

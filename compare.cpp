@@ -940,16 +940,16 @@ int main(){
         break;
     
     case 7:
-        a = 120;
-        j = 2.25;
-        while(a<=200){
-            cnt = 0;
+        a = 100;
+        j = 1.25;
+        // while(a<=200){
+        //     cnt = 0;
             // for (size_t i = 0; i < 6; i++)
             // {
             //     solncnt[i]=0,runtimecnt[i]=0,lowlevelcnt[i]=0,solncost[i]=0,solnruntime[i]=0,solnlowlevel[i]=0;
             // } 
-            // while(j<6){
-            //     int cnt = 0;  
+            while(j<6){
+                int cnt = 0;  
             //     // //while(agent<4){
                     for (size_t i = 0; i < 6; i++)
                         {
@@ -968,24 +968,28 @@ int main(){
 
 
                         string string1 = "/home/mustafizur/pibt/log/"+ file + to_string(ex) + "_99_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string2 = "/home/mustafizur/pibt/swa_ecbs_log/" + file + to_string(ex) + "_99_" + to_string(a)+ "_" + to_string(j) + ".txt";
-                        string string3 = "/home/mustafizur/pibt/dwa_ecbs_log/"+ file  + to_string(ex) + "_99_" +  to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string2 = "/home/mustafizur/pibt/swa_ecbs_log/" + file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string3 = "/home/mustafizur/pibt/dwa_ecbs_log/"+ file  + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
                         //string string4 = "/home/mustafizur/pibt/dwa_ecbs_log/"+ file  + to_string(ex) + "_V2_99_" +  to_string(a)+ "_" + to_string(j) + ".txt";
 
                         bool flag1 = false, flag2 = false,flag3=false, flag4 = false;
                         if(exists_test0(string1)){
                             flag1 = true;
+                            //cout << 1 << endl;
                         }
                         if(exists_test0(string2)){
                             flag2 = true;
+                            //cout << 2 << endl;
                         }
                         if(exists_test0(string3)){
                             flag3 = true;
+                            //cout << 3 << endl;
                         }
                         // if(exists_test0(string4)){
                         //     flag4 = true;
                         // }
                         if(flag1 && flag2 && flag3){
+                            //out << 1 << endl;
                             cnt++;
                             ifstream in1(string1);
                             ifstream in2(string2);
@@ -1006,7 +1010,7 @@ int main(){
                                     getline(check1,intermediate,':');
                                     runtimecnt[0] = atoi(intermediate.c_str());   
                                     //vec[0].push_back(runtimecnt[0]);
-                                    //cout << runtimecnt[0] <<" ";
+                                    cout << runtimecnt[0] <<" ";
                                 }
                                 else if(intermediate == "SolutionCost"){
                                     getline(check1,intermediate,':');
@@ -1052,7 +1056,7 @@ int main(){
                                     getline(check1,intermediate,':');
                                     runtimecnt[2] = atoi(intermediate.c_str());  
                                     //vec[2].push_back(runtimecnt[2]); 
-                                    cout<< runtimecnt[2] << " ";
+                                    //cout<< runtimecnt[2] << " ";
                                 }
                                 else if(intermediate == "SolutionCost"){
                                     getline(check1,intermediate,':');
@@ -1173,9 +1177,9 @@ int main(){
             // cout << a << " " << mean << " " << 2*(calculateSD(0,mean)/sqrt(vec[0].size())) << " " << mean1 << " " << 2*(calculateSD(1,mean1)/sqrt(vec[1].size())) << " " << mean2 << " " << 2*(calculateSD(2,mean2)/sqrt(vec[2].size())) << endl;
             // // //cout << a << " " << mean2 << " " << 2*(calculateSD(2,mean2)/sqrt(vec[2].size())) << " " <<  mean << " " << 2*(calculateSD(0,mean)/sqrt(vec[0].size())) << endl;
 
-            // //j += 1;
+            j += 1;
             // for(int i=0;i<3;i++) vec[i].clear();
-            a += 20;
+            //a += 20;
             cout << endl;
             }
 
@@ -1193,7 +1197,7 @@ int main(){
                     } 
                 // int agent = 10;  
                 // //while(agent<4){
-                    //int ex = 0;
+                    int ex = 0;
                     while(ex<100){
                         // string string1 = "/home/mustafizur/pibt/log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         // string string2 = "/home/mustafizur/pibt/changed_log/8by8_agents" + to_string(agent) + "_ex" + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";

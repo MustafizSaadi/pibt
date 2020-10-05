@@ -84,50 +84,50 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
   //maxi = INT_MIN;
     uint64_t current_time2 = timeSinceEpochMillisec();
 
-    if(current_time2-current_time1>= 180000)
+    if(current_time2-current_time1>= 300000)
       return false;
-   // if (updateMin) {
-      itrO = std::min_element(OPEN.begin(), OPEN.end(),
-                              [CAT, this, &paths, &table]
-                              (int a, int b) {
-                                CTNode* nA = table[a];
-                                CTNode* nB = table[b];
-                                if (CAT && nA->cost == nB->cost) {
-                                  return this->countCollisions(nA, paths)
-                                    < this->countCollisions(nB, paths);
-                                }
-                                return nA->cost < nB->cost;
-                              });
-   // }
+  //  // if (updateMin) {
+  //     itrO = std::min_element(OPEN.begin(), OPEN.end(),
+  //                             [CAT, this, &paths, &table]
+  //                             (int a, int b) {
+  //                               CTNode* nA = table[a];
+  //                               CTNode* nB = table[b];
+  //                               if (CAT && nA->cost == nB->cost) {
+  //                                 return this->countCollisions(nA, paths)
+  //                                   < this->countCollisions(nB, paths);
+  //                               }
+  //                               return nA->cost < nB->cost;
+  //                             });
+  //  // }
 
     key = *itrO;
     node = table[key];
 
-    float oldBestCost = bestCost;
-    bestCost = node->LB;
+    // float oldBestCost = bestCost;
+    // bestCost = node->LB;
 
-    if(bestCost > oldBestCost){
-      for (auto keyO : OPEN) {
-        float val =  table[keyO]->LB;
-        if (val > oldBestCost * w && val <= bestCost * w){
-            cout << "In Focul" << endl;
-            FOCUL.push_back(keyO);
-        }
-        //cout << "In Focul" << endl;
-        // if (val > bestCost * w) {
-        //       break;
-        //   }
-      } 
-    }
-
-    // ub = node->cost * w;
-    // // // update focul
-    // // FOCUL.clear();
-    // if(FOCUL.empty()){
+    // if(bestCost > oldBestCost){
     //   for (auto keyO : OPEN) {
-    //     if ((float)table[keyO]->cost <= ub) FOCUL.push_back(keyO);
-    //   }
+    //     float val =  table[keyO]->LB;
+    //     if (val > oldBestCost * w && val <= bestCost * w){
+    //         cout << "In Focul" << endl;
+    //         FOCUL.push_back(keyO);
+    //     }
+    //     //cout << "In Focul" << endl;
+    //     // if (val > bestCost * w) {
+    //     //       break;
+    //     //   }
+    //   } 
     // }
+
+    ub = node->cost * w;
+    // // update focul
+    FOCUL.clear();
+    if(FOCUL.empty()){
+      for (auto keyO : OPEN) {
+        if ((float)table[keyO]->cost <= ub) FOCUL.push_back(keyO);
+      }
+    }
     auto itrF = std::min_element(FOCUL.begin(), FOCUL.end(),
                                  [&table, &table_conflict]
                                  (int a, int b) {
@@ -177,9 +177,9 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
         OPEN.insert(uuid);
         table.push_back(newNode);
         table_conflict.push_back(h3(newNode->paths));
-        if(newNode->LB <= bestCost * w){
-          FOCUL.push_back(uuid);
-        }
+        // if(newNode->LB <= bestCost * w){
+        //   FOCUL.push_back(uuid);
+        // }
         ++uuid;
       }
     }
@@ -449,69 +449,73 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
 
 
   while (!OPEN.empty()) {
-    // FOCUL can become empty but still there are nodes at OPEN
-    // if (FOCUL.empty()) {
-    //   // argmin
-    //   // while (!OPEN.empty()
-    //   //        && CLOSE.find(getKey(OPEN.top().node)) != CLOSE.end()) OPEN.pop();
-    //   // if (OPEN.empty()) break;
-    //   n = OPEN.top().node;
-    //   ubori = n->f;
-    //   keyM = getKey(n);
-    //   ub = n->f * bw;
-    //   // update focul
-    //   FOCUL.clear();
-    //   SEARCHED_F.clear();
-    //   for (auto itr = OPEN.ordered_begin(); itr != OPEN.ordered_end(); ++itr) {
-    //     AN* l = (*itr).node;
-    //     if ((float)l->f <= ub) {
-    //       if (CLOSE.find(getKey(l)) == CLOSE.end()) {
-    //         key = getKey(l);
-    //         auto handle_f = FOCUL.push(Fib_FN(l, table_conflict.at(key)));
-    //         SEARCHED_F.emplace(key, handle_f);
-    //         cout << "insert 1 " << key << endl;
-    //       }
-    //     } else {
-    //       break;
-    //     }
-    //   }
-    // }
-  
-    
-    n = OPEN.top().node;
-
-    //cout << n->f << endl;
-
-    //cout << OPEN.size() << endl;
-
-    float oldBestCost = bestCost;
-    bestCost = n->f;
-
-    //oldBestCost > bestCost
-
-    //&& CLOSE.find(getKey(l)) == CLOSE.end()
-    //cout << "perfect 1" << endl;
-    if(bestCost > oldBestCost){
+   // FOCUL can become empty but still there are nodes at OPEN
+    if (updateMin || FOCUL.empty()) {
+      //argmin
+      while (!OPEN.empty()
+             && CLOSE.find(getKey(OPEN.top().node)) != CLOSE.end()) OPEN.pop();
+      if (OPEN.empty()) break;
+      n = OPEN.top().node;
+      ubori = n->f;
+      keyM = getKey(n);
+      ub = n->f * bw;
+      // update focul
+      FOCUL.clear();
+      SEARCHED_F.clear();
       for (auto itr = OPEN.ordered_begin(); itr != OPEN.ordered_end(); ++itr) {
         AN* l = (*itr).node;
-        float val =  l->f;
-        if (val > oldBestCost * bw && val <= bestCost * bw){
+        if ((float)l->f <= ub) {
+          if (CLOSE.find(getKey(l)) == CLOSE.end()) {
             key = getKey(l);
             auto handle_f = FOCUL.push(Fib_FN(l, table_conflict.at(key)));
             SEARCHED_F.emplace(key, handle_f);
-            //cout << "insert 2 " << key << endl;
-        }
-       // cout << "In Focul" << endl;
-        if (val > bestCost * w) {
-              break;
+            //cout << "insert 1 " << key << endl;
           }
-      } 
+        } else {
+          break;
+        }
+      }
     }
-    //cout << "perfect 2" << endl;
+  
+    
+    // n = OPEN.top().node;
 
-    // argmin in FOCUL
-    //cout << "perfect 1" << endl;
+    // //cout << n->f << endl;
+
+    // //cout << OPEN.size() << endl;
+
+    // float oldBestCost = bestCost;
+    // bestCost = n->f;
+
+    // //oldBestCost > bestCost
+
+    // //&& CLOSE.find(getKey(l)) == CLOSE.end()
+    // //cout << "perfect 1" << endl;
+    // if(bestCost > oldBestCost){
+    //   for (auto itr = OPEN.ordered_begin(); itr != OPEN.ordered_end(); ++itr) {
+    //     AN* l = (*itr).node;
+    //     float val =  l->f;
+    //     if (val > oldBestCost * bw && val <= bestCost * bw){
+    //         key = getKey(l);
+    //         auto handle_f = FOCUL.push(Fib_FN(l, table_conflict.at(key)));
+    //         SEARCHED_F.emplace(key, handle_f);
+    //         //cout << "insert 2 " << key << endl;
+    //     }
+    //    // cout << "In Focul" << endl;
+    //     if (val > bestCost * w) {
+    //           break;
+    //       }
+    //   } 
+    // }
+    // //cout << "perfect 2" << endl;
+
+    // // argmin in FOCUL
+    // //cout << "perfect 1" << endl;
+    // n = FOCUL.top().node;
+
     n = FOCUL.top().node;
+    key = getKey(n);
+    FOCUL.pop();
 
     // check goal
     if (n->v == _g) {
@@ -522,19 +526,19 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
     }
 
     
-    key = getKey(n);
-    //cout << key << " " << n->f << endl;
-    auto node_handle = SEARCHED.find(key);
-    FOCUL.pop();
-    //cout << "perfect 2" << endl;
-    // cout << 1 << endl;
-    // cout << node_handle->first << endl;
-    // cout << 2 << endl;
-    //cout << "perfect 1" << endl;
-    OPEN.erase(node_handle->second);
+    // key = getKey(n);
+    // //cout << key << " " << n->f << endl;
+    // auto node_handle = SEARCHED.find(key);
+    // FOCUL.pop();
+    // //cout << "perfect 2" << endl;
+    // // cout << 1 << endl;
+    // // cout << node_handle->first << endl;
+    // // cout << 2 << endl;
+    // //cout << "perfect 1" << endl;
+    // OPEN.erase(node_handle->second);
 
-    SEARCHED_F.erase(key);
-    SEARCHED.erase(key);
+    // SEARCHED_F.erase(key);
+    // SEARCHED.erase(key);
     //cout << "perfect 2" << endl;
 
     // already explored
@@ -608,7 +612,7 @@ Nodes ECBS::AstarSearch(Agent* a, CTNode* node) {
       }
 
       tmpPath.clear();
-      if (f <= bestCost * bw) {
+      if (f <= ub) {
         auto itrSF = SEARCHED_F.find(key);
         if (itrSF == SEARCHED_F.end()) {
           auto handle_f = FOCUL.push(Fib_FN(l, table_conflict.at(key)));
