@@ -43,7 +43,7 @@ import os
 # 		# agent += 10
 
 
-seed = 31
+seed = 59
 while seed < 100:
 	# j = 1.25
 	# while j<6:
