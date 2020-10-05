@@ -35,8 +35,8 @@ make ofrun param=sample-param.txt
 - without visualization (for experiment)
 ```
 mkdir log
-mkdir changed_log
-mkdir changed_changed_log
+mkdir swa_ecbs_log
+mkdir dwa_ecbs_log
 make c
 make crun param=sample-param.txt
 ```
