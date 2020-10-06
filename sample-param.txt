@@ -5,17 +5,17 @@ PROBLEM_TYPE=MAPF
 
 // choose solver
 // option: { PIBT, HCA, WHCA, PPS, CBS, ECBS, SWA_ECBS, DWA_ECBS, iECBS, TP, winPIBT }
-SOLVER_TYPE=SWA_ECBS
+SOLVER_TYPE=DWA_ECBS
 
 // choose log folder
 // option:: {for ECBS & others log, for SWA_ECBS swa_ecbs_log, for DWA_ECBS dwa_ecbs_log}
-LOG_FOLDER=swa_ecbs_log
+LOG_FOLDER=dwa_ecbs_log
 
 // choose map file
 field=./map/kivalike.map
 
 // number of agents
-agentnum=110
+agentnum=50
 
 // timestep limitation
 timesteplimit=10000
@@ -33,7 +33,7 @@ scenario=0
 scenariofile=./scen/../*.scen
 
 // seed for randomness
-seed=58
+seed=0
 
 // save log or not, choose {0, 1}
 log=1

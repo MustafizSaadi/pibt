@@ -43,12 +43,12 @@ import os
 # 		# agent += 10
 
 
-seed = 59
+seed = 0
 while seed < 100:
 	# j = 1.25
 	# while j<6:
-	a = 100
-	while a<=110:
+	a = 50
+	while a<=90:
 		f = open("sample-param.txt","r")
 		filestring = ""
 		for s in f:

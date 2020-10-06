@@ -940,16 +940,16 @@ int main(){
         break;
     
     case 7:
-        a = 100;
+        a = 10;
         j = 1.25;
-        // while(a<=200){
-        //     cnt = 0;
+        while(a<=100){
+            cnt = 0;
             // for (size_t i = 0; i < 6; i++)
             // {
             //     solncnt[i]=0,runtimecnt[i]=0,lowlevelcnt[i]=0,solncost[i]=0,solnruntime[i]=0,solnlowlevel[i]=0;
             // } 
-            while(j<6){
-                int cnt = 0;  
+            // while(j<6){
+            //     int cnt = 0;  
             //     // //while(agent<4){
                     for (size_t i = 0; i < 6; i++)
                         {
@@ -967,7 +967,7 @@ int main(){
     
 
 
-                        string string1 = "/home/mustafizur/pibt/log/"+ file + to_string(ex) + "_99_" + to_string(a)+ "_" + to_string(j) + ".txt";
+                        string string1 = "/home/mustafizur/pibt/log/"+ file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         string string2 = "/home/mustafizur/pibt/swa_ecbs_log/" + file + to_string(ex) + "_" + to_string(a)+ "_" + to_string(j) + ".txt";
                         string string3 = "/home/mustafizur/pibt/dwa_ecbs_log/"+ file  + to_string(ex) + "_" +  to_string(a)+ "_" + to_string(j) + ".txt";
                         //string string4 = "/home/mustafizur/pibt/dwa_ecbs_log/"+ file  + to_string(ex) + "_V2_99_" +  to_string(a)+ "_" + to_string(j) + ".txt";
@@ -1010,12 +1010,12 @@ int main(){
                                     getline(check1,intermediate,':');
                                     runtimecnt[0] = atoi(intermediate.c_str());   
                                     //vec[0].push_back(runtimecnt[0]);
-                                    cout << runtimecnt[0] <<" ";
+                                    //cout << runtimecnt[0] <<" ";
                                 }
                                 else if(intermediate == "SolutionCost"){
                                     getline(check1,intermediate,':');
                                     solncnt[0] = atoi(intermediate.c_str());
-                                    //cout << solncnt[0] <<endl;
+                                    //cout << solncnt[0] <<" ";
                                 }
                             }
                         
@@ -1038,7 +1038,7 @@ int main(){
                                 else if(intermediate == "SolutionCost"){
                                     getline(check1,intermediate,':');
                                     solncnt[1] = atoi(intermediate.c_str());
-                                    //cout << solncnt[1] <<endl;
+                                    //cout << solncnt[1] << " ";
                                 }
                             }
 
@@ -1061,7 +1061,7 @@ int main(){
                                 else if(intermediate == "SolutionCost"){
                                     getline(check1,intermediate,':');
                                     solncnt[2] = atoi(intermediate.c_str());
-                                    //cout << solncnt[2]<<endl;
+                                    cout << solncnt[2]<<endl;
                                 }
                             }
 
@@ -1177,9 +1177,9 @@ int main(){
             // cout << a << " " << mean << " " << 2*(calculateSD(0,mean)/sqrt(vec[0].size())) << " " << mean1 << " " << 2*(calculateSD(1,mean1)/sqrt(vec[1].size())) << " " << mean2 << " " << 2*(calculateSD(2,mean2)/sqrt(vec[2].size())) << endl;
             // // //cout << a << " " << mean2 << " " << 2*(calculateSD(2,mean2)/sqrt(vec[2].size())) << " " <<  mean << " " << 2*(calculateSD(0,mean)/sqrt(vec[0].size())) << endl;
 
-            j += 1;
+            //j += 1;
             // for(int i=0;i<3;i++) vec[i].clear();
-            //a += 20;
+            a += 10;
             cout << endl;
             }
 

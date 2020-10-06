@@ -4,7 +4,7 @@ import pandas as pd
 
 f = open("outlier.txt","r")
 
-datapoint = 5
+datapoint = 10
 arr = []
 i = 0
 x = np.zeros(datapoint)
