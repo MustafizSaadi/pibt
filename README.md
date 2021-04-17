@@ -1,6 +1,8 @@
 Simulator of Iterative Multi-agent Path Finding
 ===
 Let multiple agents move smoothly.
+swa_ecbs_2 is assigning weight in the range [(1+w)/2, w]
+swa_ecbs_3 is ensuring that the average conflicted agent is assigned (1+w)/2 weight
 See [the project page](https://kei18.github.io/pibt).
 
 ## Demo
@@ -36,7 +38,11 @@ make ofrun param=sample-param.txt
 ```
 mkdir log
 mkdir swa_ecbs_log
+mkdir swa_ecbs_2_log
+mkdir swa_ecbs_3_log
 mkdir dwa_ecbs_log
+mkdir dwa_ecbs_2_log
+mkdir dwa_ecbs_3_log
 make c
 make crun param=sample-param.txt
 ```
