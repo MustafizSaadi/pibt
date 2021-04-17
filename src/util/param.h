@@ -17,7 +17,13 @@ namespace Param {
   enum SOLVER_TYPE { S_CBS,
                      S_ECBS,
                      S_SWA_ECBS,
+                     S_SWA_ECBS_2,
+                     S_SWA_ECBS_3,
                      S_DWA_ECBS,
+                     S_DWA_ECBS_2,
+                     S_DWA_ECBS_3,
+                     S_BCBS_1_W,
+                     S_BCBS_W_1,
                      S_iECBS,
                      S_WHCA,
                      S_HCA,
@@ -143,8 +149,20 @@ void setParams(std::string filename,
         env->STYPE = Param::SOLVER_TYPE::S_ECBS;
       } else if(tmpstr == "SWA_ECBS"){
         env->STYPE = Param::SOLVER_TYPE::S_SWA_ECBS;
+      } else if(tmpstr == "SWA_ECBS_2"){
+        env->STYPE = Param::SOLVER_TYPE::S_SWA_ECBS_2;
+      } else if(tmpstr == "SWA_ECBS_3"){
+        env->STYPE = Param::SOLVER_TYPE::S_SWA_ECBS_3;
       } else if(tmpstr == "DWA_ECBS"){
         env->STYPE = Param::SOLVER_TYPE::S_DWA_ECBS;
+      } else if(tmpstr == "DWA_ECBS_2"){
+        env->STYPE = Param::SOLVER_TYPE::S_DWA_ECBS_2;
+      } else if(tmpstr == "DWA_ECBS_3"){
+        env->STYPE = Param::SOLVER_TYPE::S_DWA_ECBS_3;
+      } else if(tmpstr == "BCBS_1_W"){
+        env->STYPE = Param::SOLVER_TYPE::S_BCBS_1_W;
+      } else if(tmpstr == "BCBS_W_1"){
+        env->STYPE = Param::SOLVER_TYPE::S_BCBS_W_1;
       } else if (tmpstr == "iECBS") {
         env->STYPE = Param::SOLVER_TYPE::S_iECBS;
       } else if (tmpstr == "PPS") {

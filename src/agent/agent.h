@@ -2,12 +2,21 @@
 
 #include "../graph/node.h"
 #include "../task/task.h"
+#include <map>
 
 // history of agent
 struct AgentStatus {
   Node* v;
   Node* g;
   Task* tau;
+};
+
+struct conflicted_node {
+  int node_id;
+  int time;
+  double m_w;
+  // conflicted_node* prev;
+  // conflicted_node* next;
 };
 
 class Agent {
@@ -27,6 +36,10 @@ public:
   Agent(Node* v);  // initial location
   ~Agent();
 
+  // conflicted_node* head; //start of the conflicted nodes list
+  // conflicted_node* tail; //end of the conflicted nodes list
+  std::vector<conflicted_node*> conflicted_list;
+  std::map<int,Node*>time_conflict_map; 
   int conf;          //current conflict count
   double m_w = 1;           // current suboptimal bound
 
@@ -54,6 +67,7 @@ public:
   bool isUpdated() { return updated; }
 
   void updateHist();
+  conflicted_node* getConflictedNode(int node_id, int time, double m_w);
   std::vector<AgentStatus*> getHist() { return hist; }
 
   std::string logStr();

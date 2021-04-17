@@ -10,7 +10,7 @@
 #include <map>
 
 
-class DWA_ECBS : public CBS {
+class DWA_ECBS_2 : public CBS {
 protected:
   float w;  // sub-optimal factor
   std::unordered_map<int, int> table_fmin;  // record min of f-value
@@ -22,18 +22,19 @@ protected:
   void invoke(CTNode* node, Agents& block);
   virtual Nodes AstarSearch(Agent* a, CTNode* node);
   void getPartialPath(AN* n, Nodes &path);
+  int bin_search(std::vector<conflicted_node*> & conflicted_list, int st, int en, int time); 
 
 public:
-  DWA_ECBS(Problem* _P, float _w);
-  DWA_ECBS(Problem* _P, float _w, bool _ID);
-  ~DWA_ECBS();
+  DWA_ECBS_2(Problem* _P, float _w);
+  DWA_ECBS_2(Problem* _P, float _w, bool _ID);
+  ~DWA_ECBS_2();
   int lowlevelnode;
-  int dtime;
   int conflict_cnt;
   int cnt;
   int thrashing_nodes;
-  std::map< int, std::vector<double> > mp;
+  std::map< int, double > mp;
 
   virtual std::string logStr();
   uint64_t timeSinceEpochMillisec();
+  void print_paths(Paths &paths);
 };

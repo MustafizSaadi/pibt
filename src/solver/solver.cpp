@@ -32,6 +32,7 @@ void Solver::init() {
 
 void Solver::solveStart() {
   startT = std::chrono::system_clock::now();
+  std::cout << "solvestart" << std::endl;
 }
 
 void Solver::solveEnd() {
@@ -159,6 +160,7 @@ std::string Solver::getKey(int t, Node* v) {
 }
 
 std::string Solver::getKey(AN* n) {
+  /* g_value-node_id */
   return getKey(n->g, n->v);
 }
 

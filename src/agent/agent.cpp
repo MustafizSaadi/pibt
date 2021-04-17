@@ -28,6 +28,9 @@ Agent::Agent(Node* _v) : id(cntId) {
 Agent::~Agent() {
   for (auto s : hist) delete s;
   hist.clear();
+  for (auto l : conflicted_list) delete l;
+  conflicted_list.clear();
+  time_conflict_map.clear();
 }
 
 void Agent::setNode(Node* _v) {
@@ -50,7 +53,13 @@ void Agent::updateHist() {
   }
   hist.push_back(s);
 }
-
+conflicted_node* Agent::getConflictedNode(int node_id, int time, double m_w){
+  conflicted_node* cnode = new conflicted_node;
+  cnode->node_id = node_id;
+  cnode->time = time;
+  cnode->m_w = m_w;
+  return cnode;
+}
 void Agent::releaseTask() {
   g = nullptr;
   tau = nullptr;

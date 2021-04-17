@@ -29,6 +29,7 @@ public:
   ~ECBS();
   int lowlevelnode;
   int conflict_cnt;
+  int thrashing_nodes;
   int cnt;
   std::vector<std::pair<int,int>> vec[50];
 

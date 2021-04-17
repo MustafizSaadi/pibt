@@ -1,5 +1,5 @@
 /*
- * DWA_ECBS.cpp
+ * DWA_ECBS_3.cpp
  *
  * Purpose: Enhanced Conflict-based Search with weight change(runtime) at each high level node
  *
@@ -9,32 +9,30 @@
  * Created by: Keisuke Okumura <okumura.k@coord.c.titech.ac.jp>
  */
 
-#include "dwa_ecbs.h"
+#include "dwa_ecbs_3.h"
 #include "../util/util.h"
 #include<bits/stdc++.h>
 #include <boost/algorithm/string.hpp>
 using namespace std;
 
-uint64_t DWA_ECBS::timeSinceEpochMillisec() {
+uint64_t DWA_ECBS_3::timeSinceEpochMillisec() {
   using namespace std::chrono;
   return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 }
-DWA_ECBS::DWA_ECBS(Problem* _P, float _w) : CBS(_P, false), w(_w) {
+DWA_ECBS_3::DWA_ECBS_3(Problem* _P, float _w) : CBS(_P, false), w(_w) {
   init();
 }
-DWA_ECBS::DWA_ECBS(Problem* _P, float _w, bool _ID) : CBS(_P, _ID), w(_w) {
+DWA_ECBS_3::DWA_ECBS_3(Problem* _P, float _w, bool _ID) : CBS(_P, _ID), w(_w) {
   init();
 }
 
-DWA_ECBS::~DWA_ECBS() {}
+DWA_ECBS_3::~DWA_ECBS_3() {}
 
-void DWA_ECBS::init() {
+void DWA_ECBS_3::init() {
   for (auto a : A) table_fmin.emplace(a->getId(), 0);
   cnt = 0;
   conflict_cnt = 0;
-  dtime = 0;
   thrashing_nodes = 0;
-
   //std::cout<<"weight "<< w<<std::endl;
 }
 
@@ -42,7 +40,7 @@ void DWA_ECBS::init() {
 //   return (*a).conf < (*b).conf;
 // }
 
-bool DWA_ECBS::solvePart(Paths& paths, Agents& block) {
+bool DWA_ECBS_3::solvePart(Paths& paths, Agents& block) {
   //int highLevelNode = 0;
   CTNode* node;
   Constraints constraints;
@@ -74,37 +72,14 @@ bool DWA_ECBS::solvePart(Paths& paths, Agents& block) {
 
   CTNode* root = new CTNode { {}, {}, 0, nullptr, true, {}, 0 };
   highLevelNode ++;
+  // cout << "in" << endl;
   invoke(root, block);
+  // cout << "out" << endl;
   OPEN.insert(uuid);
   table.push_back(root);
   table_conflict.push_back(h3(root->paths));
   ++uuid;
 
-  int maxi ;
- // uint64_t current_time3 = timeSinceEpochMillisec();
-
-  // for(auto a:block){
-  //   auto itr = std::find_if(A.begin(), A.end(),
-  //                             [a](Agent* b) { return a == b; });
-  //     int d = std::distance(A.begin(), itr);
-  //   (*a).conf = h3(a,root->paths[d],root->paths);
-  //   maxi = max(maxi,(*a).conf);
-  //   //cout << "block size " << block.size() <<endl; 
-  // }
-
-  // // sort(block.begin(),block.end(),compare);
-
-  // // cout << "offset " << w <<endl; 
-
-  double offset ;
-
-  // //cout << "offset " << offset <<endl; 
-  // // double add = offset;
-  // for(auto a:block){
-  //   //cout<< "conflict " <<(*a).getId()<< " is " << (*a).conf <<endl;
-  //   (*a).m_w = 1 + ((*a).conf * offset);
-  //   //add += offset;
-  // }
 
   // uint64_t current_time4 = timeSinceEpochMillisec();
 
@@ -116,7 +91,7 @@ bool DWA_ECBS::solvePart(Paths& paths, Agents& block) {
   auto itrO = OPEN.begin();
 
   while (!OPEN.empty()) {
-  maxi = INT_MIN;
+  //maxi = INT_MIN;
   uint64_t current_time2 = timeSinceEpochMillisec();
   if(current_time2-current_time1 >= 180000) 
     return false;
@@ -166,8 +141,8 @@ bool DWA_ECBS::solvePart(Paths& paths, Agents& block) {
     if (constraints.empty()) break;
 
 
-    auto constraint = constraints[0];
-    string conflict_key = constraint[0]->key; 
+    auto constra = constraints[0];
+    string conflict_key = constra[0]->key; 
 
    // cout << "conflict_key " << conflict_key << endl;
 
@@ -183,39 +158,50 @@ bool DWA_ECBS::solvePart(Paths& paths, Agents& block) {
     auto itrP = std::find(OPEN.begin(), OPEN.end(), keyF);
     OPEN.erase(itrP);
 
+    //uint64_t current_time1 = timeSinceEpochMillisec();
+
+
+    /**** DWA mean breakpoint started****/
+
+    int maxi = INT_MIN;
+    int avg = 0;
     uint64_t current_time3 = timeSinceEpochMillisec();
 
     for(auto a:block){
-    auto itr = std::find_if(A.begin(), A.end(),
-                              [a](Agent* b) { return a == b; });
-    int d = std::distance(A.begin(), itr);
-    (*a).conf = h3(a,node->paths[d],node->paths);
+      auto itr = std::find_if(A.begin(), A.end(),
+                                [a](Agent* b) { return a == b; });
+      int d = std::distance(A.begin(), itr);
+      (*a).conf = h3(a,root->paths[d],root->paths);
+      avg += (*a).conf;
+      maxi = max(maxi,(*a).conf);
+      //cout << "block size " << block.size() <<endl; 
+    }
+
+    avg /= block.size();
+
+    double offset1 = (w-1)/(2*avg);
+    double offset2 = (w-1)/(2*maxi);
+
+    cout << "offset1 " << offset1 <<endl; 
+    cout << "offset2 " << offset2 <<endl; 
+    double add = 0;
     
-    //cout<<"Number of conflict for agent " << (*a).getId() << " is " << (*a).conf <<endl;
-    maxi = max(maxi,(*a).conf);
-    //cout << "block size " << block.size() <<endl; 
-  }
-
-    if(maxi!=0){
-    offset = (w-1)/maxi;
-
-    //cout <<"*****ConflictEnd*****"<<endl;
     for(auto a:block){
-    //cout<< "conflict " <<(*a).getId()<< " is " << (*a).conf <<endl;
-    (*a).m_w = 1 + ((*a).conf * offset);
-    if((*a).getId() == atoi(fields[0].c_str())){
-      //cout << (*a).getId() << " " << atoi(fields[0].c_str()) << endl;
-      max_weight = fmax(max_weight,(*a).m_w);
-      first = a;
-    }
-    else if((*a).getId() == atoi(fields[1].c_str())){
-      //cout << (*a).getId() << " " << atoi(fields[1].c_str()) << endl;
-      max_weight = fmax(max_weight,(*a).m_w);
-      second = a;
+      //cout<< "conflict " <<(*a).getId()<< " is " << (*a).conf <<endl;
+      //(*a).m_w = ((1 + w)/2) + ((*a).conf * offset);
+      // add += (*a).m_w;
+      if((*a).conf <= avg){
+        (*a).m_w = 1 + ((*a).conf * offset1);
+      }
+      else{
+        (*a).m_w = ((1 + w)/2) + ((*a).conf * offset2);
+      }
+      
+      //cout << (*a).m_w << endl;
     }
 
-    //add += offset;
-  }
+  /**** DWA mean breakpoint ended****/
+
 
     //latest modification_starts_here
     // if(conflict_weight_table.find(conflict_key)!= conflict_weight_table.end() && conflict_weight_table[conflict_key] >= max_weight){
@@ -237,11 +223,11 @@ bool DWA_ECBS::solvePart(Paths& paths, Agents& block) {
     // }
     //latest modification_ends_here
 
-    }
+   // }
 
-    uint64_t current_time4 = timeSinceEpochMillisec();
+    //uint64_t current_time2 = timeSinceEpochMillisec();
 
-    dtime += (current_time4 - current_time3);
+    //total_time += (current_time2 - current_time1);
 
     for (auto constraint : constraints) {
       CTNode* newNode = new CTNode { constraint, node->paths,
@@ -289,23 +275,19 @@ bool DWA_ECBS::solvePart(Paths& paths, Agents& block) {
 
   lowlevelnode = cnt;
 
-  cout << "total_time " << dtime <<endl;
+  //cout << "total_time " << total_time <<endl;
 
   for(auto a:block){
-    cout << (*a).getId() << " " ;
-    double cnt = 0;
-    for(int i = 0; i<mp[(*a).getId()].size(); i++){
-      cnt += mp[(*a).getId()][i];
-    }
-    cout << cnt/mp[(*a).getId()].size() << endl;
+    cout << (*a).getId() << " " <<(*a).m_w << " " << (*a).conf << endl;
   }
 
   return status;
 
 }
 
-void DWA_ECBS::invoke(CTNode* node, Agents& block) {
+void DWA_ECBS_3::invoke(CTNode* node, Agents& block) {
   int d;
+  cout << "invoke" << endl;
   // calc path
   if (node->c.empty()) {  // initail
     Paths paths;
@@ -323,6 +305,8 @@ void DWA_ECBS::invoke(CTNode* node, Agents& block) {
     node->paths = paths;
     node->LB = 0;
   } else {
+    cout << "before loop" <<endl;
+    // print_paths(node->paths);
     Agent* a;
     // error check
     if (node->paths.size() != A.size()) {
@@ -342,7 +326,7 @@ void DWA_ECBS::invoke(CTNode* node, Agents& block) {
       d = std::distance(A.begin(), itr);
       node->paths[d].clear();
     }
-
+  
     for (auto c : node->c) {
       a = c->a;
       auto itr = std::find_if(A.begin(), A.end(),
@@ -352,6 +336,25 @@ void DWA_ECBS::invoke(CTNode* node, Agents& block) {
         std::exit(1);
       }
       d = std::distance(A.begin(), itr);
+      // if(((*a).conflicted_list).size()==0){
+      //     auto history = (*a).getHist();
+      //     int node_id = (history[0]->v)->getId();
+      //     ((*a).conflicted_list).push_back((*a).getConflictedNode(node_id, c->t, (*a).m_w));
+      // }
+      // else{
+      //     auto conf_node = (*a).conflicted_list[((*a).conflicted_list).size() - 1];
+      //     if(conf_node->time <= c->t)
+      //       conf_node->m_w = (*a).m_w;
+      //     else{
+      //         conf_node = (*a).conflicted_list[bin_search((*a).conflicted_list, 0, ((*a).conflicted_list).size() - 1, c->t)];
+      //         conf_node->m_w = (*a).m_w;
+      //     }
+      //     cout << "in" << endl;
+      //     for(auto con:(*a).conflicted_list){
+      //       cout << con->m_w << endl;
+      //     }
+      //     cout << "out" << endl;
+      // }
       node->paths[d] = AstarSearch(a, node);
       node->fmins[d] = table_fmin.at(a->getId());
     }
@@ -361,13 +364,30 @@ void DWA_ECBS::invoke(CTNode* node, Agents& block) {
   if (!node->valid) return;
   calcCost(node, block);
   formalizePathAgents(node, block);
+  cout << "after_loop" << endl;
+  //print_paths(node->paths);
 }
 
-int DWA_ECBS::h3(Agent* a, Nodes &p1, Paths &paths) {
+int DWA_ECBS_3::bin_search(std::vector<conflicted_node*> & conflicted_list, int st, int en, int time){
+    if(en-st == 1 || en==st) return st;
+    int mid = (en-st+1)/2;
+    if(conflicted_list[mid]->time <= time){
+      return bin_search(conflicted_list, mid, en, time);
+    }
+    else
+    {
+      return bin_search(conflicted_list, st, mid, time);
+    }
+    
+}
+
+int DWA_ECBS_3::h3(Agent* a, Nodes &p1, Paths &paths) {
   if (p1.empty()) return 0;
 
   int collision = 0;
   Nodes p2;
+
+  (*a).time_conflict_map.clear();
 
   for (int i = 0; i < paths.size(); ++i) {
     if (a->getId() == i) continue;
@@ -376,16 +396,19 @@ int DWA_ECBS::h3(Agent* a, Nodes &p1, Paths &paths) {
     for (int t = 0; t < p1.size(); ++t) {
       if (t >= p2.size()) {
         if (p1[t] == p2[p2.size() - 1]) {
+          (*a).time_conflict_map[t] = p1[t];
           ++collision;
           break;
         }
         continue;
       }
       if (p1[t] == p2[t]) {  // collision
+        (*a).time_conflict_map[t] = p1[t];
         ++collision;
         break;
       }
       if (t > 0 && p1[t-1] == p2[t] && p1[t] == p2[t-1]) {
+        (*a).time_conflict_map[t] = p1[t];
         ++collision;
         break;
       }
@@ -401,7 +424,7 @@ int DWA_ECBS::h3(Agent* a, Nodes &p1, Paths &paths) {
   return collision;
 }
 
-int DWA_ECBS::h3(Paths &paths) {
+int DWA_ECBS_3::h3(Paths &paths) {
 
   int collision = 0;
   Nodes p1, p2;
@@ -467,7 +490,20 @@ struct Fib_FN { // Forcul Node for Fibonacci heap
   }
 };
 
-Nodes DWA_ECBS::AstarSearch(Agent* a, CTNode* node) {
+void DWA_ECBS_3::print_paths(Paths &paths){
+  for(int i=0; i<paths.size();i++){
+    Nodes p2 = paths[i];
+    cout << "******paths_start******agent "<< i  <<endl;
+    for(int j=0; j<p2.size(); j++){
+      cout << p2[j]->getId() << " ";
+    }
+    cout << endl;
+  }
+  cout << endl;
+}
+
+
+Nodes DWA_ECBS_3::AstarSearch(Agent* a, CTNode* node) {
   Constraint constraints = getConstraintsForAgent(node, a);
 
   Node* _s = a->getNode();
@@ -478,8 +514,7 @@ Nodes DWA_ECBS::AstarSearch(Agent* a, CTNode* node) {
   //double bw = w;
 
   double bw = (*a).m_w;
-  mp[(*a).getId()].push_back((*a).m_w) ;
-  //std::cout<<"weight for agent "<<(*a).getId()<< " is "<<bw<<std::endl;
+  mp[(*a).getId()] = (*a).m_w;
 
   // ==== fast implementation ====
   // constraint free
@@ -528,8 +563,13 @@ Nodes DWA_ECBS::AstarSearch(Agent* a, CTNode* node) {
                      boost::heap::fibonacci_heap<Fib_FN>::handle_type> SEARCHED_F;
   auto handle2 = FOCUL.push(Fib_FN(n,table_conflict.at(key)));
 
+  int iterator = 0;
+
+  std::cout<<"weight for agent "<<(*a).getId()<< " is "<<bw<<std::endl;
+
 
   while (!OPEN.empty()) {
+    //cout << "in" << endl;
     if (updateMin || FOCUL.empty()) {
       // argmin
       while (!OPEN.empty()
@@ -556,10 +596,17 @@ Nodes DWA_ECBS::AstarSearch(Agent* a, CTNode* node) {
       }
     }
 
+    //cout << OPEN.size() << " " << FOCUL.size() << " " << endl;
+
     // argmin in FOCUL
     n = FOCUL.top().node;
     key = getKey(n);
     FOCUL.pop();
+
+    // if((n->v)->getId() == ((*a).conflicted_list[iterator])->node_id){
+    //   bw = ((*a).conflicted_list[iterator])->m_w;
+    //   iterator ++;
+    // }
     
 
     // already explored
@@ -588,6 +635,7 @@ Nodes DWA_ECBS::AstarSearch(Agent* a, CTNode* node) {
     //cout << C.size() << endl;
 
     for (auto m : C) {
+     // cout << "loop" << endl;
       //cnt1++;
       g = n->g + 1;
       key = getKey(g, m);
@@ -620,6 +668,15 @@ Nodes DWA_ECBS::AstarSearch(Agent* a, CTNode* node) {
       if (itrS == SEARCHED.end()) {  // new node
         cnt++;
         l = new AN { m, g, f, n };
+        //cout << "in" << endl;
+        // if(iterator < ((*a).conflicted_list).size()){
+        //   if((l->v)->getId() == ((*a).conflicted_list[iterator])->node_id){
+        //   bw = ((*a).conflicted_list[iterator])->m_w;
+        //   //cout << bw << endl;
+        //   iterator ++;
+        //   }
+        // }
+        //cout << "out" << endl;
         auto handle = OPEN.push(Fib_AN(l));
         SEARCHED.emplace(key, handle);
         getPartialPath(l, tmpPath);
@@ -656,6 +713,7 @@ Nodes DWA_ECBS::AstarSearch(Agent* a, CTNode* node) {
       }
     }
     //std::cout<<" cnt "<<cnt1<<" "<<cnt2<<" "<<cnt3<<std::endl;
+    //cout << "out" << endl;
   }
 
   int soln = INT_MAX;
@@ -671,19 +729,40 @@ Nodes DWA_ECBS::AstarSearch(Agent* a, CTNode* node) {
   // back tracking
   int fmin = 0;
   if (!invalid) {  // check failed or not
+   // cout << "in" << endl;
     getPartialPath(n, path);
     fmin = ubori;
+    // std::map<int,Node*> :: iterator it;
+    // cout << "map size " << (*a).time_conflict_map.size() << endl;
+    // for(it = (*a).time_conflict_map.begin(); it!=(*a).time_conflict_map.end();it++){
+    //     //cout << it->first << endl;
+    //     if((it->second)->getId() == path[(it->first)]->getId()){
+    //       if(it != (*a).time_conflict_map.begin()){
+    //         it--;
+    //         //cout << "in" << endl;
+    //         int pos = bin_search((*a).conflicted_list, 0, ((*a).conflicted_list).size()-1, it->first);
+    //         //cout << "out" << endl;
+    //         auto itPos = ((*a).conflicted_list).begin() + pos + 1;
+    //         conflicted_node* cnode = (*a).getConflictedNode((it->second)->getId(), it->first, (*a).conflicted_list[pos]->m_w);
+    //         ((*a).conflicted_list).insert(itPos, cnode);
+    //         cout << "inserted" << endl;
+    //       }
+    //       break;
+    //     }
+    // }
+  //  cout << "out" << endl;
+
   } else {
     node->valid = false;
   }
   table_fmin.at(a->getId()) = fmin;
 
-  //cout<<"Number of conflict for agent " << (*a).getId() << " is " << h3(a,path,paths) <<endl;
+  // cout<<"Number of conflict for agent " << (*a).getId() << " is " << h3(a,path,paths) <<endl;
 
   return path;
 }
 
-void DWA_ECBS::getPartialPath(AN* n, Nodes &path) {
+void DWA_ECBS_3::getPartialPath(AN* n, Nodes &path) {
   path.clear();
   AN* m = n;
   while (m != nullptr) {
@@ -693,14 +772,13 @@ void DWA_ECBS::getPartialPath(AN* n, Nodes &path) {
   std::reverse(path.begin(), path.end());
 }
 
-std::string DWA_ECBS::logStr() {
+std::string DWA_ECBS_3::logStr() {
   std::string str;
   str += "[solver] type:ECBS\n";
   str += "[solver] w:" + std::to_string(w) + "\n";
   str += "[solver] ID:" + std::to_string(ID) + "\n";
   str += "[solver] Lowlevelnode:" + std::to_string(lowlevelnode) + "\n";
   str += "[solver] ConflictCount:" + std::to_string(conflict_cnt) + "\n";
-  str += "[solver] DynamicTime:" + std::to_string(dtime) + "\n";
   str += "[solver] ThrashingNodes:" + std::to_string(thrashing_nodes) + "\n";
 
   str += Solver::logStr();

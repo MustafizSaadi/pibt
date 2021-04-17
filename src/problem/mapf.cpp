@@ -116,7 +116,7 @@ std::string MAPF::logStr() {
       ++cnt;
       --itr;
     }
-    pathsize = getTerminationTime() - cnt + 1;
+    pathsize = getTerminationTime() - cnt;
     solnCost += pathsize;
     str += a->logStr();
     str += "size:" + std::to_string(pathsize) + "\n";

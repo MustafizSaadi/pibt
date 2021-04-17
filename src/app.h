@@ -30,9 +30,20 @@
 #include "solver/tp.h"
 #include "solver/pps.h"
 #include "solver/swa_ecbs.h"
+#include "solver/swa_ecbs_2.h"
+#include "solver/swa_ecbs_3.h"
 #include "solver/dwa_ecbs.h"
+#include "solver/dwa_ecbs_2.h"
+#include "solver/dwa_ecbs_3.h"
+#include "solver/BCBS_1_w.h"
+#include "solver/BCBS_w_1.h"
 
 static void setCurrentTime(std::string &str);  // for log filename
+
+uint64_t timeSinceEpochMillisec() {
+  using namespace std::chrono;
+  return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+}
 
 
 Problem* run(int argc, char *argv[])
@@ -132,7 +143,7 @@ Problem* run(int argc, char *argv[])
   }
 
   std :: string input_file;
-  int st = envConfig->field.find("k");
+  int st = envConfig->field.find("8");
   int en = envConfig->field.find(".map");
   input_file = envConfig->field.substr(st,en-st) + "_" +to_string(envConfig->seed)+ "_" + to_string(envConfig->agentnum)+"_" + to_string(solverConfig->suboptimal);
 
@@ -234,6 +245,24 @@ Problem* run(int argc, char *argv[])
     cout << "SWA_ECBS " <<solverConfig->suboptimal<< endl;
     solver = new SWA_ECBS(P, solverConfig->suboptimal, solverConfig->ID);
     break;
+  case Param::SOLVER_TYPE::S_SWA_ECBS_2:
+    if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
+        envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF_STATION) {
+      std::cout << "error@run, ECBS cannot solve except MAPF" << "\n";
+      std::exit(1);
+    }
+    cout << "SWA_ECBS " <<solverConfig->suboptimal<< endl;
+    solver = new SWA_ECBS_2(P, solverConfig->suboptimal, solverConfig->ID);
+    break;
+  case Param::SOLVER_TYPE::S_SWA_ECBS_3:
+    if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
+        envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF_STATION) {
+      std::cout << "error@run, ECBS cannot solve except MAPF" << "\n";
+      std::exit(1);
+    }
+    cout << "SWA_ECBS " <<solverConfig->suboptimal<< endl;
+    solver = new SWA_ECBS_3(P, solverConfig->suboptimal, solverConfig->ID);
+    break;
   case Param::SOLVER_TYPE::S_DWA_ECBS:
     if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
         envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF_STATION) {
@@ -242,6 +271,42 @@ Problem* run(int argc, char *argv[])
     }
     cout << "DWA_ECBS " <<solverConfig->suboptimal<< endl;
     solver = new DWA_ECBS(P, solverConfig->suboptimal, solverConfig->ID);
+    break;
+  case Param::SOLVER_TYPE::S_DWA_ECBS_2:
+    if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
+        envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF_STATION) {
+      std::cout << "error@run, ECBS cannot solve except MAPF" << "\n";
+      std::exit(1);
+    }
+    cout << "DWA_ECBS_2" <<solverConfig->suboptimal<< endl;
+    solver = new DWA_ECBS_2(P, solverConfig->suboptimal, solverConfig->ID);
+    break;
+  case Param::SOLVER_TYPE::S_DWA_ECBS_3:
+    if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
+        envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF_STATION) {
+      std::cout << "error@run, ECBS cannot solve except MAPF" << "\n";
+      std::exit(1);
+    }
+    cout << "DWA_ECBS_2" <<solverConfig->suboptimal<< endl;
+    solver = new DWA_ECBS_3(P, solverConfig->suboptimal, solverConfig->ID);
+    break;
+  case Param::SOLVER_TYPE::S_BCBS_1_W:
+    if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
+        envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF_STATION) {
+      std::cout << "error@run, ECBS cannot solve except MAPF" << "\n";
+      std::exit(1);
+    }
+    cout << "BCBS_1_W " <<solverConfig->suboptimal<< endl;
+    solver = new BCBS_1_w(P, solverConfig->suboptimal, solverConfig->ID);
+    break;
+  case Param::SOLVER_TYPE::S_BCBS_W_1:
+    if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
+        envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF_STATION) {
+      std::cout << "error@run, ECBS cannot solve except MAPF" << "\n";
+      std::exit(1);
+    }
+    cout << "BCBS_W_1 " <<solverConfig->suboptimal<< endl;
+    solver = new BCBS_w_1(P, solverConfig->suboptimal, solverConfig->ID);
     break;
   case Param::SOLVER_TYPE::S_iECBS:
     if (envConfig->PTYPE != Param::PROBLEM_TYPE::P_MAPF &&
@@ -329,12 +394,16 @@ Problem* run(int argc, char *argv[])
 #endif
   
   //ofstream myfile;
-  //uint64_t current_time1 = timeSinceEpochMillisec();*/
+  uint64_t current_time1 = timeSinceEpochMillisec();
+
+  std::cout << "Above solve" << std::endl;
 
   solver->solve();
   
 
-  //uint64_t current_time2 = timeSinceEpochMillisec();
+  uint64_t current_time2 = timeSinceEpochMillisec();
+
+  std::cout << current_time2 - current_time1 << std::endl;
   // myfile.open("output_high_level_node.txt",ios_base::app);
   // myfile<<solver->highLevelNode<<endl;
   // myfile.close();
@@ -357,6 +426,7 @@ Problem* run(int argc, char *argv[])
     std::ofstream log;
     //setCurrentTime(outfile);
     outfile = "./"+envConfig->log_folder+"/" + outfile + ".txt";
+    cout << outfile << endl;
     log.open(outfile, std::ios::out);
     if (!log) {
       std::cout << "error@run, cannot open log file "

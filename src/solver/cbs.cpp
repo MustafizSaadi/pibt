@@ -325,6 +325,9 @@ Constraints CBS::valid(CTNode* node, Agents& block) {
             //setCKey(c);
             setCKey(c, min(A[ids[l]]->getId(),A[ids[k]]->getId()), max(A[ids[l]]->getId(),A[ids[k]]->getId()));
             constraint.push_back(c);
+            // if((A[ids[l]]->conflicted_list).size()==0){
+
+            // }
           }
           constraints.push_back(constraint);
         }
@@ -370,6 +373,10 @@ void CBS::formalizePathAgents(CTNode* node, Agents& block) {
     g = node->paths[i][node->paths[i].size() - 1];
     while (node->paths[i].size() != maxLength) node->paths[i].push_back(g);
   }
+
+  //cout << "after loop" <<endl;
+  // print_paths(Paths);
+  
 }
 
 Nodes CBS::AstarSearch(Agent* a, CTNode* node) {

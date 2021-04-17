@@ -1,16 +1,15 @@
 /*
  * ecbs.h
  *
- * Purpose: Enhanced Conflict-based Search with weight change(runtime) at each high level node
+ * Purpose: Enhanced Conflict-based Search with weight change only at the root of high level node
  * Created by: Keisuke Okumura <okumura.k@coord.c.titech.ac.jp>
  */
 
 #pragma once
 #include "cbs.h"
-#include <map>
 
 
-class DWA_ECBS : public CBS {
+class SWA_ECBS_3 : public CBS {
 protected:
   float w;  // sub-optimal factor
   std::unordered_map<int, int> table_fmin;  // record min of f-value
@@ -24,16 +23,17 @@ protected:
   void getPartialPath(AN* n, Nodes &path);
 
 public:
-  DWA_ECBS(Problem* _P, float _w);
-  DWA_ECBS(Problem* _P, float _w, bool _ID);
-  ~DWA_ECBS();
+  SWA_ECBS_3(Problem* _P, float _w);
+  SWA_ECBS_3(Problem* _P, float _w, bool _ID);
+  ~SWA_ECBS_3();
   int lowlevelnode;
-  int dtime;
   int conflict_cnt;
   int cnt;
   int thrashing_nodes;
-  std::map< int, std::vector<double> > mp;
+  std::vector<std::pair<int,int>> vec[50];
 
   virtual std::string logStr();
   uint64_t timeSinceEpochMillisec();
+  void writeDiscoveredPath(int i,std::vector<std::pair<int,int>> & mat);
+  void print_paths(Paths &paths);
 };

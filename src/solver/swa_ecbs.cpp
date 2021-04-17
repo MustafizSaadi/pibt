@@ -33,6 +33,7 @@ void SWA_ECBS::init() {
   //std::cout<<"weight "<< w<<std::endl;
   cnt = 0;
   conflict_cnt = 0;
+  thrashing_nodes = 0;
 }
 
 // bool compare(Agent* a, Agent* b){
@@ -41,6 +42,9 @@ void SWA_ECBS::init() {
 
 bool SWA_ECBS::solvePart(Paths& paths, Agents& block) {
   //int highLevelNode = 0;
+
+  string write = "";
+  ofstream outfile;
   CTNode* node;
   Constraints constraints;
 
@@ -75,35 +79,51 @@ bool SWA_ECBS::solvePart(Paths& paths, Agents& block) {
   table_conflict.push_back(h3(root->paths));
   ++uuid;
 
+  /****SWA_main start****/
+
   int maxi = INT_MIN;
- // uint64_t current_time3 = timeSinceEpochMillisec();
 
   for(auto a:block){
     auto itr = std::find_if(A.begin(), A.end(),
                               [a](Agent* b) { return a == b; });
-      int d = std::distance(A.begin(), itr);
+    int d = std::distance(A.begin(), itr);
     (*a).conf = h3(a,root->paths[d],root->paths);
     maxi = max(maxi,(*a).conf);
     //cout << "block size " << block.size() <<endl; 
   }
 
-  // sort(block.begin(),block.end(),compare);
+  double offset = (w-1)/(maxi);
 
-  // cout << "offset " << w <<endl; 
-
-  double offset = (w-1)/maxi;
-
-  //cout << "offset " << offset <<endl; 
-  // double add = offset;
   for(auto a:block){
-    //cout<< "conflict " <<(*a).getId()<< " is " << (*a).conf <<endl;
+    
     (*a).m_w = 1 + ((*a).conf * offset);
-    //add += offset;
   }
 
-  // uint64_t current_time4 = timeSinceEpochMillisec();
+  /****SWA_main ENDED****/
 
-  //cout <<"Time " << (current_time2 - current_time1) + (current_time4 - current_time3)<< endl;
+  uint64_t current_time4 = timeSinceEpochMillisec();
+
+  // double mean_w = add/block.size();
+
+  // //cout <<"Time " << (current_time4 - current_time3)<< endl;
+
+  // cout<<mean_w << " mean weight " << endl;
+
+  // if(mean_w > w){
+  //   cout<<mean_w<< " ********Over computed****"<< endl;
+
+  //   double residual = (mean_w - w)/block.size();
+
+  //   for(auto a:block){
+  //   //cout<< "conflict " <<(*a).getId()<< " is " << (*a).conf <<endl;
+  //   if((*a).m_w - residual >= 1){
+  //     (*a).m_w -= residual;
+  //     cout << (*a).m_w << endl;
+  //   }
+    
+  // }
+
+  // }
 
   bool CAT = std::any_of(paths.begin(), paths.end(),
                          [](Nodes p) { return !p.empty(); });
@@ -113,7 +133,7 @@ bool SWA_ECBS::solvePart(Paths& paths, Agents& block) {
   while (!OPEN.empty()) {
   //maxi = INT_MIN;
     uint64_t current_time2 = timeSinceEpochMillisec();
-    if(current_time2-current_time1 >= 300000)
+    if(current_time2-current_time1 >= 180000)
       return false;
     if (updateMin) {
       itrO = std::min_element(OPEN.begin(), OPEN.end(),
@@ -133,6 +153,7 @@ bool SWA_ECBS::solvePart(Paths& paths, Agents& block) {
     node = table[key];
 
     ub = node->LB * w;
+    int lb = node->LB;
     // update focul
     FOCUL.clear();
     for (auto keyO : OPEN) {
@@ -150,6 +171,19 @@ bool SWA_ECBS::solvePart(Paths& paths, Agents& block) {
 
     keyF = *itrF;
     node = table[keyF];
+
+    write += "Paths start\n";
+    for (int i = 0; i < paths.size(); ++i) {
+      write += to_string(block[i]->getId()) + " " + to_string(block[i]->m_w);
+      if (!node->paths[i].empty()) {
+        for(auto p : node->paths[i]){
+          write += "-> (" +  to_string(p->getPos().y) + " " + to_string(p->getPos().x) + ")";
+        }
+      }
+      write += "\n";
+    }
+    write += "Paths end\n" ;
+
 
     conflict_cnt ++;
     constraints = valid(node, block);
@@ -181,11 +215,20 @@ bool SWA_ECBS::solvePart(Paths& paths, Agents& block) {
         OPEN.insert(uuid);
         table.push_back(newNode);
         table_conflict.push_back(h3(newNode->paths));
+        cout << newNode->cost << " " << ub << " " << lb << endl;
+        if(newNode->cost > ub){
+          //FOCUL.push_back(uuid);
+          thrashing_nodes ++;
+        }
         ++uuid;
       }
     }
     constraints.clear();
   }
+
+  outfile.open("/home/mustafizur/pibt/swa_path.txt");
+
+  outfile << write << endl;
 
   if (!OPEN.empty()) {  // sucssess
     for (int i = 0; i < paths.size(); ++i) {
@@ -201,7 +244,7 @@ bool SWA_ECBS::solvePart(Paths& paths, Agents& block) {
   lowlevelnode = cnt;
 
   for(auto a:block){
-    cout << (*a).getId() << " " <<(*a).m_w << endl;
+    cout << (*a).getId() << " " <<(*a).m_w << " " <<(*a).conf<< endl;
   }
 
   return status;
@@ -210,6 +253,7 @@ bool SWA_ECBS::solvePart(Paths& paths, Agents& block) {
 
 void SWA_ECBS::invoke(CTNode* node, Agents& block) {
   int d;
+  cout << "invoke" << endl;
   // calc path
   if (node->c.empty()) {  // initail
     Paths paths;
@@ -227,6 +271,8 @@ void SWA_ECBS::invoke(CTNode* node, Agents& block) {
     node->paths = paths;
     node->LB = 0;
   } else {
+    cout << "before loop" <<endl;
+    // print_paths(node->paths);
     Agent* a;
     // error check
     if (node->paths.size() != A.size()) {
@@ -265,6 +311,8 @@ void SWA_ECBS::invoke(CTNode* node, Agents& block) {
   if (!node->valid) return;
   calcCost(node, block);
   formalizePathAgents(node, block);
+  cout << "after_loop" << endl;
+  // print_paths(node->paths);
 }
 
 int SWA_ECBS::h3(Agent* a, Nodes &p1, Paths &paths) {
@@ -362,6 +410,7 @@ struct Fib_FN { // Forcul Node for Fibonacci heap
     if (h != other.h) {
       return h > other.h;
     } else {
+      /* shouldn't it be distance to go */
       if (node->f != other.node->f) {
         return node->f > other.node->f;
       } else {
@@ -370,6 +419,18 @@ struct Fib_FN { // Forcul Node for Fibonacci heap
     }
   }
 };
+
+void SWA_ECBS::print_paths(Paths &paths){
+  for(int i=0; i<paths.size();i++){
+    Nodes p2 = paths[i];
+    cout << "******paths_start******agent "<< i  <<endl;
+    for(int j=0; j<p2.size(); j++){
+      cout << p2[j]->getId() << " ";
+    }
+    cout << endl;
+  }
+  cout << endl;
+}
 
 Nodes SWA_ECBS::AstarSearch(Agent* a, CTNode* node) {
   Constraint constraints = getConstraintsForAgent(node, a);
@@ -601,7 +662,9 @@ std::string SWA_ECBS::logStr() {
   str += "[solver] w:" + std::to_string(w) + "\n";
   str += "[solver] ID:" + std::to_string(ID) + "\n";
   str += "[solver] Lowlevelnode:" + std::to_string(lowlevelnode) + "\n";
+  str += "[solver] Highlevelnode:" + std::to_string(highLevelNode) + "\n";
   str += "[solver] ConflictCount:" + std::to_string(conflict_cnt) + "\n";
+  str += "[solver] ThrashingNodes:" + std::to_string(thrashing_nodes) + "\n";
 
   str += Solver::logStr();
   return str;

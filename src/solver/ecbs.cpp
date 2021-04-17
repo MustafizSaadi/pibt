@@ -33,6 +33,7 @@ void ECBS::init() {
   std::cout<<"weight "<< w<<std::endl;
   cnt = 0;
   conflict_cnt = 0;
+  thrashing_nodes = 0;
 }
 
 // bool compare(Agent* a, Agent* b){
@@ -41,6 +42,9 @@ void ECBS::init() {
 
 bool ECBS::solvePart(Paths& paths, Agents& block) {
   //int highLevelNode = 0;
+
+  ofstream outfile;
+  string write = "";
   CTNode* node;
   Constraints constraints;
 
@@ -59,6 +63,12 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
   uint64_t total_time = 0;
 
   uint64_t current_time1 = timeSinceEpochMillisec();
+
+  for(auto a:block){
+    //cout<< "conflict " << (*a).conf <<endl;
+    (*a).m_w = w;
+  }
+
 
  // uint64_t current_time2 = timeSinceEpochMillisec();
 
@@ -84,24 +94,25 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
   //maxi = INT_MIN;
     uint64_t current_time2 = timeSinceEpochMillisec();
 
-    if(current_time2-current_time1>= 300000)
+    if(current_time2-current_time1>= 180000)
       return false;
-  //  // if (updateMin) {
-  //     itrO = std::min_element(OPEN.begin(), OPEN.end(),
-  //                             [CAT, this, &paths, &table]
-  //                             (int a, int b) {
-  //                               CTNode* nA = table[a];
-  //                               CTNode* nB = table[b];
-  //                               if (CAT && nA->cost == nB->cost) {
-  //                                 return this->countCollisions(nA, paths)
-  //                                   < this->countCollisions(nB, paths);
-  //                               }
-  //                               return nA->cost < nB->cost;
-  //                             });
-  //  // }
+   if (updateMin) {
+      itrO = std::min_element(OPEN.begin(), OPEN.end(),
+                              [CAT, this, &paths, &table]
+                              (int a, int b) {
+                                CTNode* nA = table[a];
+                                CTNode* nB = table[b];
+                                if (CAT && nA->cost == nB->cost) {
+                                  return this->countCollisions(nA, paths)
+                                    < this->countCollisions(nB, paths);
+                                }
+                                return nA->cost < nB->cost;
+                              });
+    }
 
     key = *itrO;
     node = table[key];
+
 
     // float oldBestCost = bestCost;
     // bestCost = node->LB;
@@ -120,7 +131,8 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
     //   } 
     // }
 
-    ub = node->cost * w;
+    ub = node->LB * w;
+    int lb = node->LB;
     // // update focul
     FOCUL.clear();
     if(FOCUL.empty()){
@@ -128,6 +140,8 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
         if ((float)table[keyO]->cost <= ub) FOCUL.push_back(keyO);
       }
     }
+
+    cout << "Open size " << OPEN.size() << " Focal size " << FOCUL.size() << endl; 
     auto itrF = std::min_element(FOCUL.begin(), FOCUL.end(),
                                  [&table, &table_conflict]
                                  (int a, int b) {
@@ -141,14 +155,31 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
     keyF = *itrF;
     node = table[keyF];
 
+    cout << "Focal cost " << node->cost << endl; 
+
+    write += "Paths start\n";
+    for (int i = 0; i < paths.size(); ++i) {
+      write += to_string(block[i]->getId()) + " " + to_string(block[i]->m_w);
+      if (!node->paths[i].empty()) {
+        for(auto p : node->paths[i]){
+          write += "-> (" +  to_string(p->getPos().y) + " " + to_string(p->getPos().x) + ")";
+        }
+      }
+      write += "\n";
+    }
+    write += "Paths end\n" ;
+
     //cout << bestCost << " " << oldBestCost << " " << node->cost << endl;
 
-    FOCUL.erase(itrF);
+    //FOCUL.erase(itrF);
     //table.erase(node);
 
     conflict_cnt ++;
     constraints = valid(node, block);
-    if (constraints.empty()) break;
+    if (constraints.empty()) {
+      cout << "del_lb " << node->LB - bestCost << endl;
+      break;
+    }
 
     updateMin = (key == keyF);
     auto itrP = std::find(OPEN.begin(), OPEN.end(), keyF);
@@ -177,14 +208,21 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
         OPEN.insert(uuid);
         table.push_back(newNode);
         table_conflict.push_back(h3(newNode->paths));
-        // if(newNode->LB <= bestCost * w){
-        //   FOCUL.push_back(uuid);
-        // }
+        cout << newNode->cost << " " << ub << " " << lb << endl;
+        if(newNode->cost > ub){
+          //FOCUL.push_back(uuid);
+          thrashing_nodes ++;
+        }
         ++uuid;
       }
     }
     constraints.clear();
   }
+
+  outfile.open("/home/mustafizur/pibt/ecbs_path.txt");
+
+  outfile << write << endl;
+
 
   if (!OPEN.empty()) {  // sucssess
     for (int i = 0; i < paths.size(); ++i) {
@@ -202,6 +240,8 @@ bool ECBS::solvePart(Paths& paths, Agents& block) {
   // for(int i=0;i<block.size();i++){
   //   writeDiscoveredPath(i,vec[i]);
   // }
+
+
 
   return status;
 
@@ -672,7 +712,9 @@ std::string ECBS::logStr() {
   str += "[solver] w:" + std::to_string(w) + "\n";
   str += "[solver] ID:" + std::to_string(ID) + "\n";
   str += "[solver] Lowlevelnode:" + std::to_string(lowlevelnode) + "\n";
+  str += "[solver] Highlevelnode:" + std::to_string(highLevelNode) + "\n";
   str += "[solver] ConflictCount:" + std::to_string(conflict_cnt) + "\n";
+  str += "[solver] ThrashingNodes:" + std::to_string(thrashing_nodes) + "\n";
 
   str += Solver::logStr();
   return str;

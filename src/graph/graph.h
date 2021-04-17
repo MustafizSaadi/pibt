@@ -26,7 +26,7 @@ struct AN {  // Astar Node
 struct Fib_AN { // AN for Fibonacci heap
   Fib_AN(AN* _node): node(_node) {}
   AN* node;
-
+  // a has less priority than b if a < b
   bool operator<(const Fib_AN& other) const {
     if (node->f != other.node->f) {
       return node->f > other.node->f;
